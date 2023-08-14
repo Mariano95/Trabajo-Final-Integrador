@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Compile Update="Backup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Bitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CargarServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BuscarTrabajadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CitarTrabajador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CambiarPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CambioEstadoCitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ComentarCitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CalificarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CredencialesBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="DesbloquearUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GruposUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModalOcultar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GrilaCitaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GrillaTrabajadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PantallaInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="IndicarTipoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PatentesPorGrupo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PatentesPorUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PreBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PreLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="IniciarSesion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ProbandoBD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RegistrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RestaurarSistema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
