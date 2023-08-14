@@ -321,13 +321,14 @@ namespace OyPPTP
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "PantallaInicial";
-            this.Text = "Form1";
+            this.Text = "PantallaInicial";
             this.Load += new System.EventHandler(this.PantallaInicial_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_FormClosed);
         }
 
         #endregion

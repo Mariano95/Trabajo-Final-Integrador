@@ -72,10 +72,11 @@ namespace OyPPTP
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "IndicarTipoUsuario";
-            this.Text = "Form1";
+            this.Text = "IndicarTipoUsuario";
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.IndicarTipoUsuario_FormClosed);
         }
 
         #endregion

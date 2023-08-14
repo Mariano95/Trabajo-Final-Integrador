@@ -89,11 +89,12 @@ namespace OyPPTP
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.textBox1);
             this.Name = "IniciarSesion";
-            this.Text = "Form1";
+            this.Text = "IniciarSesion";
             this.Load += new System.EventHandler(this.IniciarSesion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.IniciarSesion_FormClosed);
         }
 
         #endregion

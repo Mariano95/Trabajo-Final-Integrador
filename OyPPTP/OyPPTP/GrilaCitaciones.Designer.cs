@@ -49,7 +49,7 @@ namespace OyPPTP
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView1);
             this.Name = "GrilaCitaciones";
-            this.Text = "Form1";
+            this.Text = "GrillaCitaciones";
             this.Load += new System.EventHandler(this.GrilaCitaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

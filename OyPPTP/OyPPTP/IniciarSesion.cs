@@ -12,26 +12,53 @@ namespace OyPPTP
 {
     public partial class IniciarSesion : Form
     {
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////    CONSTRUCTOR     ///////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
         public IniciarSesion()
         {
             InitializeComponent();
         }
 
-        private void registrarUsuarioLnk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            RegistrarUsuario form = new RegistrarUsuario();
-            form.Show();
-        }
-
-        private void iniciarSesionBtn_Click(object sender, EventArgs e)
-        {
-            PantallaInicial form = new PantallaInicial();
-            form.Show();
-        }
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////    FORM LOAD     ///////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
         private void IniciarSesion_Load(object sender, EventArgs e)
         {
 
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        //private void registrarUsuarioLnk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //{
+        //    RegistrarUsuario form = new RegistrarUsuario();
+        //    this.Hide();
+        //    form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.IniciarSesion_RegistrarUsuarioClosed);
+        //    form.Show();
+        //}
+
+        private void iniciarSesionBtn_Click(object sender, EventArgs e)
+        {
+            PantallaInicial form = new PantallaInicial();
+            this.Hide();
+            form.Show();
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    HANDLER FUNCTIONS     ///////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void IniciarSesion_FormClosed(object sender, EventArgs e) {
+            //MessageBox.Show("IniciarSesion_FormClosed");
+        }
+
+        private void IniciarSesion_RegistrarUsuarioClosed(object sender, EventArgs e) {
+            this.Show();
         }
     }
 }

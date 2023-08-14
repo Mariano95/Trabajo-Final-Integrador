@@ -129,7 +129,7 @@ namespace OyPPTP
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Name = "CitarTrabajador";
-            this.Text = "Form1";
+            this.Text = "CitarTrabajador";
             this.Load += new System.EventHandler(this.CitarTrabajador_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

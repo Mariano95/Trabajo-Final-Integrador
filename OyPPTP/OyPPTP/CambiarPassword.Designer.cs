@@ -69,7 +69,7 @@ namespace OyPPTP
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "CambiarPassword";
-            this.Text = "Form1";
+            this.Text = "CambiarPassword";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -124,7 +124,7 @@ namespace OyPPTP
             this.Controls.Add(this.labelPromedio);
             this.Controls.Add(this.label1);
             this.Name = "BuscarTrabajadores";
-            this.Text = "Form1";
+            this.Text = "BuscarTrabajadores";
             this.Load += new System.EventHandler(this.BuscarTrabajadores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.calificacionNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.distanciaNumeric)).EndInit();

@@ -81,7 +81,7 @@ namespace OyPPTP
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label1);
             this.Name = "CalificarUsuario";
-            this.Text = "Form1";
+            this.Text = "CalificarUsuario";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);

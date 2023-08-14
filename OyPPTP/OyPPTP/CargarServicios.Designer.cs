@@ -121,7 +121,7 @@ namespace OyPPTP
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Name = "CargarServicios";
-            this.Text = "Form1";
+            this.Text = "CargarServicios";
             this.Load += new System.EventHandler(this.CargarServicios_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

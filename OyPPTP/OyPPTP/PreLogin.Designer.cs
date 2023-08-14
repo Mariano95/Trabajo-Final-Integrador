@@ -74,10 +74,11 @@ namespace OyPPTP
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "PreLogin";
-            this.Text = "Form1";
+            this.Text = "PreLogin";
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PreLogin_FormClosed);
         }
 
         #endregion

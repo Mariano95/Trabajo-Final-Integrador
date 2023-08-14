@@ -10,14 +10,24 @@ namespace OyPPTP
 {
     public partial class PreLogin : Form
     {
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////    CONSTRUCTOR     //////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
         public PreLogin()
         {
             InitializeComponent();
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
         private void button1_Click(object sender, EventArgs e)
         {
             IniciarSesion form = new IniciarSesion();
+            form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PreLogin_IniciarSesionClosed);
+            this.Hide();
             form.Show();
 
         }
@@ -25,12 +35,39 @@ namespace OyPPTP
         private void button2_Click(object sender, EventArgs e)
         {
             IndicarTipoUsuario form = new IndicarTipoUsuario();
+            form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PreLogin_IndicarTipoUsuarioClosed);
+            this.Hide();
             form.Show();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show( "Se enviará un mail a la dirección de correo electrónico de tu usuario, a través de él podrás restablecer tu contraseña.");
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    HANDLER FUNCTIONS     ///////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void PreLogin_IniciarSesionClosed(object sender, EventArgs e) {
+            //MessageBox.Show("PreLogin_IniciarSesionClosed");
+            this.Show();
+        }
+
+        private void PreLogin_IndicarTipoUsuarioClosed(object sender, EventArgs e)
+        {
+            //MessageBox.Show("PreLogin_IniciarSesionClosed");
+            this.Show();
+        }
+
+        private void PreLogin_FormClosed(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                DialogResult result = MessageBox.Show("Se va a cerrar la aplicación", "Cerrando aplicación");
+                System.Windows.Forms.Application.Exit();
+            }
+
         }
     }
 }

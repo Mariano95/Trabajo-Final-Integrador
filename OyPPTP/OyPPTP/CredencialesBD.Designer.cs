@@ -121,11 +121,12 @@ namespace OyPPTP
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "CredencialesBD";
-            this.Text = "Form1";
+            this.Text = "CredencialesBD";
             this.Load += new System.EventHandler(this.CredencialesBD_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CredencialesBD_FormClosed);
         }
 
         #endregion

@@ -75,7 +75,7 @@ namespace OyPPTP
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Guardar";
+            this.Text = "CambioEstadoCitacion";
             this.ResumeLayout(false);
             this.PerformLayout();
 

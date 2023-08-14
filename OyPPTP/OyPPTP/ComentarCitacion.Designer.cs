@@ -82,7 +82,7 @@ namespace OyPPTP
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ComentarCitacion";
-            this.Text = "Form1";
+            this.Text = "ComentarCitacion";
             this.Load += new System.EventHandler(this.ComentarCitacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

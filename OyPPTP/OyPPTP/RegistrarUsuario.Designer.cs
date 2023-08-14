@@ -182,7 +182,7 @@ namespace OyPPTP
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "RegistrarUsuario";
-            this.Text = "Form2";
+            this.Text = "RegistrarUsuario";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
