@@ -29,25 +29,24 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.probandoBD_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // probandoBD_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(281, 179);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(257, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Inicializando base de datos, aguarde por favor...";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.probandoBD_label.AutoSize = true;
+            this.probandoBD_label.Location = new System.Drawing.Point(281, 179);
+            this.probandoBD_label.Name = "probandoBD_label";
+            this.probandoBD_label.Size = new System.Drawing.Size(257, 15);
+            this.probandoBD_label.TabIndex = 0;
+            this.probandoBD_label.Text = "Inicializando base de datos, aguarde por favor...";
             // 
             // ProbandoBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.probandoBD_label);
             this.Name = "ProbandoBD";
             this.Text = "ProbandoBD";
             this.Load += new System.EventHandler(this.ProbandoBD_Load);
@@ -59,6 +58,6 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label probandoBD_label;
     }
 }

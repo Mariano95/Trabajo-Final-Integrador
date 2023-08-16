@@ -29,105 +29,104 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelPromedio = new System.Windows.Forms.Label();
-            this.labelServicio = new System.Windows.Forms.Label();
-            this.labelDistancia = new System.Windows.Forms.Label();
-            this.serviciosCombo = new System.Windows.Forms.ComboBox();
-            this.calificacionNumeric = new System.Windows.Forms.NumericUpDown();
-            this.distanciaNumeric = new System.Windows.Forms.NumericUpDown();
-            this.buscarTrabajadoresBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.calificacionNumeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.distanciaNumeric)).BeginInit();
+            this.buscar_trabajadores_label = new System.Windows.Forms.Label();
+            this.proedio_de_calificacion_minimo = new System.Windows.Forms.Label();
+            this.tipo_de_servicio = new System.Windows.Forms.Label();
+            this.distancia_maxima = new System.Windows.Forms.Label();
+            this.tipo_de_servicio_combo = new System.Windows.Forms.ComboBox();
+            this.promedio_de_calificacion_minimo_numeric = new System.Windows.Forms.NumericUpDown();
+            this.distancia_maxima_numeric = new System.Windows.Forms.NumericUpDown();
+            this.buscar_trabajadores = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.promedio_de_calificacion_minimo_numeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.distancia_maxima_numeric)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // buscar_trabajadores_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(247, 132);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(308, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Podés buscar trabajadores a partir de los siguientes filtros";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.buscar_trabajadores_label.AutoSize = true;
+            this.buscar_trabajadores_label.Location = new System.Drawing.Point(247, 132);
+            this.buscar_trabajadores_label.Name = "buscar_trabajadores_label";
+            this.buscar_trabajadores_label.Size = new System.Drawing.Size(308, 15);
+            this.buscar_trabajadores_label.TabIndex = 0;
+            this.buscar_trabajadores_label.Text = "Podés buscar trabajadores a partir de los siguientes filtros";
             // 
-            // labelPromedio
+            // proedio_de_calificacion_minimo
             // 
-            this.labelPromedio.AutoSize = true;
-            this.labelPromedio.Location = new System.Drawing.Point(232, 297);
-            this.labelPromedio.Name = "labelPromedio";
-            this.labelPromedio.Size = new System.Drawing.Size(183, 15);
-            this.labelPromedio.TabIndex = 1;
-            this.labelPromedio.Text = "Promedio de calificación mínimo";
+            this.proedio_de_calificacion_minimo.AutoSize = true;
+            this.proedio_de_calificacion_minimo.Location = new System.Drawing.Point(232, 297);
+            this.proedio_de_calificacion_minimo.Name = "proedio_de_calificacion_minimo";
+            this.proedio_de_calificacion_minimo.Size = new System.Drawing.Size(183, 15);
+            this.proedio_de_calificacion_minimo.TabIndex = 1;
+            this.proedio_de_calificacion_minimo.Text = "Promedio de calificación mínimo";
             // 
-            // labelServicio
+            // tipo_de_servicio
             // 
-            this.labelServicio.AutoSize = true;
-            this.labelServicio.Location = new System.Drawing.Point(232, 202);
-            this.labelServicio.Name = "labelServicio";
-            this.labelServicio.Size = new System.Drawing.Size(89, 15);
-            this.labelServicio.TabIndex = 2;
-            this.labelServicio.Text = "Tipo de servicio";
+            this.tipo_de_servicio.AutoSize = true;
+            this.tipo_de_servicio.Location = new System.Drawing.Point(232, 202);
+            this.tipo_de_servicio.Name = "tipo_de_servicio";
+            this.tipo_de_servicio.Size = new System.Drawing.Size(89, 15);
+            this.tipo_de_servicio.TabIndex = 2;
+            this.tipo_de_servicio.Text = "Tipo de servicio";
             // 
-            // labelDistancia
+            // distancia_maxima
             // 
-            this.labelDistancia.AutoSize = true;
-            this.labelDistancia.Location = new System.Drawing.Point(232, 251);
-            this.labelDistancia.Name = "labelDistancia";
-            this.labelDistancia.Size = new System.Drawing.Size(101, 15);
-            this.labelDistancia.TabIndex = 3;
-            this.labelDistancia.Text = "Distancia máxima";
+            this.distancia_maxima.AutoSize = true;
+            this.distancia_maxima.Location = new System.Drawing.Point(232, 251);
+            this.distancia_maxima.Name = "distancia_maxima";
+            this.distancia_maxima.Size = new System.Drawing.Size(101, 15);
+            this.distancia_maxima.TabIndex = 3;
+            this.distancia_maxima.Text = "Distancia máxima";
             // 
-            // serviciosCombo
+            // tipo_de_servicio_combo
             // 
-            this.serviciosCombo.FormattingEnabled = true;
-            this.serviciosCombo.Location = new System.Drawing.Point(479, 202);
-            this.serviciosCombo.Name = "serviciosCombo";
-            this.serviciosCombo.Size = new System.Drawing.Size(121, 23);
-            this.serviciosCombo.TabIndex = 4;
+            this.tipo_de_servicio_combo.FormattingEnabled = true;
+            this.tipo_de_servicio_combo.Location = new System.Drawing.Point(479, 202);
+            this.tipo_de_servicio_combo.Name = "tipo_de_servicio_combo";
+            this.tipo_de_servicio_combo.Size = new System.Drawing.Size(121, 23);
+            this.tipo_de_servicio_combo.TabIndex = 4;
             // 
-            // calificacionNumeric
+            // promedio_de_calificacion_minimo_numeric
             // 
-            this.calificacionNumeric.Location = new System.Drawing.Point(480, 295);
-            this.calificacionNumeric.Name = "calificacionNumeric";
-            this.calificacionNumeric.Size = new System.Drawing.Size(120, 23);
-            this.calificacionNumeric.TabIndex = 5;
+            this.promedio_de_calificacion_minimo_numeric.Location = new System.Drawing.Point(480, 295);
+            this.promedio_de_calificacion_minimo_numeric.Name = "promedio_de_calificacion_minimo_numeric";
+            this.promedio_de_calificacion_minimo_numeric.Size = new System.Drawing.Size(120, 23);
+            this.promedio_de_calificacion_minimo_numeric.TabIndex = 5;
             // 
-            // distanciaNumeric
+            // distancia_maxima_numeric
             // 
-            this.distanciaNumeric.Location = new System.Drawing.Point(480, 249);
-            this.distanciaNumeric.Name = "distanciaNumeric";
-            this.distanciaNumeric.Size = new System.Drawing.Size(120, 23);
-            this.distanciaNumeric.TabIndex = 6;
+            this.distancia_maxima_numeric.Location = new System.Drawing.Point(480, 249);
+            this.distancia_maxima_numeric.Name = "distancia_maxima_numeric";
+            this.distancia_maxima_numeric.Size = new System.Drawing.Size(120, 23);
+            this.distancia_maxima_numeric.TabIndex = 6;
             // 
-            // buscarTrabajadoresBtn
+            // buscar_trabajadores
             // 
-            this.buscarTrabajadoresBtn.Location = new System.Drawing.Point(356, 371);
-            this.buscarTrabajadoresBtn.Name = "buscarTrabajadoresBtn";
-            this.buscarTrabajadoresBtn.Size = new System.Drawing.Size(130, 42);
-            this.buscarTrabajadoresBtn.TabIndex = 7;
-            this.buscarTrabajadoresBtn.Text = "Buscar trabajadores";
-            this.buscarTrabajadoresBtn.UseVisualStyleBackColor = true;
-            this.buscarTrabajadoresBtn.Click += new System.EventHandler(this.buscarTrabajadoresBtn_Click);
+            this.buscar_trabajadores.Location = new System.Drawing.Point(356, 371);
+            this.buscar_trabajadores.Name = "buscar_trabajadores";
+            this.buscar_trabajadores.Size = new System.Drawing.Size(130, 42);
+            this.buscar_trabajadores.TabIndex = 7;
+            this.buscar_trabajadores.Text = "Buscar trabajadores";
+            this.buscar_trabajadores.UseVisualStyleBackColor = true;
+            this.buscar_trabajadores.Click += new System.EventHandler(this.buscar_trabajadores_Click);
             // 
             // BuscarTrabajadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.buscarTrabajadoresBtn);
-            this.Controls.Add(this.distanciaNumeric);
-            this.Controls.Add(this.calificacionNumeric);
-            this.Controls.Add(this.serviciosCombo);
-            this.Controls.Add(this.labelDistancia);
-            this.Controls.Add(this.labelServicio);
-            this.Controls.Add(this.labelPromedio);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buscar_trabajadores);
+            this.Controls.Add(this.distancia_maxima_numeric);
+            this.Controls.Add(this.promedio_de_calificacion_minimo_numeric);
+            this.Controls.Add(this.tipo_de_servicio_combo);
+            this.Controls.Add(this.distancia_maxima);
+            this.Controls.Add(this.tipo_de_servicio);
+            this.Controls.Add(this.proedio_de_calificacion_minimo);
+            this.Controls.Add(this.buscar_trabajadores_label);
             this.Name = "BuscarTrabajadores";
             this.Text = "BuscarTrabajadores";
             this.Load += new System.EventHandler(this.BuscarTrabajadores_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.calificacionNumeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.distanciaNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.promedio_de_calificacion_minimo_numeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.distancia_maxima_numeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,13 +134,13 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label labelPromedio;
-        private System.Windows.Forms.Label labelServicio;
-        private System.Windows.Forms.Label labelDistancia;
-        private System.Windows.Forms.ComboBox serviciosCombo;
-        private System.Windows.Forms.NumericUpDown calificacionNumeric;
-        private System.Windows.Forms.NumericUpDown distanciaNumeric;
-        private System.Windows.Forms.Button buscarTrabajadoresBtn;
+        private System.Windows.Forms.Label buscar_trabajadores_label;
+        private System.Windows.Forms.Label proedio_de_calificacion_minimo;
+        private System.Windows.Forms.Label tipo_de_servicio;
+        private System.Windows.Forms.Label distancia_maxima;
+        private System.Windows.Forms.ComboBox tipo_de_servicio_combo;
+        private System.Windows.Forms.NumericUpDown promedio_de_calificacion_minimo_numeric;
+        private System.Windows.Forms.NumericUpDown distancia_maxima_numeric;
+        private System.Windows.Forms.Button buscar_trabajadores;
     }
 }

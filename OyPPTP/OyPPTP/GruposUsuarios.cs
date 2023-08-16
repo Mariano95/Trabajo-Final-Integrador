@@ -25,79 +25,80 @@ namespace OyPPTP
 
         private void GruposUsuarios_Load(object sender, EventArgs e)
         {
-            this.miembrosGrupo.Columns.Add("nombre", "Nombre");
-            this.miembrosGrupo.Columns.Add("apellido", "Apellido");
-            this.miembrosGrupo.Columns.Add("dni", "DNI");
+            this.miembros_grilla.Columns.Add("nombre", "Nombre");
+            this.miembros_grilla.Columns.Add("apellido", "Apellido");
+            this.miembros_grilla.Columns.Add("dni", "DNI");
 
-            this.miembrosGrupo.Rows.Add(
+            this.miembros_grilla.Rows.Add(
                 "Usuario1",
                 "Apellido1",
                 "11111111"
             );
 
-            this.miembrosGrupo.Rows.Add(
+            this.miembros_grilla.Rows.Add(
                 "Usuario2",
                 "Apellido2",
                 "22222222"
             );
 
-            this.miembrosGrupo.Rows.Add(
+            this.miembros_grilla.Rows.Add(
                 "Usuario3",
                 "Apellido3",
                 "33333333"
             );
 
-            this.miembrosGrupo.Rows.Add(
+            this.miembros_grilla.Rows.Add(
                 "Usuario4",
                 "Apellido4",
                 "44444444"
             );
 
 
-            this.miembrosGrupo.AutoResizeColumns();
-            this.miembrosGrupo.ReadOnly = true;
+            this.miembros_grilla.AutoResizeColumns();
+            this.miembros_grilla.ReadOnly = true;
 
-            this.otrosUsuarios.Columns.Add("nombre", "Nombre");
-            this.otrosUsuarios.Columns.Add("apellido", "Apellido");
-            this.otrosUsuarios.Columns.Add("dni", "DNI");
+            this.otros_usuarios_grilla.Columns.Add("nombre", "Nombre");
+            this.otros_usuarios_grilla.Columns.Add("apellido", "Apellido");
+            this.otros_usuarios_grilla.Columns.Add("dni", "DNI");
 
 
-            this.otrosUsuarios.Rows.Add(
+            this.otros_usuarios_grilla.Rows.Add(
                 "Usuario5",
                 "Apellido5",
                 "55555555"
             );
 
-            this.otrosUsuarios.Rows.Add(
+            this.otros_usuarios_grilla.Rows.Add(
                 "Usuario6",
                 "Apellido6",
                 "66666666"
             );
 
-            this.otrosUsuarios.Rows.Add(
+            this.otros_usuarios_grilla.Rows.Add(
                 "Usuario7",
                 "Apellido7",
                 "77777777"
             );
 
-            this.otrosUsuarios.Rows.Add(
+            this.otros_usuarios_grilla.Rows.Add(
                 "Usuario8",
                 "Apellido8",
                 "88888888"
             );
 
 
-            this.otrosUsuarios.AutoResizeColumns();
-            this.otrosUsuarios.ReadOnly = true;
+            this.otros_usuarios_grilla.AutoResizeColumns();
+            this.otros_usuarios_grilla.ReadOnly = true;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////    HANDLER FUNCTIONS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void button1_Click(object sender, EventArgs e)
+        private void volver_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
     }
 }

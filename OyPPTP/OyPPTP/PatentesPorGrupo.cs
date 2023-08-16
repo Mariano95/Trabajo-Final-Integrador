@@ -23,7 +23,7 @@ namespace OyPPTP
         ////////////////////////////////////    HANDLER FUNCTIONS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void button1_Click(object sender, EventArgs e)
+        private void volver_Click(object sender, EventArgs e)
         {
             this.Close();
         }

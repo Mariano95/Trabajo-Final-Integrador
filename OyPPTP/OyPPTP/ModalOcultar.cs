@@ -23,12 +23,12 @@ namespace OyPPTP
         ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void button1_Click(object sender, EventArgs e)
+        private void no_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void si_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Usuario actualizado con éxito");
             this.Close();
@@ -39,7 +39,12 @@ namespace OyPPTP
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         public void PrecargarReactivacion() {
-            this.label1.Text = "Tu usuario aparecerá nuevamente en búsquedas, continuar?";
+            this.modal_ocultar_label.Text = "Tu usuario aparecerá nuevamente en búsquedas, continuar?";
+        }
+
+        private void ModalOcultar_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

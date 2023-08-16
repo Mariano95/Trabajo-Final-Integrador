@@ -29,41 +29,40 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.grilla_trabajadores = new System.Windows.Forms.DataGridView();
+            this.grilla_trabajadores_label = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla_trabajadores)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // grilla_trabajadores
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 54);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 289);
-            this.dataGridView1.TabIndex = 0;
+            this.grilla_trabajadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla_trabajadores.Location = new System.Drawing.Point(12, 54);
+            this.grilla_trabajadores.Name = "grilla_trabajadores";
+            this.grilla_trabajadores.RowTemplate.Height = 25;
+            this.grilla_trabajadores.Size = new System.Drawing.Size(776, 289);
+            this.grilla_trabajadores.TabIndex = 0;
             // 
-            // label1
+            // grilla_trabajadores_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(248, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Se han encontrado los siguientes trabajadores";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.grilla_trabajadores_label.AutoSize = true;
+            this.grilla_trabajadores_label.Location = new System.Drawing.Point(265, 26);
+            this.grilla_trabajadores_label.Name = "grilla_trabajadores_label";
+            this.grilla_trabajadores_label.Size = new System.Drawing.Size(248, 15);
+            this.grilla_trabajadores_label.TabIndex = 1;
+            this.grilla_trabajadores_label.Text = "Se han encontrado los siguientes trabajadores";
             // 
             // GrillaTrabajadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.grilla_trabajadores_label);
+            this.Controls.Add(this.grilla_trabajadores);
             this.Name = "GrillaTrabajadores";
             this.Text = "GrillaTrabajadores";
             this.Load += new System.EventHandler(this.GrillaTrabajadores_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla_trabajadores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -71,7 +70,7 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView grilla_trabajadores;
+        private System.Windows.Forms.Label grilla_trabajadores_label;
     }
 }

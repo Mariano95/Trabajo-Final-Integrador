@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QO6fmMCrZsvR9Rp7GbQ8Cw2O/VxW1a0qJvtj/Nf+nmzx/VgZxL+Oq6aF/jQT4DjckNmBgvH9iG2o9PPhchix6g==",
+  "dgSpecHash": "PeTLqGgf6zlryfhBE6+2sjfGmgdkFacDTYcNeCv992vA2faBRVik80ev7lkG78fi8YYxo619Nh842SCJrXHnIA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mariano\\source\\repos\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
+  "projectFilePath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mariano\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.25\\microsoft.netcore.app.host.win-x64.3.1.25.nupkg.sha512"
   ],

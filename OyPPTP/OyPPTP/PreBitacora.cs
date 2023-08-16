@@ -23,12 +23,7 @@ namespace OyPPTP
         ////////////////////////////////////    HANDLER FUNCTIONS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void buscar_Click(object sender, EventArgs e)
         {
             Bitacora bitacora = new Bitacora();
             this.Hide();
@@ -38,6 +33,15 @@ namespace OyPPTP
 
         private void PreBitacora_BitacoraClosed(object sender, EventArgs e) {
             this.Show();
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////    FORM LOAD     ///////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void PreBitacora_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

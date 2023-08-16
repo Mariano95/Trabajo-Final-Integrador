@@ -34,8 +34,8 @@ namespace OyPPTP
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.continuar = new System.Windows.Forms.Button();
+            this.cargar_servicios_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -88,33 +88,32 @@ namespace OyPPTP
             this.checkBox5.Text = "Servicio 5";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // continuar
             // 
-            this.button1.Location = new System.Drawing.Point(162, 310);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Continuar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.continuar.Location = new System.Drawing.Point(162, 310);
+            this.continuar.Name = "continuar";
+            this.continuar.Size = new System.Drawing.Size(75, 23);
+            this.continuar.TabIndex = 5;
+            this.continuar.Text = "Continuar";
+            this.continuar.UseVisualStyleBackColor = true;
+            this.continuar.Click += new System.EventHandler(this.continuar_Click);
             // 
-            // label1
+            // cargar_servicios_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(162, 105);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Indicar los servicios que ofrecerá";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.cargar_servicios_label.AutoSize = true;
+            this.cargar_servicios_label.Location = new System.Drawing.Point(162, 105);
+            this.cargar_servicios_label.Name = "cargar_servicios_label";
+            this.cargar_servicios_label.Size = new System.Drawing.Size(178, 15);
+            this.cargar_servicios_label.TabIndex = 6;
+            this.cargar_servicios_label.Text = "Indicar los servicios que ofrecerá";
             // 
             // CargarServicios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cargar_servicios_label);
+            this.Controls.Add(this.continuar);
             this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
@@ -135,7 +134,7 @@ namespace OyPPTP
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button continuar;
+        private System.Windows.Forms.Label cargar_servicios_label;
     }
 }

@@ -30,14 +30,14 @@ namespace OyPPTP
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.desde = new System.Windows.Forms.Label();
+            this.hasta = new System.Windows.Forms.Label();
+            this.guardar_resultado_en = new System.Windows.Forms.Label();
+            this.desde_date = new System.Windows.Forms.DateTimePicker();
+            this.hasta_date = new System.Windows.Forms.DateTimePicker();
+            this.guardar_resultado_en_text = new System.Windows.Forms.TextBox();
+            this.cancelar = new System.Windows.Forms.Button();
+            this.iniciar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -49,91 +49,91 @@ namespace OyPPTP
             this.label1.TabIndex = 0;
             this.label1.Text = "Crear copia de seguridad del sistema";
             // 
-            // label2
+            // desde
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(58, 75);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Desde";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.desde.AutoSize = true;
+            this.desde.Location = new System.Drawing.Point(58, 75);
+            this.desde.Name = "desde";
+            this.desde.Size = new System.Drawing.Size(39, 15);
+            this.desde.TabIndex = 1;
+            this.desde.Text = "Desde";
             // 
-            // label3
+            // hasta
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(58, 104);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Hasta";
+            this.hasta.AutoSize = true;
+            this.hasta.Location = new System.Drawing.Point(58, 104);
+            this.hasta.Name = "hasta";
+            this.hasta.Size = new System.Drawing.Size(37, 15);
+            this.hasta.TabIndex = 2;
+            this.hasta.Text = "Hasta";
             // 
-            // label4
+            // guardar_resultado_en
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(58, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Guardar resultado en ";
+            this.guardar_resultado_en.AutoSize = true;
+            this.guardar_resultado_en.Location = new System.Drawing.Point(58, 131);
+            this.guardar_resultado_en.Name = "guardar_resultado_en";
+            this.guardar_resultado_en.Size = new System.Drawing.Size(120, 15);
+            this.guardar_resultado_en.TabIndex = 3;
+            this.guardar_resultado_en.Text = "Guardar resultado en ";
             // 
-            // dateTimePicker1
+            // desde_date
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(202, 69);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker1.TabIndex = 4;
+            this.desde_date.Location = new System.Drawing.Point(202, 69);
+            this.desde_date.Name = "desde_date";
+            this.desde_date.Size = new System.Drawing.Size(200, 23);
+            this.desde_date.TabIndex = 4;
             // 
-            // dateTimePicker2
+            // hasta_date
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(202, 98);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 23);
-            this.dateTimePicker2.TabIndex = 5;
+            this.hasta_date.Location = new System.Drawing.Point(202, 98);
+            this.hasta_date.Name = "hasta_date";
+            this.hasta_date.Size = new System.Drawing.Size(200, 23);
+            this.hasta_date.TabIndex = 5;
             // 
-            // textBox1
+            // guardar_resultado_en_text
             // 
-            this.textBox1.Location = new System.Drawing.Point(202, 128);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 23);
-            this.textBox1.TabIndex = 6;
+            this.guardar_resultado_en_text.Location = new System.Drawing.Point(202, 128);
+            this.guardar_resultado_en_text.Name = "guardar_resultado_en_text";
+            this.guardar_resultado_en_text.Size = new System.Drawing.Size(200, 23);
+            this.guardar_resultado_en_text.TabIndex = 6;
             // 
-            // button1
+            // cancelar
             // 
-            this.button1.Location = new System.Drawing.Point(58, 184);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cancelar.Location = new System.Drawing.Point(58, 184);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(75, 23);
+            this.cancelar.TabIndex = 7;
+            this.cancelar.Text = "Cancelar";
+            this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
-            // button2
+            // iniciar
             // 
-            this.button2.Location = new System.Drawing.Point(327, 184);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Iniciar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.iniciar.Location = new System.Drawing.Point(327, 184);
+            this.iniciar.Name = "iniciar";
+            this.iniciar.Size = new System.Drawing.Size(75, 23);
+            this.iniciar.TabIndex = 8;
+            this.iniciar.Text = "Iniciar";
+            this.iniciar.UseVisualStyleBackColor = true;
+            this.iniciar.Click += new System.EventHandler(this.iniciar_Click);
             // 
             // Backup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 253);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.iniciar);
+            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.guardar_resultado_en_text);
+            this.Controls.Add(this.hasta_date);
+            this.Controls.Add(this.desde_date);
+            this.Controls.Add(this.guardar_resultado_en);
+            this.Controls.Add(this.hasta);
+            this.Controls.Add(this.desde);
             this.Controls.Add(this.label1);
             this.Name = "Backup";
             this.Text = "Backup";
+            this.Load += new System.EventHandler(this.Backup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,13 +142,13 @@ namespace OyPPTP
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label desde;
+        private System.Windows.Forms.Label hasta;
+        private System.Windows.Forms.Label guardar_resultado_en;
+        private System.Windows.Forms.DateTimePicker desde_date;
+        private System.Windows.Forms.DateTimePicker hasta_date;
+        private System.Windows.Forms.TextBox guardar_resultado_en_text;
+        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button iniciar;
     }
 }

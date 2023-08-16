@@ -42,7 +42,7 @@ namespace OyPPTP
         //    form.Show();
         //}
 
-        private void iniciarSesionBtn_Click(object sender, EventArgs e)
+        private void iniciar_sesion_Click(object sender, EventArgs e)
         {
             PantallaInicial form = new PantallaInicial();
             this.Hide();

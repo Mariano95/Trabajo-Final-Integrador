@@ -29,105 +29,103 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.citar_trabajador_label = new System.Windows.Forms.Label();
+            this.servicio_a_citar_combo = new System.Windows.Forms.ComboBox();
+            this.servicio_a_citar = new System.Windows.Forms.Label();
+            this.horario_inicio_citacion_date = new System.Windows.Forms.DateTimePicker();
+            this.horario_fin_citacion_date = new System.Windows.Forms.DateTimePicker();
+            this.horario_inicio_citacion = new System.Windows.Forms.Label();
+            this.horario_fin_citacion = new System.Windows.Forms.Label();
+            this.generar_citacion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // citar_trabajador_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(350, 92);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Por favor indicar";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.citar_trabajador_label.AutoSize = true;
+            this.citar_trabajador_label.Location = new System.Drawing.Point(350, 92);
+            this.citar_trabajador_label.Name = "citar_trabajador_label";
+            this.citar_trabajador_label.Size = new System.Drawing.Size(94, 15);
+            this.citar_trabajador_label.TabIndex = 0;
+            this.citar_trabajador_label.Text = "Por favor indicar";
             // 
-            // comboBox1
+            // servicio_a_citar_combo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.servicio_a_citar_combo.FormattingEnabled = true;
+            this.servicio_a_citar_combo.Items.AddRange(new object[] {
             "Servicio 1",
             "Servicio 2",
             "Servicio 3",
             "Servicio 4",
             "Servicio 5"});
-            this.comboBox1.Location = new System.Drawing.Point(381, 162);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(207, 23);
-            this.comboBox1.TabIndex = 1;
+            this.servicio_a_citar_combo.Location = new System.Drawing.Point(381, 162);
+            this.servicio_a_citar_combo.Name = "servicio_a_citar_combo";
+            this.servicio_a_citar_combo.Size = new System.Drawing.Size(207, 23);
+            this.servicio_a_citar_combo.TabIndex = 1;
             // 
-            // label2
+            // servicio_a_citar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(217, 165);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Servicio a citar";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.servicio_a_citar.AutoSize = true;
+            this.servicio_a_citar.Location = new System.Drawing.Point(217, 165);
+            this.servicio_a_citar.Name = "servicio_a_citar";
+            this.servicio_a_citar.Size = new System.Drawing.Size(83, 15);
+            this.servicio_a_citar.TabIndex = 2;
+            this.servicio_a_citar.Text = "Servicio a citar";
             // 
-            // dateTimePicker1
+            // horario_inicio_citacion_date
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(381, 210);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(207, 23);
-            this.dateTimePicker1.TabIndex = 3;
+            this.horario_inicio_citacion_date.Location = new System.Drawing.Point(381, 210);
+            this.horario_inicio_citacion_date.Name = "horario_inicio_citacion_date";
+            this.horario_inicio_citacion_date.Size = new System.Drawing.Size(207, 23);
+            this.horario_inicio_citacion_date.TabIndex = 3;
             // 
-            // dateTimePicker2
+            // horario_fin_citacion_date
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(381, 261);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(207, 23);
-            this.dateTimePicker2.TabIndex = 4;
+            this.horario_fin_citacion_date.Location = new System.Drawing.Point(381, 261);
+            this.horario_fin_citacion_date.Name = "horario_fin_citacion_date";
+            this.horario_fin_citacion_date.Size = new System.Drawing.Size(207, 23);
+            this.horario_fin_citacion_date.TabIndex = 4;
             // 
-            // label3
+            // horario_inicio_citacion
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(217, 216);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 15);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Horario inicio citación";
+            this.horario_inicio_citacion.AutoSize = true;
+            this.horario_inicio_citacion.Location = new System.Drawing.Point(217, 216);
+            this.horario_inicio_citacion.Name = "horario_inicio_citacion";
+            this.horario_inicio_citacion.Size = new System.Drawing.Size(124, 15);
+            this.horario_inicio_citacion.TabIndex = 5;
+            this.horario_inicio_citacion.Text = "Horario inicio citación";
             // 
-            // label4
+            // horario_fin_citacion
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(217, 267);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(109, 15);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Horario fin citación";
+            this.horario_fin_citacion.AutoSize = true;
+            this.horario_fin_citacion.Location = new System.Drawing.Point(217, 267);
+            this.horario_fin_citacion.Name = "horario_fin_citacion";
+            this.horario_fin_citacion.Size = new System.Drawing.Size(109, 15);
+            this.horario_fin_citacion.TabIndex = 6;
+            this.horario_fin_citacion.Text = "Horario fin citación";
             // 
-            // button1
+            // generar_citacion
             // 
-            this.button1.Location = new System.Drawing.Point(350, 323);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 43);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Generar citación";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.generar_citacion.Location = new System.Drawing.Point(350, 323);
+            this.generar_citacion.Name = "generar_citacion";
+            this.generar_citacion.Size = new System.Drawing.Size(120, 43);
+            this.generar_citacion.TabIndex = 7;
+            this.generar_citacion.Text = "Generar citación";
+            this.generar_citacion.UseVisualStyleBackColor = true;
+            this.generar_citacion.Click += new System.EventHandler(this.generar_citacion_Click);
             // 
             // CitarTrabajador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.generar_citacion);
+            this.Controls.Add(this.horario_fin_citacion);
+            this.Controls.Add(this.horario_inicio_citacion);
+            this.Controls.Add(this.horario_fin_citacion_date);
+            this.Controls.Add(this.horario_inicio_citacion_date);
+            this.Controls.Add(this.servicio_a_citar);
+            this.Controls.Add(this.servicio_a_citar_combo);
+            this.Controls.Add(this.citar_trabajador_label);
             this.Name = "CitarTrabajador";
             this.Text = "CitarTrabajador";
             this.Load += new System.EventHandler(this.CitarTrabajador_Load);
@@ -138,13 +136,13 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label citar_trabajador_label;
+        private System.Windows.Forms.ComboBox servicio_a_citar_combo;
+        private System.Windows.Forms.Label servicio_a_citar;
+        private System.Windows.Forms.DateTimePicker horario_inicio_citacion_date;
+        private System.Windows.Forms.DateTimePicker horario_fin_citacion_date;
+        private System.Windows.Forms.Label horario_inicio_citacion;
+        private System.Windows.Forms.Label horario_fin_citacion;
+        private System.Windows.Forms.Button generar_citacion;
     }
 }

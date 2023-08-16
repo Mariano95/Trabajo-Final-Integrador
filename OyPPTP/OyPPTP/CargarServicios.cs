@@ -23,14 +23,9 @@ namespace OyPPTP
         ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void label1_Click(object sender, EventArgs e)
+        private void continuar_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (this.button1.Text != "Actualizar")
+            if (this.continuar.Text != "Actualizar")
             {
                 RegistrarUsuario form = new RegistrarUsuario();
                 this.Hide();
@@ -55,7 +50,7 @@ namespace OyPPTP
         public void precargar() {
             this.checkBox3.Checked = true;
             this.checkBox5.Checked = true;
-            this.button1.Text = "Actualizar";
+            this.continuar.Text = "Actualizar";
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

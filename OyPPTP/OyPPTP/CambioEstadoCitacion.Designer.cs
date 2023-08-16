@@ -29,53 +29,54 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.nuevo_estado = new System.Windows.Forms.Label();
+            this.nuevo_estado_combo = new System.Windows.Forms.ComboBox();
+            this.guardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // nuevo_estado
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(89, 104);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nuevo estado";
+            this.nuevo_estado.AutoSize = true;
+            this.nuevo_estado.Location = new System.Drawing.Point(89, 104);
+            this.nuevo_estado.Name = "nuevo_estado";
+            this.nuevo_estado.Size = new System.Drawing.Size(80, 15);
+            this.nuevo_estado.TabIndex = 0;
+            this.nuevo_estado.Text = "Nuevo estado";
             // 
-            // comboBox1
+            // nuevo_estado_combo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.nuevo_estado_combo.FormattingEnabled = true;
+            this.nuevo_estado_combo.Items.AddRange(new object[] {
             "Aceptada",
             "Cancelada",
             "Rechazada",
             "Cumplida"});
-            this.comboBox1.Location = new System.Drawing.Point(218, 101);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(137, 23);
-            this.comboBox1.TabIndex = 1;
+            this.nuevo_estado_combo.Location = new System.Drawing.Point(218, 101);
+            this.nuevo_estado_combo.Name = "nuevo_estado_combo";
+            this.nuevo_estado_combo.Size = new System.Drawing.Size(137, 23);
+            this.nuevo_estado_combo.TabIndex = 1;
             // 
-            // button1
+            // guardar
             // 
-            this.button1.Location = new System.Drawing.Point(178, 157);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.guardar.Location = new System.Drawing.Point(178, 157);
+            this.guardar.Name = "guardar";
+            this.guardar.Size = new System.Drawing.Size(75, 23);
+            this.guardar.TabIndex = 2;
+            this.guardar.Text = "Guardar";
+            this.guardar.UseVisualStyleBackColor = true;
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
-            // Form1
+            // CambioEstadoCitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 192);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Controls.Add(this.guardar);
+            this.Controls.Add(this.nuevo_estado_combo);
+            this.Controls.Add(this.nuevo_estado);
+            this.Name = "CambioEstadoCitacion";
             this.Text = "CambioEstadoCitacion";
+            this.Load += new System.EventHandler(this.CambioEstadoCitacion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -83,8 +84,8 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label nuevo_estado;
+        private System.Windows.Forms.ComboBox nuevo_estado_combo;
+        private System.Windows.Forms.Button guardar;
     }
 }

@@ -96,19 +96,10 @@ namespace OyPPTP
         ////////////////////////////////////    HANDLER FUNCTIONS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void volver_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

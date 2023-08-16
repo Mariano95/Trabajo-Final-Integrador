@@ -56,7 +56,7 @@ namespace OyPPTP
         ////////////////////////////////////    HANDLER FUNCTIONS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void button1_Click(object sender, EventArgs e)
+        private void agregar_comentario_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Comentario guardado con éxito");
             this.Close();

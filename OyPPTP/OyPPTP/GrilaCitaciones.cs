@@ -24,9 +24,9 @@ namespace OyPPTP
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         public void PrecargaTrabajador() {
-            this.dataGridView1.Columns.Add("estado", "Estado");
-            this.dataGridView1.Columns.Add("usuario", "Usuario");
-            this.dataGridView1.Columns.Add("fecha", "Fecha");
+            this.grilla_citaciones.Columns.Add("estado", "Estado");
+            this.grilla_citaciones.Columns.Add("usuario", "Usuario");
+            this.grilla_citaciones.Columns.Add("fecha", "Fecha");
 
             DataGridViewButtonColumn cambioEstadoButton = new DataGridViewButtonColumn();
             cambioEstadoButton.Name = "Cambio estado";
@@ -37,44 +37,44 @@ namespace OyPPTP
             comentarButton.Name = "Comentarios";
             comentarButton.Text = "Comentarios";
             comentarButton.UseColumnTextForButtonValue = true;
-            dataGridView1.CellClick += CellClickHandler;
+            grilla_citaciones.CellClick += CellClickHandler;
 
             DataGridViewButtonColumn calificarButton = new DataGridViewButtonColumn();
             calificarButton.Name = "Calificar usuario";
             calificarButton.Text = "Calificar usuario";
             calificarButton.UseColumnTextForButtonValue = true;
-            dataGridView1.CellClick += CellClickHandler;
+            grilla_citaciones.CellClick += CellClickHandler;
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_citaciones.Rows.Add(
                 "Pendiente de aceptacion",
                 "Particular1",
                 "19/05/2022 11:30AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_citaciones.Rows.Add(
                 "Aceptada",
                 "Particular2",
                 "26/05/2022 11:30AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_citaciones.Rows.Add(
                 "Rechazada",
                 "Particular3",
                 "19/05/2022 11:30AM"
             );
 
-            this.dataGridView1.Columns.Insert(3, cambioEstadoButton);
-            this.dataGridView1.Columns.Insert(4, comentarButton);
-            this.dataGridView1.Columns.Insert(5, calificarButton);
+            this.grilla_citaciones.Columns.Insert(3, cambioEstadoButton);
+            this.grilla_citaciones.Columns.Insert(4, comentarButton);
+            this.grilla_citaciones.Columns.Insert(5, calificarButton);
 
-            this.dataGridView1.AutoResizeColumns();
-            this.dataGridView1.ReadOnly = true;
+            this.grilla_citaciones.AutoResizeColumns();
+            this.grilla_citaciones.ReadOnly = true;
         }
 
         public void PrecargaParticular() {
-            this.dataGridView1.Columns.Add("estado", "Estado");
-            this.dataGridView1.Columns.Add("trabajador", "Trabajador");
-            this.dataGridView1.Columns.Add("fecha", "Fecha");
+            this.grilla_citaciones.Columns.Add("estado", "Estado");
+            this.grilla_citaciones.Columns.Add("trabajador", "Trabajador");
+            this.grilla_citaciones.Columns.Add("fecha", "Fecha");
 
             DataGridViewButtonColumn cambioEstadoButton = new DataGridViewButtonColumn();
             cambioEstadoButton.Name = "Cambio estado";
@@ -95,40 +95,40 @@ namespace OyPPTP
             calificarButton.Name = "Calificar usuario";
             calificarButton.Text = "Calificar usuario";
             calificarButton.UseColumnTextForButtonValue = true;
-            dataGridView1.CellClick += CellClickHandler;
+            grilla_citaciones.CellClick += CellClickHandler;
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_citaciones.Rows.Add(
                 "Cumplida",
                 "Trabajador3",
                 "30/05/2020 11:30AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_citaciones.Rows.Add(
                 "Pendiente de aceptacion",
                 "Trabajador1",
                 "19/05/2022 11:30AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_citaciones.Rows.Add(
                 "Aceptada",
                 "Trabajador2",
                 "26/05/2022 11:30AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_citaciones.Rows.Add(
                 "Rechazada",
                 "Trabajador3",
                 "30/05/2022 11:30AM"
             );
 
-            this.dataGridView1.Columns.Insert(3, cambioEstadoButton);
-            this.dataGridView1.Columns.Insert(4, comentarButton);
-            this.dataGridView1.Columns.Insert(5, cambioFechaButton);
-            this.dataGridView1.Columns.Insert(6, calificarButton);
+            this.grilla_citaciones.Columns.Insert(3, cambioEstadoButton);
+            this.grilla_citaciones.Columns.Insert(4, comentarButton);
+            this.grilla_citaciones.Columns.Insert(5, cambioFechaButton);
+            this.grilla_citaciones.Columns.Insert(6, calificarButton);
 
 
-            this.dataGridView1.AutoResizeColumns();
-            this.dataGridView1.ReadOnly = true;
+            this.grilla_citaciones.AutoResizeColumns();
+            this.grilla_citaciones.ReadOnly = true;
         }
 
         private void GrilaCitaciones_Load(object sender, EventArgs e)
@@ -142,20 +142,20 @@ namespace OyPPTP
 
         private void CellClickHandler(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == this.dataGridView1.Columns["Cambio estado"].Index)
+            if (e.ColumnIndex == this.grilla_citaciones.Columns["Cambio estado"].Index)
             {
                 CambioEstadoCitacion form = new CambioEstadoCitacion();
                 form.Show();
             }
 
-            if (e.ColumnIndex == this.dataGridView1.Columns["Comentarios"].Index)
+            if (e.ColumnIndex == this.grilla_citaciones.Columns["Comentarios"].Index)
             {
                 ComentarCitacion form2 = new ComentarCitacion();
                 form2.Show();
             }
 
-            if (this.dataGridView1.Columns.Contains("Modificar fecha de inicio/fin")) {
-                if (e.ColumnIndex == this.dataGridView1.Columns["Modificar fecha de inicio/fin"].Index)
+            if (this.grilla_citaciones.Columns.Contains("Modificar fecha de inicio/fin")) {
+                if (e.ColumnIndex == this.grilla_citaciones.Columns["Modificar fecha de inicio/fin"].Index)
                 {
                     CitarTrabajador form = new CitarTrabajador();
                     form.PrecargaCambioFecha();
@@ -163,7 +163,7 @@ namespace OyPPTP
                 }
             }
 
-            if (e.ColumnIndex == this.dataGridView1.Columns["Calificar usuario"].Index)
+            if (e.ColumnIndex == this.grilla_citaciones.Columns["Calificar usuario"].Index)
             {
                 CalificarUsuario form3 = new CalificarUsuario();
                 form3.Show();

@@ -29,50 +29,51 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.modal_ocultar_label = new System.Windows.Forms.Label();
+            this.no = new System.Windows.Forms.Button();
+            this.si = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // modal_ocultar_label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(286, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tu usuario ya no aparecerá en búsquedas, continuar?";
+            this.modal_ocultar_label.AutoSize = true;
+            this.modal_ocultar_label.Location = new System.Drawing.Point(37, 55);
+            this.modal_ocultar_label.Name = "modal_ocultar_label";
+            this.modal_ocultar_label.Size = new System.Drawing.Size(286, 15);
+            this.modal_ocultar_label.TabIndex = 0;
+            this.modal_ocultar_label.Text = "Tu usuario ya no aparecerá en búsquedas, continuar?";
             // 
-            // button1
+            // no
             // 
-            this.button1.Location = new System.Drawing.Point(46, 142);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "No";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.no.Location = new System.Drawing.Point(46, 142);
+            this.no.Name = "no";
+            this.no.Size = new System.Drawing.Size(75, 23);
+            this.no.TabIndex = 1;
+            this.no.Text = "No";
+            this.no.UseVisualStyleBackColor = true;
+            this.no.Click += new System.EventHandler(this.no_Click);
             // 
-            // button2
+            // si
             // 
-            this.button2.Location = new System.Drawing.Point(248, 142);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Sí";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.si.Location = new System.Drawing.Point(248, 142);
+            this.si.Name = "si";
+            this.si.Size = new System.Drawing.Size(75, 23);
+            this.si.TabIndex = 2;
+            this.si.Text = "Sí";
+            this.si.UseVisualStyleBackColor = true;
+            this.si.Click += new System.EventHandler(this.si_Click);
             // 
-            // Form1
+            // ModalOcultar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(353, 203);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Controls.Add(this.si);
+            this.Controls.Add(this.no);
+            this.Controls.Add(this.modal_ocultar_label);
+            this.Name = "ModalOcultar";
             this.Text = "ModalOcultar";
+            this.Load += new System.EventHandler(this.ModalOcultar_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -80,8 +81,8 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label modal_ocultar_label;
+        private System.Windows.Forms.Button no;
+        private System.Windows.Forms.Button si;
     }
 }

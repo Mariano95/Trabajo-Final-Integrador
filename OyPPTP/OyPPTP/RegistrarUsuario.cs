@@ -32,16 +32,11 @@ namespace OyPPTP
         ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void continuar_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Usuario guardado con exito");
 
-            if (this.button1.Text != "Actualizar")
+            if (this.continuar.Text != "Actualizar")
             {
                 PreLogin form = new PreLogin();
                 this.Hide();
@@ -56,20 +51,15 @@ namespace OyPPTP
         }
 
         public void precargar() {
-            this.textBox1.Text = "Mariano";
-            this.textBox2.Text = "Martin";
-            this.textBox3.Text = "Darragueyra 1417";
-            this.textBox4.Text = "marianomartin806@gmail.com";
-            this.textBox5.Enabled = false;
-            this.textBox5.Visible = false;
-            this.label7.Visible = false;
-            this.textBox6.Text = "38636383";
-            this.button1.Text = "Actualizar";
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
+            this.nombre_text.Text = "Mariano";
+            this.apellido_text.Text = "Martin";
+            this.domicilio_text.Text = "Darragueyra 1417";
+            this.email_text.Text = "marianomartin806@gmail.com";
+            this.contrasena_text.Enabled = false;
+            this.contrasena_text.Visible = false;
+            this.contrasena.Visible = false;
+            this.dni_text.Text = "38636383";
+            this.continuar.Text = "Actualizar";
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

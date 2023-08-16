@@ -48,6 +48,7 @@ namespace OyPPTP
             this.patentesPorGrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.patentesPorUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.gruposUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearUsuarioAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.opciones = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarIdioma = new System.Windows.Forms.ToolStripMenuItem();
             this.ingles = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,9 +58,8 @@ namespace OyPPTP
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.crearUsuarioAdmin = new System.Windows.Forms.ToolStripMenuItem();
+            this.pantalla_inicial_label_1 = new System.Windows.Forms.Label();
+            this.pantalla_inicial_label_2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +77,6 @@ namespace OyPPTP
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // datosPersonalesOption
             // 
@@ -222,6 +221,13 @@ namespace OyPPTP
             this.gruposUsuarios.Text = "Grupos de usuarios";
             this.gruposUsuarios.Click += new System.EventHandler(this.menuStripOptionClicked);
             // 
+            // crearUsuarioAdmin
+            // 
+            this.crearUsuarioAdmin.Name = "crearUsuarioAdmin";
+            this.crearUsuarioAdmin.Size = new System.Drawing.Size(221, 22);
+            this.crearUsuarioAdmin.Text = "Crear usuario administrador";
+            this.crearUsuarioAdmin.Click += new System.EventHandler(this.menuStripOptionClicked);
+            // 
             // opciones
             // 
             this.opciones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -286,49 +292,42 @@ namespace OyPPTP
             this.toolStripMenuItem3.Size = new System.Drawing.Size(32, 19);
             this.toolStripMenuItem3.Text = "toolStripMenuItem3";
             // 
-            // label1
+            // pantalla_inicial_label_1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(329, 169);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(146, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Hola, APELLIDO NOMBRE!";
+            this.pantalla_inicial_label_1.AutoSize = true;
+            this.pantalla_inicial_label_1.Location = new System.Drawing.Point(329, 169);
+            this.pantalla_inicial_label_1.Name = "pantalla_inicial_label_1";
+            this.pantalla_inicial_label_1.Size = new System.Drawing.Size(146, 15);
+            this.pantalla_inicial_label_1.TabIndex = 1;
+            this.pantalla_inicial_label_1.Text = "Hola, APELLIDO NOMBRE!";
             // 
-            // label2
+            // pantalla_inicial_label_2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(142, 199);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(530, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Bienvenido al portal de servicios. Por favor, seleccioná una de las opciones de a" +
+            this.pantalla_inicial_label_2.AutoSize = true;
+            this.pantalla_inicial_label_2.Location = new System.Drawing.Point(142, 199);
+            this.pantalla_inicial_label_2.Name = "pantalla_inicial_label_2";
+            this.pantalla_inicial_label_2.Size = new System.Drawing.Size(530, 15);
+            this.pantalla_inicial_label_2.TabIndex = 2;
+            this.pantalla_inicial_label_2.Text = "Bienvenido al portal de servicios. Por favor, seleccioná una de las opciones de a" +
     "rriba para continuar.";
-            // 
-            // crearUsuarioAdmin
-            // 
-            this.crearUsuarioAdmin.Name = "crearUsuarioAdmin";
-            this.crearUsuarioAdmin.Size = new System.Drawing.Size(221, 22);
-            this.crearUsuarioAdmin.Text = "Crear usuario administrador";
-            this.crearUsuarioAdmin.Click += new System.EventHandler(this.menuStripOptionClicked);
             // 
             // PantallaInicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pantalla_inicial_label_2);
+            this.Controls.Add(this.pantalla_inicial_label_1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "PantallaInicial";
             this.Text = "PantallaInicial";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_FormClosed);
             this.Load += new System.EventHandler(this.PantallaInicial_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_FormClosed);
         }
 
         #endregion
@@ -342,8 +341,8 @@ namespace OyPPTP
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem modificarServicios;
         private System.Windows.Forms.ToolStripMenuItem modificarPassword;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label pantalla_inicial_label_1;
+        private System.Windows.Forms.Label pantalla_inicial_label_2;
         private System.Windows.Forms.ToolStripMenuItem busquedaTrabajadoresOption;
         private System.Windows.Forms.ToolStripMenuItem buscarTrabajadores;
         private System.Windows.Forms.ToolStripMenuItem citacionesOption;

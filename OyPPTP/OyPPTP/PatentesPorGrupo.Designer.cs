@@ -29,17 +29,17 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.grupo = new System.Windows.Forms.Label();
+            this.grupo_combo = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.patentesOtorgadas = new System.Windows.Forms.DataGridView();
             this.quitarPatente = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.otorgarPatente = new System.Windows.Forms.Button();
             this.patentesNoOtorgadas = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.patentes_no_otorgadas = new System.Windows.Forms.Label();
+            this.patentes_otorgadas = new System.Windows.Forms.Label();
+            this.volver = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patentesOtorgadas)).BeginInit();
@@ -48,19 +48,19 @@ namespace OyPPTP
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // grupo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Grupo";
+            this.grupo.AutoSize = true;
+            this.grupo.Location = new System.Drawing.Point(12, 14);
+            this.grupo.Name = "grupo";
+            this.grupo.Size = new System.Drawing.Size(40, 15);
+            this.grupo.TabIndex = 0;
+            this.grupo.Text = "Grupo";
             // 
-            // comboBox1
+            // grupo_combo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.grupo_combo.FormattingEnabled = true;
+            this.grupo_combo.Items.AddRange(new object[] {
             "Grupo1",
             "Grupo2",
             "Grupo3",
@@ -75,10 +75,10 @@ namespace OyPPTP
             "Grupo12",
             "Grupo13",
             "Grupo14"});
-            this.comboBox1.Location = new System.Drawing.Point(119, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(232, 23);
-            this.comboBox1.TabIndex = 1;
+            this.grupo_combo.Location = new System.Drawing.Point(119, 6);
+            this.grupo_combo.Name = "grupo_combo";
+            this.grupo_combo.Size = new System.Drawing.Size(232, 23);
+            this.grupo_combo.TabIndex = 1;
             // 
             // panel1
             // 
@@ -134,38 +134,38 @@ namespace OyPPTP
             this.patentesNoOtorgadas.Size = new System.Drawing.Size(331, 181);
             this.patentesNoOtorgadas.TabIndex = 1;
             // 
-            // label3
+            // patentes_no_otorgadas
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(414, 90);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Patentes no otorgadas";
+            this.patentes_no_otorgadas.AutoSize = true;
+            this.patentes_no_otorgadas.Location = new System.Drawing.Point(414, 90);
+            this.patentes_no_otorgadas.Name = "patentes_no_otorgadas";
+            this.patentes_no_otorgadas.Size = new System.Drawing.Size(125, 15);
+            this.patentes_no_otorgadas.TabIndex = 10;
+            this.patentes_no_otorgadas.Text = "Patentes no otorgadas";
             // 
-            // label2
+            // patentes_otorgadas
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(56, 90);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 15);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Patentes otorgadas";
+            this.patentes_otorgadas.AutoSize = true;
+            this.patentes_otorgadas.Location = new System.Drawing.Point(56, 90);
+            this.patentes_otorgadas.Name = "patentes_otorgadas";
+            this.patentes_otorgadas.Size = new System.Drawing.Size(108, 15);
+            this.patentes_otorgadas.TabIndex = 9;
+            this.patentes_otorgadas.Text = "Patentes otorgadas";
             // 
-            // button1
+            // volver
             // 
-            this.button1.Location = new System.Drawing.Point(44, 393);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 33);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Volver";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.volver.Location = new System.Drawing.Point(44, 393);
+            this.volver.Name = "volver";
+            this.volver.Size = new System.Drawing.Size(100, 33);
+            this.volver.TabIndex = 14;
+            this.volver.Text = "Volver";
+            this.volver.UseVisualStyleBackColor = true;
+            this.volver.Click += new System.EventHandler(this.volver_Click);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.comboBox1);
+            this.panel3.Controls.Add(this.grupo);
+            this.panel3.Controls.Add(this.grupo_combo);
             this.panel3.Location = new System.Drawing.Point(44, 25);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(712, 45);
@@ -178,9 +178,9 @@ namespace OyPPTP
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.patentes_no_otorgadas);
+            this.Controls.Add(this.patentes_otorgadas);
+            this.Controls.Add(this.volver);
             this.Controls.Add(this.panel3);
             this.Name = "PatentesPorGrupo";
             this.Text = "PatentesPorGrupo";
@@ -198,17 +198,17 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label grupo;
+        private System.Windows.Forms.ComboBox grupo_combo;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView patentesOtorgadas;
         private System.Windows.Forms.Button quitarPatente;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button otorgarPatente;
         private System.Windows.Forms.DataGridView patentesNoOtorgadas;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label patentes_no_otorgadas;
+        private System.Windows.Forms.Label patentes_otorgadas;
+        private System.Windows.Forms.Button volver;
         private System.Windows.Forms.Panel panel3;
     }
 }

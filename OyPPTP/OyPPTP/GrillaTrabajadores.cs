@@ -25,22 +25,22 @@ namespace OyPPTP
 
         private void GrillaTrabajadores_Load(object sender, EventArgs e)
         {
-            this.dataGridView1.Columns.Add("nombre", "Nombre");
-            this.dataGridView1.Columns.Add("apellido", "Apellido");
-            this.dataGridView1.Columns.Add("dni", "DNI");
-            this.dataGridView1.Columns.Add("email", "Email");
-            this.dataGridView1.Columns.Add("citacionesCumplidas", "Citaciones cumplidas");
-            this.dataGridView1.Columns.Add("promedioCalifaciones", "Promedio calificaciones");
-            this.dataGridView1.Columns.Add("distanciaKm", "Distancia en kilómetros");
+            this.grilla_trabajadores.Columns.Add("nombre", "Nombre");
+            this.grilla_trabajadores.Columns.Add("apellido", "Apellido");
+            this.grilla_trabajadores.Columns.Add("dni", "DNI");
+            this.grilla_trabajadores.Columns.Add("email", "Email");
+            this.grilla_trabajadores.Columns.Add("citacionesCumplidas", "Citaciones cumplidas");
+            this.grilla_trabajadores.Columns.Add("promedioCalifaciones", "Promedio calificaciones");
+            this.grilla_trabajadores.Columns.Add("distanciaKm", "Distancia en kilómetros");
 
             DataGridViewButtonColumn citarButtonColumn = new DataGridViewButtonColumn();
             citarButtonColumn.Name = "Acciones";
             citarButtonColumn.Text = "Citar trabajador";
             citarButtonColumn.UseColumnTextForButtonValue = true;
-            dataGridView1.CellClick += CellClickHandler;
+            grilla_trabajadores.CellClick += CellClickHandler;
 
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_trabajadores.Rows.Add(
                 "Trabajador1",
                 "Apellido1",
                 "11111111",
@@ -50,7 +50,7 @@ namespace OyPPTP
                 "5"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_trabajadores.Rows.Add(
                 "Trabajador2",
                 "Apellido2",
                 "22222222",
@@ -60,7 +60,7 @@ namespace OyPPTP
                 "10"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_trabajadores.Rows.Add(
                 "Trabajador3",
                 "Apellido3",
                 "33333333",
@@ -70,23 +70,18 @@ namespace OyPPTP
                 "15"
             );
 
-            this.dataGridView1.Columns.Insert(7, citarButtonColumn);
+            this.grilla_trabajadores.Columns.Insert(7, citarButtonColumn);
 
-            this.dataGridView1.AutoResizeColumns();
-            this.dataGridView1.ReadOnly = true;
+            this.grilla_trabajadores.AutoResizeColumns();
+            this.grilla_trabajadores.ReadOnly = true;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CellClickHandler(object sender, DataGridViewCellEventArgs e) {
-            if (e.ColumnIndex == this.dataGridView1.Columns["Acciones"].Index)
+            if (e.ColumnIndex == this.grilla_trabajadores.Columns["Acciones"].Index)
             {
                 CitarTrabajador form = new CitarTrabajador();
                 form.Show();

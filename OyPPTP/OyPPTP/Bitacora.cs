@@ -25,33 +25,33 @@ namespace OyPPTP
 
         private void Bitacora_Load(object sender, EventArgs e)
         {
-            this.dataGridView1.Columns.Add("usuario", "Usuario");
-            this.dataGridView1.Columns.Add("evento", "Evento");
-            this.dataGridView1.Columns.Add("criticidad", "Criticidad");
-            this.dataGridView1.Columns.Add("hora", "Hora");
+            this.grilla_bitacora.Columns.Add("usuario", "Usuario");
+            this.grilla_bitacora.Columns.Add("evento", "Evento");
+            this.grilla_bitacora.Columns.Add("criticidad", "Criticidad");
+            this.grilla_bitacora.Columns.Add("hora", "Hora");
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_bitacora.Rows.Add(
                 "Usuario 1",
                 "Inicio de sesión fallido",
                 "2",
                 "30/05/2020 11:30AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_bitacora.Rows.Add(
                 "Usuario 1",
                 "Inicio de sesión fallido",
                 "3",
                 "30/05/2020 11:32AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_bitacora.Rows.Add(
                 "Usuario 1",
                 "Inicio de sesión exitoso",
                 "1",
                 "30/05/2020 11:35AM"
             );
 
-            this.dataGridView1.Rows.Add(
+            this.grilla_bitacora.Rows.Add(
                 "Usuario 1",
                 "Citación creada",
                 "1",
@@ -60,28 +60,23 @@ namespace OyPPTP
 
 
 
-            this.dataGridView1.AutoResizeColumns();
-            this.dataGridView1.ReadOnly = true;
+            this.grilla_bitacora.AutoResizeColumns();
+            this.grilla_bitacora.ReadOnly = true;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void button1_Click(object sender, EventArgs e)
+        private void cerrar_bitacora_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void cambiar_filtros_Click(object sender, EventArgs e)
         {
             PreBitacora preBitacora = new PreBitacora();
             preBitacora.Show();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

@@ -23,7 +23,7 @@ namespace OyPPTP
         ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void button2_Click(object sender, EventArgs e)
+        private void trabajador_Click(object sender, EventArgs e)
         {
             CargarServicios form = new CargarServicios();
             this.Hide();
@@ -31,7 +31,7 @@ namespace OyPPTP
             form.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void particular_Click(object sender, EventArgs e)
         {
             RegistrarUsuario form = new RegistrarUsuario();
             this.Hide();
@@ -55,6 +55,15 @@ namespace OyPPTP
 
         private void IndicarTipoUsuario_FormClosed(object sender, EventArgs e) { 
             
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////    FORM LOADER     //////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void IndicarTipoUsuario_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

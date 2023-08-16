@@ -29,74 +29,73 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.grilla_bitacora = new System.Windows.Forms.DataGridView();
+            this.cerrar_bitacora = new System.Windows.Forms.Button();
+            this.cambiar_filtros = new System.Windows.Forms.Button();
+            this.imprimir = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla_bitacora)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // grilla_bitacora
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(840, 323);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.grilla_bitacora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla_bitacora.Location = new System.Drawing.Point(12, 12);
+            this.grilla_bitacora.Name = "grilla_bitacora";
+            this.grilla_bitacora.RowTemplate.Height = 25;
+            this.grilla_bitacora.Size = new System.Drawing.Size(840, 323);
+            this.grilla_bitacora.TabIndex = 0;
             // 
-            // button1
+            // cerrar_bitacora
             // 
-            this.button1.Location = new System.Drawing.Point(23, 379);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(137, 39);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Cerrar bitácora";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cerrar_bitacora.Location = new System.Drawing.Point(23, 379);
+            this.cerrar_bitacora.Name = "cerrar_bitacora";
+            this.cerrar_bitacora.Size = new System.Drawing.Size(137, 39);
+            this.cerrar_bitacora.TabIndex = 1;
+            this.cerrar_bitacora.Text = "Cerrar bitácora";
+            this.cerrar_bitacora.UseVisualStyleBackColor = true;
+            this.cerrar_bitacora.Click += new System.EventHandler(this.cerrar_bitacora_Click);
             // 
-            // button2
+            // cambiar_filtros
             // 
-            this.button2.Location = new System.Drawing.Point(352, 379);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(147, 39);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Cambiar filtros";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.cambiar_filtros.Location = new System.Drawing.Point(352, 379);
+            this.cambiar_filtros.Name = "cambiar_filtros";
+            this.cambiar_filtros.Size = new System.Drawing.Size(147, 39);
+            this.cambiar_filtros.TabIndex = 2;
+            this.cambiar_filtros.Text = "Cambiar filtros";
+            this.cambiar_filtros.UseVisualStyleBackColor = true;
+            this.cambiar_filtros.Click += new System.EventHandler(this.cambiar_filtros_Click);
             // 
-            // button3
+            // imprimir
             // 
-            this.button3.Location = new System.Drawing.Point(713, 379);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(132, 39);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Imprimir";
-            this.button3.UseVisualStyleBackColor = true;
+            this.imprimir.Location = new System.Drawing.Point(713, 379);
+            this.imprimir.Name = "imprimir";
+            this.imprimir.Size = new System.Drawing.Size(132, 39);
+            this.imprimir.TabIndex = 3;
+            this.imprimir.Text = "Imprimir";
+            this.imprimir.UseVisualStyleBackColor = true;
             // 
             // Bitacora
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 450);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.imprimir);
+            this.Controls.Add(this.cambiar_filtros);
+            this.Controls.Add(this.cerrar_bitacora);
+            this.Controls.Add(this.grilla_bitacora);
             this.Name = "Bitacora";
             this.Text = "Bitacora";
             this.Load += new System.EventHandler(this.Bitacora_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla_bitacora)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView grilla_bitacora;
+        private System.Windows.Forms.Button cerrar_bitacora;
+        private System.Windows.Forms.Button cambiar_filtros;
+        private System.Windows.Forms.Button imprimir;
     }
 }

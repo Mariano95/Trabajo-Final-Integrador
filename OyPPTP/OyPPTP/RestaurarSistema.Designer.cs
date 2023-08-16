@@ -29,93 +29,91 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.iniciar = new System.Windows.Forms.Button();
+            this.cancelar = new System.Windows.Forms.Button();
+            this.directorio_del_archivo_de_backup_text = new System.Windows.Forms.TextBox();
+            this.directorio_del_archivo_de_backup = new System.Windows.Forms.Label();
+            this.restaurar_sistema = new System.Windows.Forms.Label();
+            this.nombre_del_archivo_de_backup_text = new System.Windows.Forms.TextBox();
+            this.nombre_del_archivo_de_backup = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button2
+            // iniciar
             // 
-            this.button2.Location = new System.Drawing.Point(321, 202);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Iniciar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.iniciar.Location = new System.Drawing.Point(321, 202);
+            this.iniciar.Name = "iniciar";
+            this.iniciar.Size = new System.Drawing.Size(75, 23);
+            this.iniciar.TabIndex = 17;
+            this.iniciar.Text = "Iniciar";
+            this.iniciar.UseVisualStyleBackColor = true;
+            this.iniciar.Click += new System.EventHandler(this.iniciar_Click);
             // 
-            // button1
+            // cancelar
             // 
-            this.button1.Location = new System.Drawing.Point(52, 202);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Cancelar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cancelar.Location = new System.Drawing.Point(52, 202);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(75, 23);
+            this.cancelar.TabIndex = 16;
+            this.cancelar.Text = "Cancelar";
+            this.cancelar.UseVisualStyleBackColor = true;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
-            // textBox1
+            // directorio_del_archivo_de_backup_text
             // 
-            this.textBox1.Location = new System.Drawing.Point(236, 77);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 23);
-            this.textBox1.TabIndex = 15;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.directorio_del_archivo_de_backup_text.Location = new System.Drawing.Point(236, 77);
+            this.directorio_del_archivo_de_backup_text.Name = "directorio_del_archivo_de_backup_text";
+            this.directorio_del_archivo_de_backup_text.Size = new System.Drawing.Size(200, 23);
+            this.directorio_del_archivo_de_backup_text.TabIndex = 15;
             // 
-            // label4
+            // directorio_del_archivo_de_backup
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 80);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(178, 15);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Directorio del archivo de backup";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.directorio_del_archivo_de_backup.AutoSize = true;
+            this.directorio_del_archivo_de_backup.Location = new System.Drawing.Point(35, 80);
+            this.directorio_del_archivo_de_backup.Name = "directorio_del_archivo_de_backup";
+            this.directorio_del_archivo_de_backup.Size = new System.Drawing.Size(178, 15);
+            this.directorio_del_archivo_de_backup.TabIndex = 12;
+            this.directorio_del_archivo_de_backup.Text = "Directorio del archivo de backup";
             // 
-            // label1
+            // restaurar_sistema
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(177, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Restaurar sistema";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.restaurar_sistema.AutoSize = true;
+            this.restaurar_sistema.Location = new System.Drawing.Point(177, 27);
+            this.restaurar_sistema.Name = "restaurar_sistema";
+            this.restaurar_sistema.Size = new System.Drawing.Size(99, 15);
+            this.restaurar_sistema.TabIndex = 9;
+            this.restaurar_sistema.Text = "Restaurar sistema";
             // 
-            // textBox2
+            // nombre_del_archivo_de_backup_text
             // 
-            this.textBox2.Location = new System.Drawing.Point(236, 127);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 23);
-            this.textBox2.TabIndex = 18;
+            this.nombre_del_archivo_de_backup_text.Location = new System.Drawing.Point(236, 127);
+            this.nombre_del_archivo_de_backup_text.Name = "nombre_del_archivo_de_backup_text";
+            this.nombre_del_archivo_de_backup_text.Size = new System.Drawing.Size(200, 23);
+            this.nombre_del_archivo_de_backup_text.TabIndex = 18;
             // 
-            // label2
+            // nombre_del_archivo_de_backup
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 130);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(170, 15);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "Nombre del archivo de backup";
+            this.nombre_del_archivo_de_backup.AutoSize = true;
+            this.nombre_del_archivo_de_backup.Location = new System.Drawing.Point(35, 130);
+            this.nombre_del_archivo_de_backup.Name = "nombre_del_archivo_de_backup";
+            this.nombre_del_archivo_de_backup.Size = new System.Drawing.Size(170, 15);
+            this.nombre_del_archivo_de_backup.TabIndex = 19;
+            this.nombre_del_archivo_de_backup.Text = "Nombre del archivo de backup";
             // 
             // RestaurarSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(448, 252);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.nombre_del_archivo_de_backup);
+            this.Controls.Add(this.nombre_del_archivo_de_backup_text);
+            this.Controls.Add(this.iniciar);
+            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.directorio_del_archivo_de_backup_text);
+            this.Controls.Add(this.directorio_del_archivo_de_backup);
+            this.Controls.Add(this.restaurar_sistema);
             this.Name = "RestaurarSistema";
             this.Text = "RestaurarSistema";
+            this.Load += new System.EventHandler(this.RestaurarSistema_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,12 +121,12 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button iniciar;
+        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.TextBox directorio_del_archivo_de_backup_text;
+        private System.Windows.Forms.Label directorio_del_archivo_de_backup;
+        private System.Windows.Forms.Label restaurar_sistema;
+        private System.Windows.Forms.TextBox nombre_del_archivo_de_backup_text;
+        private System.Windows.Forms.Label nombre_del_archivo_de_backup;
     }
 }

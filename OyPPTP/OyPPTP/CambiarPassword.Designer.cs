@@ -29,47 +29,48 @@ namespace OyPPTP
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.nueva_contrasena = new System.Windows.Forms.Label();
+            this.nueva_contrasena_text = new System.Windows.Forms.TextBox();
+            this.actualizar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // nueva_contrasena
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(235, 247);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nueva contraseña";
+            this.nueva_contrasena.AutoSize = true;
+            this.nueva_contrasena.Location = new System.Drawing.Point(235, 247);
+            this.nueva_contrasena.Name = "nueva_contrasena";
+            this.nueva_contrasena.Size = new System.Drawing.Size(102, 15);
+            this.nueva_contrasena.TabIndex = 0;
+            this.nueva_contrasena.Text = "Nueva contraseña";
             // 
-            // textBox1
+            // nueva_contrasena_text
             // 
-            this.textBox1.Location = new System.Drawing.Point(465, 244);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 23);
-            this.textBox1.TabIndex = 1;
+            this.nueva_contrasena_text.Location = new System.Drawing.Point(465, 244);
+            this.nueva_contrasena_text.Name = "nueva_contrasena_text";
+            this.nueva_contrasena_text.Size = new System.Drawing.Size(141, 23);
+            this.nueva_contrasena_text.TabIndex = 1;
             // 
-            // button1
+            // actualizar
             // 
-            this.button1.Location = new System.Drawing.Point(372, 295);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Actualizar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.actualizar.Location = new System.Drawing.Point(372, 295);
+            this.actualizar.Name = "actualizar";
+            this.actualizar.Size = new System.Drawing.Size(75, 23);
+            this.actualizar.TabIndex = 2;
+            this.actualizar.Text = "Actualizar";
+            this.actualizar.UseVisualStyleBackColor = true;
+            this.actualizar.Click += new System.EventHandler(this.actualizar_Click);
             // 
             // CambiarPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 450);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.actualizar);
+            this.Controls.Add(this.nueva_contrasena_text);
+            this.Controls.Add(this.nueva_contrasena);
             this.Name = "CambiarPassword";
             this.Text = "CambiarPassword";
+            this.Load += new System.EventHandler(this.CambiarPassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -77,8 +78,8 @@ namespace OyPPTP
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label nueva_contrasena;
+        private System.Windows.Forms.TextBox nueva_contrasena_text;
+        private System.Windows.Forms.Button actualizar;
     }
 }

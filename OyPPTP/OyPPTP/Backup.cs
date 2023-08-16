@@ -28,15 +28,24 @@ namespace OyPPTP
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void iniciar_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Copia de seguridad creada con éxito.");
             this.Close();
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////    FORM LOAD     ///////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void Backup_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

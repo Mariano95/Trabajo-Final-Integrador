@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mariano\\source\\repos\\OyPPTP\\OyPPTP\\OyPPTP.csproj": {}
+    "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\OyPPTP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mariano\\source\\repos\\OyPPTP\\OyPPTP\\OyPPTP.csproj": {
+    "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\OyPPTP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mariano\\source\\repos\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
+        "projectUniqueName": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
         "projectName": "OyPPTP",
-        "projectPath": "C:\\Users\\Mariano\\source\\repos\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
+        "projectPath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
         "packagesPath": "C:\\Users\\Mariano\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mariano\\source\\repos\\OyPPTP\\OyPPTP\\obj\\",
+        "outputPath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

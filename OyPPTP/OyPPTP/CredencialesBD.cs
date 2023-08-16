@@ -23,7 +23,7 @@ namespace OyPPTP
         ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void button2_Click(object sender, EventArgs e)
+        private void conectar_Click(object sender, EventArgs e)
         {
             this.Hide();
             PreLogin form1 = new PreLogin();
@@ -53,5 +53,6 @@ namespace OyPPTP
 
 
         }
+
     }
 }
