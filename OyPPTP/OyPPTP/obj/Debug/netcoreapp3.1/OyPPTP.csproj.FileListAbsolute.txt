@@ -76,3 +76,8 @@ C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcor
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.dll
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.pdb
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.genruntimeconfig.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.reportViewer.resources
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\CrystalDecisions.ReportSource.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\CrystalDecisions.Shared.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.csproj.CopyComplete

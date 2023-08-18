@@ -7,8 +7,37 @@
   "targets": {
     ".NETCoreApp,Version=v3.1": {
       "OyPPTP/1.0.0": {
+        "dependencies": {
+          "CrystalDecisions.CrystalReports.Engine": "1.0.0",
+          "CrystalDecisions.ReportSource": "1.0.0",
+          "CrystalDecisions.Shared": "1.0.0"
+        },
         "runtime": {
           "OyPPTP.dll": {}
+        }
+      },
+      "CrystalDecisions.CrystalReports.Engine/1.0.0": {
+        "runtime": {
+          "lib/CrystalDecisions.CrystalReports.Engine.dll": {
+            "assemblyVersion": "13.0.2000.0",
+            "fileVersion": "13.0.0.99"
+          }
+        }
+      },
+      "CrystalDecisions.ReportSource/1.0.0": {
+        "runtime": {
+          "lib/CrystalDecisions.ReportSource.dll": {
+            "assemblyVersion": "13.0.2000.0",
+            "fileVersion": "13.0.0.99"
+          }
+        }
+      },
+      "CrystalDecisions.Shared/1.0.0": {
+        "runtime": {
+          "lib/CrystalDecisions.Shared.dll": {
+            "assemblyVersion": "13.0.2000.0",
+            "fileVersion": "13.0.0.99"
+          }
         }
       }
     }
@@ -18,6 +47,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CrystalDecisions.CrystalReports.Engine/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qr+XgfiEvAWXModuJy4IamWlkarFNL6c2ueA9PcZkLUkoz17L0rptDNzLzJkFaSP8hh+nAwfD2t3wvRLdbjFQw==",
+      "path": "crystaldecisions.crystalreports.engine/1.0.0",
+      "hashPath": "crystaldecisions.crystalreports.engine.1.0.0.nupkg.sha512"
+    },
+    "CrystalDecisions.ReportSource/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YO0Ap65qeD1WO66Bcu9ZCb2cN4Zuq/sii8+0/jX6jTEzaO1tPbizDtSSJC0tp+nOnQqeGJNM+4sN5K+tTWDGJQ==",
+      "path": "crystaldecisions.reportsource/1.0.0",
+      "hashPath": "crystaldecisions.reportsource.1.0.0.nupkg.sha512"
+    },
+    "CrystalDecisions.Shared/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M3T2xrJ/oTrPUu3j0ODVhP981QTPdoHSly47IfrIWy7UUROpfF1p8jRTYzBoy2toQ2B5PKtnnkpAimp2mtnrdg==",
+      "path": "crystaldecisions.shared/1.0.0",
+      "hashPath": "crystaldecisions.shared.1.0.0.nupkg.sha512"
     }
   }
 }

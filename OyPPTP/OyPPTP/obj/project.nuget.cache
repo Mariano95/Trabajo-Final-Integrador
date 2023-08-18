@@ -1,10 +1,44 @@
 {
   "version": 2,
-  "dgSpecHash": "PeTLqGgf6zlryfhBE6+2sjfGmgdkFacDTYcNeCv992vA2faBRVik80ev7lkG78fi8YYxo619Nh842SCJrXHnIA==",
+  "dgSpecHash": "k76XvvlFZJ7uRRhH1OeeVnakfwEjRmWJ0OfQrgWqJVRq9rwAdGXoq0qZjfO3tKG/M0Mz2LbpbPEVRM7VsdOEWQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.crystalreports.engine\\1.0.0\\crystaldecisions.crystalreports.engine.1.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.reportsource\\1.0.0\\crystaldecisions.reportsource.1.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.shared\\1.0.0\\crystaldecisions.shared.1.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.25\\microsoft.netcore.app.host.win-x64.3.1.25.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CrystalDecisions.CrystalReports.Engine 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "CrystalDecisions.CrystalReports.Engine",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CrystalDecisions.ReportSource 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "CrystalDecisions.ReportSource",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CrystalDecisions.Shared 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "CrystalDecisions.Shared",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }
