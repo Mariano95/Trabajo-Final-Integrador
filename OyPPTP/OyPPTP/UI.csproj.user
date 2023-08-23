@@ -37,6 +37,9 @@
     <Compile Update="DesbloquearUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GruposUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>

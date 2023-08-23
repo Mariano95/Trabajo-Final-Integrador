@@ -1,12 +1,25 @@
 {
   "version": 2,
-  "dgSpecHash": "k76XvvlFZJ7uRRhH1OeeVnakfwEjRmWJ0OfQrgWqJVRq9rwAdGXoq0qZjfO3tKG/M0Mz2LbpbPEVRM7VsdOEWQ==",
+  "dgSpecHash": "9Z8HJoZrkEYTYjBxQM+t7wbvz/SOSC+hFScrfDFlqlvsGRdLiHLZScGC34UwyI5ubH6DRD0pVezxx097PUDUPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\OyPPTP.csproj",
+  "projectFilePath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.crystalreports.engine\\1.0.0\\crystaldecisions.crystalreports.engine.1.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.reportsource\\1.0.0\\crystaldecisions.reportsource.1.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.shared\\1.0.0\\crystaldecisions.shared.1.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.windows.forms\\1.0.0\\crystaldecisions.windows.forms.1.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\crystalreports\\13.0.5.891\\crystalreports.13.0.5.891.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\system.configuration.configurationmanager\\7.0.0\\system.configuration.configurationmanager.7.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\system.security.cryptography.protecteddata\\7.0.0\\system.security.cryptography.protecteddata.7.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\system.security.permissions\\7.0.0\\system.security.permissions.7.0.0.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.25\\microsoft.netcore.app.host.win-x64.3.1.25.nupkg.sha512"
   ],
   "logs": [
@@ -36,6 +49,26 @@
       "warningLevel": 1,
       "message": "Package 'CrystalDecisions.Shared 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
       "libraryId": "CrystalDecisions.Shared",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CrystalDecisions.Windows.Forms 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "CrystalDecisions.Windows.Forms",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CrystalReports 13.0.5.891' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "CrystalReports",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
       ]

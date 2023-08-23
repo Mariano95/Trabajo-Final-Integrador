@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using SL;
 
 namespace OyPPTP
 {
@@ -25,9 +26,31 @@ namespace OyPPTP
 
         private void conectar_Click(object sender, EventArgs e)
         {
+            string servidor = this.servidor_text.Text;
+            string usuario = this.usuario_text.Text;
+            string contrasena = this.contrasena_text.Text;
+            string stringConexion = "Data Source=" + servidor + ";Initial Catalog=TFI_DB;User ID=" + usuario + ";Password=" + contrasena;
+            MessageBox.Show(stringConexion);
+
+            GestorConexion gestorConexion = new GestorConexion();
+
             this.Hide();
-            PreLogin form1 = new PreLogin();
-            form1.Show();
+            LoadingForm loadingForm = new LoadingForm();
+            loadingForm.Show();
+            loadingForm.Refresh();
+
+            bool conexion = gestorConexion.ConectarBD(stringConexion);
+            if (conexion) {
+                MessageBox.Show("Éxito al inicializar la base de datos");
+                PreLogin form1 = new PreLogin();
+                loadingForm.Close();
+                form1.Show();
+            }
+            else {
+                MessageBox.Show("No se pudo inicializar la base de datos");
+                loadingForm.Close();
+                this.Show();
+            }            
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

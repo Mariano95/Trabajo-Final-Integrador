@@ -11,6 +11,14 @@
     <PackageReference Include="CrystalDecisions.CrystalReports.Engine" Version="1.0.0" />
     <PackageReference Include="CrystalDecisions.ReportSource" Version="1.0.0" />
     <PackageReference Include="CrystalDecisions.Shared" Version="1.0.0" />
+    <PackageReference Include="CrystalDecisions.Windows.Forms" Version="1.0.0" />
+    <PackageReference Include="CrystalReports" Version="13.0.5.891" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj" />
+    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <ProjectReference Include="..\SL\SL.csproj" />
   </ItemGroup>
 
   <ItemGroup>

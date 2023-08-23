@@ -1,0 +1,13 @@
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\SL.deps.json
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\SL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\SL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.csprojAssemblyReference.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.AssemblyInfoInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.AssemblyInfo.cs
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.csproj.CoreCompileInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\SL.dll.config
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.csproj.CopyComplete
