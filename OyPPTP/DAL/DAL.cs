@@ -39,19 +39,101 @@ namespace DAL
         ////////////////////////////////////    FUNCIONES PUBLICAS     //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        public byte[] EncriptarAES(string raw) {
+        public string EncriptarAES(string raw) {
             byte[] encrypted = Encrypt(raw, this.key, this.IV);
-            return encrypted;
+            return System.Convert.ToBase64String(encrypted);
         }
 
-        public string DesencriptarAES(byte[] encrypted) {
+        public string DesencriptarAES(string encryptedb64)
+        {
+            byte[] encrypted = System.Convert.FromBase64String(encryptedb64);
             string decrypted = Decrypt(encrypted, this.key, this.IV);
             return decrypted;
+        }
+
+        public string EncriptarMD5(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
         }
 
         public bool ConectarBD(string stringConexion) {
             this.miConnection = new SqlConnection(stringConexion);
             return conectar();
+        }
+
+        public bool BuscarUsuario(string dni, string email) { 
+            string query =  "" +
+                "SELECT * " +
+                "FROM [dbo].[Persona] " +
+                "WHERE " +
+                    "persona_dni = '" + dni + "' AND persona_email = '" + email + "'";
+
+            return ExecuteScalar(query) != -1;
+
+        }
+
+        public bool InsertarUsuario(string nombre, string apellido, string dni, string domicilio, string email, string password) {
+            try
+            {
+
+                string insertCommandText = "" +
+                    "INSERT INTO [dbo].[Persona] " +
+                        "([persona_id]" +
+                        ",[persona_nombre]" +
+                        ",[persona_apellido]" +
+                        ",[persona_dni]" +
+                        ",[persona_domicilio_descripcion]" +
+                        ",[persona_email]" +
+                        ",[persona_password]" +
+                        ",[persona_activa]" +
+                        ",[persona_fallos_autenticacion_consecutivos]" +
+                        ",[persona_bloqueada]" +
+                        ",[persona_verificador_horizontal]) " +
+                    "VALUES " +
+                        "(@PersonaId," +
+                        "@PersonaNombre," +
+                        "@PersonaApellido," +
+                        "@PersonaDni," +
+                        "@PersonaDomicilioDescripcion," +
+                        "@PersonaEmail," +
+                        "@PersonaPassword," +
+                        "@PersonaActiva," +
+                        "@PersonaFallosAutenticacionConsecutivos," +
+                        "@PersonaBloqueada," +
+                        "@PersonaVerificadorHorizontal)";
+
+                SqlCommand insertCommand = new SqlCommand(insertCommandText);
+
+                insertCommand.Parameters.AddWithValue("@PersonaId", ObtenerUltimoId("Persona")+1);
+                insertCommand.Parameters.AddWithValue("@PersonaNombre", nombre);
+                insertCommand.Parameters.AddWithValue("@PersonaApellido", apellido);
+                insertCommand.Parameters.AddWithValue("@PersonaDni", dni);
+                insertCommand.Parameters.AddWithValue("@PersonaDomicilioDescripcion", domicilio);
+                insertCommand.Parameters.AddWithValue("@PersonaEmail", email);
+                insertCommand.Parameters.AddWithValue("@PersonaPassword", password);
+                insertCommand.Parameters.AddWithValue("@PersonaActiva", true);
+                insertCommand.Parameters.AddWithValue("@PersonaFallosAutenticacionConsecutivos", 0);
+                insertCommand.Parameters.AddWithValue("@PersonaBloqueada", false);
+                insertCommand.Parameters.AddWithValue("@PersonaVerificadorHorizontal", 4);
+
+                ExecuteNonQuery(insertCommand);
+            }
+            catch (Exception e) {
+                return false;
+            }
+            return true;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +144,7 @@ namespace DAL
         {
             try {
                 this.miConnection.Open();
+                this.miConnection.Close();
                 return true;
             }
             catch (Exception e){
