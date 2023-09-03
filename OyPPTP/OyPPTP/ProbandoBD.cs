@@ -7,9 +7,10 @@ using System.Text;
 using System.Windows.Forms;
 using BLL;
 using SL;
-//
+//////////////////////////////////
 using System.Configuration;
 using DAL;
+using System.Security.Cryptography;
 
 namespace OyPPTP
 {
@@ -31,19 +32,23 @@ namespace OyPPTP
 
         private void ProbandoBD_Load(object sender, EventArgs e)
         {
+            //Pruebo encodear
             //string cstring = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             //MessageBox.Show(cstring);
             //DAL.DAL miDAL = DAL.DAL.GetDAL();
-            ////byte[] stringConexion = miDAL.EncriptarAES(cstring);
-            ////MessageBox.Show(stringConexion.ToString());
+            //string stringConexion = miDAL.EncriptarAES(cstring);
+            //MessageBox.Show(stringConexion.ToString());
             ////string stringConexionb64 = System.Convert.ToBase64String(stringConexion);
             ////MessageBox.Show(stringConexionb64);
-            //byte[] bytes = System.Convert.FromBase64String(cstring);
-            //string ok = miDAL.DesencriptarAES(bytes);
-            ////string ok = miDAL.DesencriptarAES(stringConexion);
+            //string ok = miDAL.DesencriptarAES(stringConexion);
             //MessageBox.Show(ok);
 
-
+            ////Pruebo desencodear
+            //string cstringencodedb64 = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            //MessageBox.Show(cstringencodedb64);
+            //DAL.DAL miDAL2 = DAL.DAL.GetDAL();
+            //string stringConexionok = miDAL2.DesencriptarAES(cstringencodedb64);
+            //MessageBox.Show(stringConexionok);
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

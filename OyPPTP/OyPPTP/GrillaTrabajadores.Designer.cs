@@ -42,6 +42,7 @@ namespace OyPPTP
             this.grilla_trabajadores.RowTemplate.Height = 25;
             this.grilla_trabajadores.Size = new System.Drawing.Size(776, 289);
             this.grilla_trabajadores.TabIndex = 0;
+            this.grilla_trabajadores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grilla_trabajadores_CellContentClick);
             // 
             // grilla_trabajadores_label
             // 

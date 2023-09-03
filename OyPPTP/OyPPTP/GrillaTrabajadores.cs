@@ -31,7 +31,6 @@ namespace OyPPTP
             this.grilla_trabajadores.Columns.Add("email", "Email");
             this.grilla_trabajadores.Columns.Add("citacionesCumplidas", "Citaciones cumplidas");
             this.grilla_trabajadores.Columns.Add("promedioCalifaciones", "Promedio calificaciones");
-            this.grilla_trabajadores.Columns.Add("distanciaKm", "Distancia en kilómetros");
 
             DataGridViewButtonColumn citarButtonColumn = new DataGridViewButtonColumn();
             citarButtonColumn.Name = "Acciones";
@@ -46,8 +45,7 @@ namespace OyPPTP
                 "11111111",
                 "Trabajador1@gmail.com",
                 "2",
-                "70",
-                "5"
+                "70"
             );
 
             this.grilla_trabajadores.Rows.Add(
@@ -56,8 +54,7 @@ namespace OyPPTP
                 "22222222",
                 "Trabajador2@gmail.com",
                 "9",
-                "80",
-                "10"
+                "80"
             );
 
             this.grilla_trabajadores.Rows.Add(
@@ -66,11 +63,10 @@ namespace OyPPTP
                 "33333333",
                 "Trabajador3@gmail.com",
                 "25",
-                "20",
-                "15"
+                "20"
             );
 
-            this.grilla_trabajadores.Columns.Insert(7, citarButtonColumn);
+            this.grilla_trabajadores.Columns.Insert(6, citarButtonColumn);
 
             this.grilla_trabajadores.AutoResizeColumns();
             this.grilla_trabajadores.ReadOnly = true;
@@ -86,6 +82,11 @@ namespace OyPPTP
                 CitarTrabajador form = new CitarTrabajador();
                 form.Show();
             }
+        }
+
+        private void grilla_trabajadores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

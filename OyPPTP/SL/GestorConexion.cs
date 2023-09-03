@@ -21,12 +21,8 @@ namespace SL
         {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
 
-            //byte[] stringConexionEncrypted = RecuperarStringConexion();
-            //string stringConexionDecrypted = miDAL.DesencriptarAES(stringConexionEncrypted);
-
-            //Esto es para probar hasta que tenga bien resuelto donde guardar la key de encriptado.
-            //Borrar esta linea de abajo y descomentar las dos de arriba.
-            string stringConexionDecrypted = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            string stringConexionEncryptedB64 = RecuperarStringConexion();
+            string stringConexionDecrypted = miDAL.DesencriptarAES(stringConexionEncryptedB64);
 
             bool resultado = miDAL.ConectarBD(stringConexionDecrypted);
             return resultado;
@@ -44,11 +40,9 @@ namespace SL
         ///////////////////////////////    FUNCIONES AXILIARES     //////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        private byte[] RecuperarStringConexion()
+        private string RecuperarStringConexion()
         {
-            string miConnectionStringB64 = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
-            byte[] bytes = System.Convert.FromBase64String(miConnectionStringB64);
-            return bytes;
+            return ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
         }
 
     }

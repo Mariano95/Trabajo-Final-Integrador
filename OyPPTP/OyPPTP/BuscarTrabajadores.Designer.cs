@@ -32,13 +32,10 @@ namespace OyPPTP
             this.buscar_trabajadores_label = new System.Windows.Forms.Label();
             this.proedio_de_calificacion_minimo = new System.Windows.Forms.Label();
             this.tipo_de_servicio = new System.Windows.Forms.Label();
-            this.distancia_maxima = new System.Windows.Forms.Label();
             this.tipo_de_servicio_combo = new System.Windows.Forms.ComboBox();
             this.promedio_de_calificacion_minimo_numeric = new System.Windows.Forms.NumericUpDown();
-            this.distancia_maxima_numeric = new System.Windows.Forms.NumericUpDown();
             this.buscar_trabajadores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.promedio_de_calificacion_minimo_numeric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.distancia_maxima_numeric)).BeginInit();
             this.SuspendLayout();
             // 
             // buscar_trabajadores_label
@@ -53,7 +50,7 @@ namespace OyPPTP
             // proedio_de_calificacion_minimo
             // 
             this.proedio_de_calificacion_minimo.AutoSize = true;
-            this.proedio_de_calificacion_minimo.Location = new System.Drawing.Point(232, 297);
+            this.proedio_de_calificacion_minimo.Location = new System.Drawing.Point(232, 257);
             this.proedio_de_calificacion_minimo.Name = "proedio_de_calificacion_minimo";
             this.proedio_de_calificacion_minimo.Size = new System.Drawing.Size(183, 15);
             this.proedio_de_calificacion_minimo.TabIndex = 1;
@@ -62,20 +59,11 @@ namespace OyPPTP
             // tipo_de_servicio
             // 
             this.tipo_de_servicio.AutoSize = true;
-            this.tipo_de_servicio.Location = new System.Drawing.Point(232, 202);
+            this.tipo_de_servicio.Location = new System.Drawing.Point(232, 205);
             this.tipo_de_servicio.Name = "tipo_de_servicio";
             this.tipo_de_servicio.Size = new System.Drawing.Size(89, 15);
             this.tipo_de_servicio.TabIndex = 2;
             this.tipo_de_servicio.Text = "Tipo de servicio";
-            // 
-            // distancia_maxima
-            // 
-            this.distancia_maxima.AutoSize = true;
-            this.distancia_maxima.Location = new System.Drawing.Point(232, 251);
-            this.distancia_maxima.Name = "distancia_maxima";
-            this.distancia_maxima.Size = new System.Drawing.Size(101, 15);
-            this.distancia_maxima.TabIndex = 3;
-            this.distancia_maxima.Text = "Distancia máxima";
             // 
             // tipo_de_servicio_combo
             // 
@@ -87,17 +75,10 @@ namespace OyPPTP
             // 
             // promedio_de_calificacion_minimo_numeric
             // 
-            this.promedio_de_calificacion_minimo_numeric.Location = new System.Drawing.Point(480, 295);
+            this.promedio_de_calificacion_minimo_numeric.Location = new System.Drawing.Point(479, 255);
             this.promedio_de_calificacion_minimo_numeric.Name = "promedio_de_calificacion_minimo_numeric";
             this.promedio_de_calificacion_minimo_numeric.Size = new System.Drawing.Size(120, 23);
             this.promedio_de_calificacion_minimo_numeric.TabIndex = 5;
-            // 
-            // distancia_maxima_numeric
-            // 
-            this.distancia_maxima_numeric.Location = new System.Drawing.Point(480, 249);
-            this.distancia_maxima_numeric.Name = "distancia_maxima_numeric";
-            this.distancia_maxima_numeric.Size = new System.Drawing.Size(120, 23);
-            this.distancia_maxima_numeric.TabIndex = 6;
             // 
             // buscar_trabajadores
             // 
@@ -115,10 +96,8 @@ namespace OyPPTP
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buscar_trabajadores);
-            this.Controls.Add(this.distancia_maxima_numeric);
             this.Controls.Add(this.promedio_de_calificacion_minimo_numeric);
             this.Controls.Add(this.tipo_de_servicio_combo);
-            this.Controls.Add(this.distancia_maxima);
             this.Controls.Add(this.tipo_de_servicio);
             this.Controls.Add(this.proedio_de_calificacion_minimo);
             this.Controls.Add(this.buscar_trabajadores_label);
@@ -126,7 +105,6 @@ namespace OyPPTP
             this.Text = "BuscarTrabajadores";
             this.Load += new System.EventHandler(this.BuscarTrabajadores_Load);
             ((System.ComponentModel.ISupportInitialize)(this.promedio_de_calificacion_minimo_numeric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.distancia_maxima_numeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,10 +115,8 @@ namespace OyPPTP
         private System.Windows.Forms.Label buscar_trabajadores_label;
         private System.Windows.Forms.Label proedio_de_calificacion_minimo;
         private System.Windows.Forms.Label tipo_de_servicio;
-        private System.Windows.Forms.Label distancia_maxima;
         private System.Windows.Forms.ComboBox tipo_de_servicio_combo;
         private System.Windows.Forms.NumericUpDown promedio_de_calificacion_minimo_numeric;
-        private System.Windows.Forms.NumericUpDown distancia_maxima_numeric;
         private System.Windows.Forms.Button buscar_trabajadores;
     }
 }

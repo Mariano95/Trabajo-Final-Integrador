@@ -31,8 +31,8 @@ namespace DAL
 
         private DAL() {    
             AesManaged aes = new AesManaged();
-            this.key = aes.Key;
-            this.IV = aes.IV;
+            this.key = System.Convert.FromBase64String("LVz1Hiu7b1K7aQ2a4WeieE+b3tvrEUcI/nvOunFLzNk=");
+            this.IV = System.Convert.FromBase64String("Kr1qHrXodi5Vf0eDwYCt9Q==");
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -140,6 +140,7 @@ namespace DAL
         /////////////////////////////////////    FUNCIONES DE BD     ////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
+        //Prueba la conexion y devuelve resultado acorde
         private bool conectar()
         {
             try {
@@ -152,6 +153,7 @@ namespace DAL
             }   
         }
         
+
         private SqlDataReader ExecuteReader(SqlCommand command)
         {
             command.Connection = this.miConnection;
