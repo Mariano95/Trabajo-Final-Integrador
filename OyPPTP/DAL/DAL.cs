@@ -36,7 +36,7 @@ namespace DAL
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////    FUNCIONES PUBLICAS     //////////////////////////////
+        /////////////////////////////    METODOS PUBLICOS CRIPTOGRAFIA     //////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         public string EncriptarAES(string raw) {
@@ -68,10 +68,65 @@ namespace DAL
             return strBuilder.ToString();
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    METODOS GENERICOS BD     ////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+
         public bool ConectarBD(string stringConexion) {
             this.miConnection = new SqlConnection(stringConexion);
             return conectar();
         }
+
+        public bool ActualizarVerificadorHorizontal(string tabla, int id, int verificador_horizontal)
+        {
+
+            string updateCommandText = "" +
+                "UPDATE [dbo].[" + tabla + "]" +
+                "SET " +
+                    "[" + tabla + "_verificador_horizontal] = @verificador_horizontal " +
+                "WHERE " +
+                    tabla + "_id = @id";
+
+            SqlCommand updateCommand = new SqlCommand(updateCommandText);
+            updateCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            updateCommand.Parameters.AddWithValue("@id", id);
+            ExecuteNonQuery(updateCommand);
+            return true;
+
+
+        }
+
+        public int ObtenerSumaVerificadoresHorizontales(string tabla)
+        {
+            string selectCommandText = "" +
+                "SELECT SUM([" + tabla + "_verificador_horizontal]) " +
+                "FROM [dbo].[" + tabla + "]";
+
+            return ExecuteScalar(selectCommandText);
+        }
+
+        public bool ActualizarVerificadorVertical(string tabla, int sumaVerificadoresHorizontales)
+        {
+
+            string updateCommandText = "" +
+                "UPDATE [dbo].[Verificadores_Verticales]" +
+                "SET " +
+                    "[verificadores_verticales_numero] = @sumaVerificadoresHorizontales " +
+                "WHERE " +
+                    "verificadores_verticales_tabla = @tabla";
+
+            SqlCommand updateCommand = new SqlCommand(updateCommandText);
+            updateCommand.Parameters.AddWithValue("@sumaVerificadoresHorizontales", EncriptarAES(sumaVerificadoresHorizontales.ToString()));
+            updateCommand.Parameters.AddWithValue("@tabla", tabla);
+            ExecuteNonQuery(updateCommand);
+            return true;
+
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////    METODOS USUARIO     //////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
         public bool BuscarUsuario(string dni, string email) { 
             string query =  "" +
@@ -84,7 +139,7 @@ namespace DAL
 
         }
 
-        public bool InsertarUsuario(string nombre, string apellido, string dni, string domicilio, string email, string password) {
+        public int InsertarUsuario(string nombre, string apellido, string dni, string domicilio, string email, string password) {
             try
             {
 
@@ -116,7 +171,8 @@ namespace DAL
 
                 SqlCommand insertCommand = new SqlCommand(insertCommandText);
 
-                insertCommand.Parameters.AddWithValue("@PersonaId", ObtenerUltimoId("Persona")+1);
+                int id = ObtenerUltimoId("Persona") + 1;
+                insertCommand.Parameters.AddWithValue("@PersonaId", id);
                 insertCommand.Parameters.AddWithValue("@PersonaNombre", nombre);
                 insertCommand.Parameters.AddWithValue("@PersonaApellido", apellido);
                 insertCommand.Parameters.AddWithValue("@PersonaDni", dni);
@@ -126,18 +182,18 @@ namespace DAL
                 insertCommand.Parameters.AddWithValue("@PersonaActiva", true);
                 insertCommand.Parameters.AddWithValue("@PersonaFallosAutenticacionConsecutivos", 0);
                 insertCommand.Parameters.AddWithValue("@PersonaBloqueada", false);
-                insertCommand.Parameters.AddWithValue("@PersonaVerificadorHorizontal", 4);
+                insertCommand.Parameters.AddWithValue("@PersonaVerificadorHorizontal", 0);
 
                 ExecuteNonQuery(insertCommand);
+                return id;
             }
             catch (Exception e) {
-                return false;
+                return -1;
             }
-            return true;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////    FUNCIONES DE BD     ////////////////////////////////
+        /////////////////////////////////    METODOS PRIVADOS DE BD     /////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         //Prueba la conexion y devuelve resultado acorde
@@ -152,7 +208,6 @@ namespace DAL
                 return false;
             }   
         }
-        
 
         private SqlDataReader ExecuteReader(SqlCommand command)
         {
@@ -199,14 +254,23 @@ namespace DAL
         private int ObtenerUltimoId(string nombreTabla)
         {
             string selectCommandText = "" +
-                "SELECT COALESCE(MAX(persona_id),0) " +
+                "SELECT COALESCE(MAX(" + nombreTabla.ToLower() + "_id" + "),0) " +
+                "FROM [dbo]." + nombreTabla;
+
+            return this.ExecuteScalar(selectCommandText);
+        }
+
+        private int ObtenerCantidadFilas(string nombreTabla)
+        {
+            string selectCommandText = "" +
+                "SELECT COUNT(*) " +
                 "FROM [dbo]." + nombreTabla;
 
             return this.ExecuteScalar(selectCommandText);
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////    FUNCIONES DE ENCRIPTADO    /////////////////////////////
+        ///////////////////////////    METODOS PRIVADOS DE CRIPTOGRAFIA    //////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         private byte[] Encrypt(string plainText, byte[] Key, byte[] IV)

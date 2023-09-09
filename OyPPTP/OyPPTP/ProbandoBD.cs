@@ -32,6 +32,7 @@ namespace OyPPTP
 
         private void ProbandoBD_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show((int)a);
             //Pruebo encodear
             //string cstring = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             //MessageBox.Show(cstring);
