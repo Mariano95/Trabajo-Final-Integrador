@@ -89,3 +89,5 @@ C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcor
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\ShockwaveFlashObjects.dll
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\SL.dll.config
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.LoadingForm.resources
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\DTO.pdb

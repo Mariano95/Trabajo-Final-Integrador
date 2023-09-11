@@ -13,3 +13,5 @@ C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Debug\netcoreap
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Debug\netcoreapp3.1\BLL.dll
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Debug\netcoreapp3.1\BLL.pdb
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Debug\netcoreapp3.1\SL.dll.config
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Debug\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Debug\netcoreapp3.1\DTO.pdb

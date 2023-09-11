@@ -32,7 +32,7 @@ namespace OyPPTP
 
         private void ProbandoBD_Load(object sender, EventArgs e)
         {
-            //MessageBox.Show((int)a);
+            
             //Pruebo encodear
             //string cstring = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             //MessageBox.Show(cstring);
@@ -72,6 +72,10 @@ namespace OyPPTP
 
             if (conexion)
             {
+
+                //Inicializar tablas bd
+                //miDAL.IncializarEventos();
+
                 MessageBox.Show("Éxito al inicializar la base de datos");
                 PreLogin form1 = new PreLogin();
                 this.Hide();

@@ -171,6 +171,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "DTO": "1.0.0",
           "System.Configuration.ConfigurationManager": "7.0.0",
           "System.Data.SqlClient": "4.8.5"
         },
@@ -179,6 +180,16 @@
         },
         "runtime": {
           "bin/placeholder/DAL.dll": {}
+        }
+      },
+      "DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTO.dll": {}
         }
       },
       "SL/1.0.0": {
@@ -575,6 +586,11 @@
       "path": "../DAL/DAL.csproj",
       "msbuildProject": "../DAL/DAL.csproj"
     },
+    "DTO/1.0.0": {
+      "type": "project",
+      "path": "../DTO/DTO.csproj",
+      "msbuildProject": "../DTO/DTO.csproj"
+    },
     "SL/1.0.0": {
       "type": "project",
       "path": "../SL/SL.csproj",
@@ -584,6 +600,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "DAL >= 1.0.0",
+      "DTO >= 1.0.0",
       "SL >= 1.0.0"
     ]
   },
@@ -621,6 +638,9 @@
           "projectReferences": {
             "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\DAL\\DAL.csproj": {
               "projectPath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\DAL\\DAL.csproj"
+            },
+            "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\DTO\\DTO.csproj": {
+              "projectPath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\DTO\\DTO.csproj"
             },
             "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\SL\\SL.csproj": {
               "projectPath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\SL\\SL.csproj"

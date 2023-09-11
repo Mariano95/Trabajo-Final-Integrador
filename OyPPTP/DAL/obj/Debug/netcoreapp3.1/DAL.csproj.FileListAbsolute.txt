@@ -7,3 +7,6 @@ C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Debug\netcoreap
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Debug\netcoreapp3.1\DAL.dll
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Debug\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Debug\netcoreapp3.1\DTO.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Debug\netcoreapp3.1\DAL.csproj.CopyComplete

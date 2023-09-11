@@ -11,3 +11,5 @@ C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\DAL.dll
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\DAL.pdb
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\obj\Debug\netcoreapp3.1\SL.csproj.CopyComplete
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\SL\bin\Debug\netcoreapp3.1\DTO.pdb

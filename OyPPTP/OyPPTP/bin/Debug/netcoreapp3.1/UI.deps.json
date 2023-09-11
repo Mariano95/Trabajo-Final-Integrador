@@ -279,6 +279,7 @@
       "BLL/1.0.0": {
         "dependencies": {
           "DAL": "1.0.0",
+          "DTO": "1.0.0",
           "SL": "1.0.0"
         },
         "runtime": {
@@ -287,11 +288,17 @@
       },
       "DAL/1.0.0": {
         "dependencies": {
+          "DTO": "1.0.0",
           "System.Configuration.ConfigurationManager": "7.0.0",
           "System.Data.SqlClient": "4.8.5"
         },
         "runtime": {
           "DAL.dll": {}
+        }
+      },
+      "DTO/1.0.0": {
+        "runtime": {
+          "DTO.dll": {}
         }
       },
       "SL/1.0.0": {
@@ -430,6 +437,11 @@
       "sha512": ""
     },
     "DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DTO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

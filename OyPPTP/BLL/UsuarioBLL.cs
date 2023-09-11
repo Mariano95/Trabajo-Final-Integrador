@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using DAL;
+using DTO;
+using SL;
 
 namespace BLL
 {
@@ -15,11 +17,19 @@ namespace BLL
         private string rol;
         private List<String> servicios;
         private bool usuarioOculto;
+        private int fallosAutenticacionConsecutivos;
         private bool bloqueado;
 
+        public static UsuarioBLL GetUsuarioBLL(string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
+        {
+            if (usuario_singleton == null)
+            {
+                usuario_singleton = new UsuarioBLL(nombre, apellido, dni, domicilio, email, rol, servicios, usuarioOculto, fallosAutenticacionConsecutivos, bloqueado);
+            }
+            return usuario_singleton;
+        }
 
-
-        private UsuarioBLL(string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, bool bloqueado) {
+        private UsuarioBLL(string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado) {
             this.nombre = nombre;
             this.apellido = apellido;
             this.dni = dni;
@@ -28,6 +38,7 @@ namespace BLL
             this.rol = rol;
             this.servicios = servicios;
             this.usuarioOculto = usuarioOculto;
+            this.fallosAutenticacionConsecutivos = fallosAutenticacionConsecutivos;
             this.bloqueado = bloqueado;
         }
 
@@ -37,12 +48,12 @@ namespace BLL
 
         public static bool AltaUsuario(string nombre, string apellido, string dni, string domicilio, string email, string pasword)
         {
-            usuario_singleton = new UsuarioBLL(nombre, apellido, dni, domicilio, email, null, null, false, false);
+            UsuarioBLL usuario = new UsuarioBLL(nombre, apellido, dni, domicilio, email, null, null, false, 0, false);
             DAL.DAL miDAL = DAL.DAL.GetDAL();
-            int id = miDAL.InsertarUsuario(usuario_singleton.nombre, usuario_singleton.apellido, usuario_singleton.dni, usuario_singleton.domicilio, usuario_singleton.email, pasword);
+            int id = miDAL.InsertarUsuario(usuario.nombre, usuario.apellido, usuario.dni, usuario.domicilio, usuario.email, pasword);
             if (id == -1)
                 return false;
-            int verificador_horizontal = CalcularVerificadorHorizontal(id, usuario_singleton, pasword, 0);
+            int verificador_horizontal = CalcularVerificadorHorizontal(id, usuario, pasword, 0);
             bool verificador_horizontal_ok = miDAL.ActualizarVerificadorHorizontal("Persona", id, verificador_horizontal);
             if (!verificador_horizontal_ok)
             {
@@ -58,10 +69,67 @@ namespace BLL
             return true;
         }
 
-            public static bool BuscarUsuario(string dni, string email)
+        public static bool BuscarUsuario(string dni, string email)
         {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             return miDAL.BuscarUsuario(dni, email);
+        }
+
+        public static int BuscarUsuarioPorMail(string emailEncrypted)
+        {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            return miDAL.BuscarUsuarioPorMail(emailEncrypted);
+        }
+
+        public static bool ValidarUsuarioBloqueado(int idUsuario) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            return miDAL.ValidarUsuarioBloqueado(idUsuario);
+        }
+
+        public static bool ValidarPasswordUsuario(int idUsuario, string passwordEncrypted) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            bool passwordOk = miDAL.ValidarPasswordUsuario(idUsuario, passwordEncrypted);
+            UsuarioDTO DTO = miDAL.GetUsuarioById(idUsuario);
+            if (!passwordOk)
+            {
+                int iniciosSesionFallidos = miDAL.IniciosSesionFallidos(idUsuario);
+
+                GestorBitacora gestorBitacora = new GestorBitacora();
+                gestorBitacora.RegistrarEvento(2, idUsuario);
+
+
+
+                iniciosSesionFallidos += 1;
+                if (iniciosSesionFallidos >= 3)
+                {
+                    miDAL.BloquearUsuario(idUsuario);
+                }
+                miDAL.UpdateCantidadIniciosSesion(idUsuario, iniciosSesionFallidos);
+
+                //Aca voy por el constructor directamente y no por el acceso del singleton, porque este usuario no esta en condiciones de iniciar sesion
+                UsuarioBLL usuario = new UsuarioBLL(DTO.nombre, DTO.apellido, DTO.dni, DTO.domicilio, DTO.email, null, null, DTO.usuarioOculto, DTO.fallosAutenticacionConsecutivos, DTO.bloqueado);
+
+                int verificador_horizontal = CalcularVerificadorHorizontal(idUsuario, usuario, DTO.password, iniciosSesionFallidos);
+                bool verificador_horizontal_ok = miDAL.ActualizarVerificadorHorizontal("Persona", idUsuario, verificador_horizontal);
+                if (!verificador_horizontal_ok)
+                {
+                    return false;
+                }
+                int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
+                bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona", sumaVerificadoresHorizontales);
+                if (!verificador_vertical_ok)
+                {
+                    return false;
+                }
+                return false;
+
+            }
+            else {
+                //Aca uso getUsuario porque ya el usuario esta ok para iniciar sesion, entonces cargo el singleton
+                UsuarioBLL usuarioSingleton = GetUsuarioBLL(DTO.nombre, DTO.apellido, DTO.dni, DTO.domicilio, DTO.email, null, null, DTO.usuarioOculto, 0, DTO.bloqueado);
+                miDAL.UpdateCantidadIniciosSesion(idUsuario, 0);
+                return true;
+            }
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,8 +168,5 @@ namespace BLL
             }
             return digito;
         }
-
-
-
     }
 }
