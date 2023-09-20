@@ -75,6 +75,7 @@ namespace OyPPTP
 
                 //Inicializar tablas bd
                 //miDAL.IncializarEventos();
+                //miDAL.InicializarPatentes();
 
                 MessageBox.Show("Éxito al inicializar la base de datos");
                 PreLogin form1 = new PreLogin();

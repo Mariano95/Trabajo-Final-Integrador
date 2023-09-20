@@ -23,14 +23,14 @@ namespace DAL
         ///////////////////////////////////////    CONSTRUCTOR     //////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        public static DAL GetDAL(){
+        public static DAL GetDAL() {
             if (singleton == null) {
                 singleton = new DAL();
             }
             return singleton;
         }
 
-        private DAL() {    
+        private DAL() {
             AesManaged aes = new AesManaged();
             this.key = System.Convert.FromBase64String("LVz1Hiu7b1K7aQ2a4WeieE+b3tvrEUcI/nvOunFLzNk=");
             this.IV = System.Convert.FromBase64String("Kr1qHrXodi5Vf0eDwYCt9Q==");
@@ -123,6 +123,90 @@ namespace DAL
             ExecuteNonQuery(updateCommand);
             return true;
 
+        }
+
+        public List<(string, int)> SumaVerificadoresHorizontalesPorTabla(){
+
+            List<string> tablas = new List<string>();
+            List<(string,int)> resultado = new List<(string, int)>();
+
+            string selectCommandText = "" +
+                "SELECT verificadores_verticales_tabla " +
+                "FROM [dbo].[Verificadores_Verticales]";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                tablas.Add((string)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            string selectCommandText2;
+            SqlCommand selectCommand2;
+            SqlDataReader reader2;
+            string concatenado;
+            int sumaVerificadoresHorizontales;
+            int contador;
+            foreach (string tabla in tablas) {
+                selectCommandText2 = "" +
+                    "SELECT * " +
+                    "FROM [dbo].[" + tabla +"]";
+
+                selectCommand2 = new SqlCommand(selectCommandText2);
+                reader2 = ExecuteReader(selectCommand2);
+                sumaVerificadoresHorizontales = 0;
+
+                while (reader2.Read())
+                {
+                    concatenado = "";
+                    //Voy hasta el anteultimo campo inclusive porque no quiero agarrar el ultimo que es el verificador horizontal
+                    for (int i = 0; i < reader2.FieldCount - 1; i++) {
+                        concatenado += reader2.GetValue(i).ToString();
+                        if (tabla == "Bitacora")
+                        {
+                            continue;
+                        }
+                    }
+
+                    contador = 1;
+                    foreach (char c in concatenado) {
+                        sumaVerificadoresHorizontales += (int)c * contador;
+                        contador++;
+                    }
+                }
+                CloseReader(reader);
+
+                //Ignoro a las tablas que no tienen ni un registro
+                if (sumaVerificadoresHorizontales > 0) {
+                    resultado.Add((tabla, sumaVerificadoresHorizontales));
+                }
+            }
+
+            return resultado;
+        }
+
+        public bool CoincideVerificadorVertical(int digito, string tabla) { 
+            string selectCommandText = "" +
+                "SELECT verificadores_verticales_numero " +
+                "FROM [dbo].[Verificadores_Verticales] " + 
+                "WHERE verificadores_verticales_tabla = @tabla";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            selectCommand.Parameters.AddWithValue("@tabla", tabla);
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                string verificador_vertical_unencrypted = DesencriptarAES((string)reader.GetValue(0));
+                if ( verificador_vertical_unencrypted != digito.ToString()) {
+                    CloseReader(reader);
+                    return false;
+                }
+            }
+            CloseReader(reader);
+            return true;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -534,6 +618,765 @@ namespace DAL
             insertCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
             ExecuteNonQuery(insertCommand);
         }
+
+        public void InicializarPatentes() {
+            int id = 1;
+            string nombre = "Backup cancelar";
+            string idPantalla = "Backup";
+            string idControl = "cancelar";
+            string concatenado = id.ToString() + nombre + idPantalla + idControl;
+            int verificador_horizontal = 0;
+            int contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 2;
+            nombre = "Backup iniciar";
+            idPantalla = "Backup";
+            idControl = "iniciar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 3;
+            nombre = "Bitacora cerrar";
+            idPantalla = "Bitacora";
+            idControl = "cerrar_bitacora";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 4;
+            nombre = "Bitacora cambiar filtro";
+            idPantalla = "Bitacora";
+            idControl = "cambiar_filtros";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 5;
+            nombre = "Bitacora imprimir";
+            idPantalla = "Bitacora";
+            idControl = "imprimir";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 6;
+            nombre = "Buscar trabajadores";
+            idPantalla = "BuscarTrabajadores";
+            idControl = "buscar_trabajadores";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 7;
+            nombre = "Calificar usuario guardar";
+            idPantalla = "CalificarUsuario";
+            idControl = "guardar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 8;
+            nombre = "Cambiar password";
+            idPantalla = "CambioPassword";
+            idControl = "guardar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 9;
+            nombre = "Cambiar estado citacion";
+            idPantalla = "CambioEstadoCitacion";
+            idControl = "guardar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 10;
+            nombre = "Cargar servicios continuar";
+            idPantalla = "CargarServicios";
+            idControl = "continuar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 11;
+            nombre = "Citar trabajador";
+            idPantalla = "CitarTrabajador";
+            idControl = "generar_citacion";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 12;
+            nombre = "Comentar citacion";
+            idPantalla = "ComentarCitacion";
+            idControl = "agregar_comentario";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 13;
+            nombre = "Credenciales bd conectar";
+            idPantalla = "CredencialesBD";
+            idControl = "conectar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 14;
+            nombre = "Desbloquear usuario";
+            idPantalla = "DesbloquearUsuario";
+            idControl = "desbloquear_usuario";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 15;
+            nombre = "Grupo usuario eliminar";
+            idPantalla = "GruposUsuarios";
+            idControl = "eliminar_grupo";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 16;
+            nombre = "Grupo usuario crear";
+            idPantalla = "GruposUsuarios";
+            idControl = "crear_grupo";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 17;
+            nombre = "Grupo usuario quitar usuario";
+            idPantalla = "GruposUsuarios";
+            idControl = "quitar_del_grupo";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 18;
+            nombre = "Grupo usuario agregar usuario";
+            idPantalla = "GruposUsuarios";
+            idControl = "agregar_al_grupo";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 19;
+            nombre = "Indicar usuario particular";
+            idPantalla = "IndicarTipoUsuario";
+            idControl = "particular";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 20;
+            nombre = "Indicar usuario trabajador";
+            idPantalla = "IndicarTipoUsuario";
+            idControl = "trabajador";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 21;
+            nombre = "Iniciar sesion";
+            idPantalla = "IniciarSesion";
+            idControl = "iniciar_sesion";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 22;
+            nombre = "Ocultar usuario si";
+            idPantalla = "ModalOcultar";
+            idControl = "si";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 23;
+            nombre = "Ocultar usuario no";
+            idPantalla = "ModalOcultar";
+            idControl = "no";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 24;
+            nombre = "Pantalla inicial modificar servicios";
+            idPantalla = "PantallaInicial";
+            idControl = "modificarServicios";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 25;
+            nombre = "Pantalla inicial modificar datos personales";
+            idPantalla = "PantallaInicial";
+            idControl = "modificarDatosPersonales";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 26;
+            nombre = "Pantalla inicial modificar password";
+            idPantalla = "PantallaInicial";
+            idControl = "modificarPassword";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 27;
+            nombre = "Pantalla inicial ocultar usuario";
+            idPantalla = "PantallaInicial";
+            idControl = "ocultarUsuario";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 28;
+            nombre = "Pantalla inicial buscar trabajadores";
+            idPantalla = "PantallaInicial";
+            idControl = "buscarTrabajadores";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 29;
+            nombre = "Pantalla inicial citaciones recibidas";
+            idPantalla = "PantallaInicial";
+            idControl = "citacionesRecibidas";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 30;
+            nombre = "Pantalla inicial citaciones enviadas";
+            idPantalla = "PantallaInicial";
+            idControl = "citacionesEnviadas";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 31;
+            nombre = "Pantalla inicial bitacora";
+            idPantalla = "PantallaInicial";
+            idControl = "botacora";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 32;
+            nombre = "Pantalla inicial restaurar sistema";
+            idPantalla = "PantallaInicial";
+            idControl = "restaurarSistema";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 33;
+            nombre = "Pantalla inicial desbloquear usuario";
+            idPantalla = "PantallaInicial";
+            idControl = "desbloquearUsuario";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 34;
+            nombre = "Pantalla inicial patentes por grupo";
+            idPantalla = "PantallaInicial";
+            idControl = "patentesPorGrupo";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 35;
+            nombre = "Pantalla inicial patentes por usuario";
+            idPantalla = "PantallaInicial";
+            idControl = "patentesPorUsuario";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 36;
+            nombre = "Pantalla inicial grupos de usuarios";
+            idPantalla = "PantallaInicial";
+            idControl = "gruposUsuarios";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 37;
+            nombre = "Pantalla inicial crear usuario administrador";
+            idPantalla = "PantallaInicial";
+            idControl = "crearUsuarioAdmin";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 38;
+            nombre = "Pantalla inicial cambiar idioma";
+            idPantalla = "PantallaInicial";
+            idControl = "cambiarIdioma";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 39;
+            nombre = "Pantalla inicial cerrar sesion";
+            idPantalla = "PantallaInicial";
+            idControl = "cerrarSesion";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 40;
+            nombre = "Patentes por grupo quitar patente";
+            idPantalla = "PatentesPorGrupo";
+            idControl = "quitarPatente";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 41;
+            nombre = "Patentes por grupo otorgar patente";
+            idPantalla = "PatentesPorGrupo";
+            idControl = "otorgarPatente";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 42;
+            nombre = "Patentes por grupo volver";
+            idPantalla = "PatentesPorGrupo";
+            idControl = "volver";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 43;
+            nombre = "Patentes por usuario quitar patente";
+            idPantalla = "PatentesPorUsuario";
+            idControl = "quitarPatente";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 44;
+            nombre = "Patentes por usuario otorgar patente";
+            idPantalla = "PatentesPorUsuario";
+            idControl = "otorgarPatente";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 45;
+            nombre = "Patentes por usuario volver";
+            idPantalla = "PatentesPorUsuario";
+            idControl = "volver";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 46;
+            nombre = "Pre bitacora buscar";
+            idPantalla = "PreBitacora";
+            idControl = "buscar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 47;
+            nombre = "Pre login iniciar sesion";
+            idPantalla = "PreLogin";
+            idControl = "iniciar_sesion";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 48;
+            nombre = "Pre login registrar usuario";
+            idPantalla = "PreLogin";
+            idControl = "registrar_usuario";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 49;
+            nombre = "Pre login restablecer contrasena";
+            idPantalla = "PreLogin";
+            idControl = "olvide_mi_contrasena";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 50;
+            nombre = "Registrar usuario continuar";
+            idPantalla = "RegistrarUsuario";
+            idControl = "continuar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 51;
+            nombre = "Restaurar sistema cancelar";
+            idPantalla = "RestaurarSistema";
+            idControl = "cancelar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            id = 52;
+            nombre = "Restaurar sistema iniciar";
+            idPantalla = "RestaurarSistema";
+            idControl = "iniciar";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
+            int sumaVerificadoresHorizontales = ObtenerSumaVerificadoresHorizontales("Patente");
+            bool verificador_vertical_ok = ActualizarVerificadorVertical("Patente", sumaVerificadoresHorizontales);
+
+        }
+
+        private void InsertPatente(int id, string nombre, string idPantalla, string idControl, int verificador_horizontal) {
+            string insertCommandText = "" +
+                    "INSERT INTO [dbo].[Patente] " +
+                        "([patente_id]" +
+                        ",[patente_nombre]" +
+                        ",[patente_idPantalla]" +
+                        ",[patente_idControl]" +
+                        ",[patente_verificador_horizontal]) " +
+                    "VALUES " +
+                        "(@id," +
+                        "@nombre," +
+                        "@pantalla," +
+                        "@control," +
+                        "@verificador_horizontal)";
+
+            SqlCommand insertCommand = new SqlCommand(insertCommandText);
+
+            insertCommand.Parameters.AddWithValue("@id", id);
+            insertCommand.Parameters.AddWithValue("@nombre", nombre);
+            insertCommand.Parameters.AddWithValue("@pantalla", idPantalla);
+            insertCommand.Parameters.AddWithValue("@control", idControl);
+            insertCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            ExecuteNonQuery(insertCommand);
+        }
         
         /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////    METODOS USUARIO     //////////////////////////////
@@ -560,6 +1403,7 @@ namespace DAL
                 usuario.dni = (string)reader.GetValue(3);
                 usuario.domicilio = (string)reader.GetValue(4);
                 usuario.email = (string)reader.GetValue(5);
+                usuario.password = (string)reader.GetValue(6);
                 usuario.usuarioOculto = (bool)reader.GetValue(7) == false;
                 usuario.fallosAutenticacionConsecutivos = (int)reader.GetValue(8);
                 usuario.bloqueado = (bool)reader.GetValue(9);
@@ -743,6 +1587,93 @@ namespace DAL
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////    METODOS GRUPOS     ///////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        public List<int> ObtenerGrupos(int usuarioId) {
+            List<int> result = new List<int>();
+
+            string selectCommandText = "" +
+                "SELECT Persona_Grupo.persona_grupo_grupo_id " +
+                "FROM Persona_Grupo " +
+                "INNER JOIN Persona " +
+                    "ON Persona.persona_id = Persona_Grupo.persona_grupo_persona_id " +
+                "WHERE Persona.persona_id = @persona_id";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            selectCommand.Parameters.AddWithValue("@persona_id", usuarioId);
+
+            SqlDataReader reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                result.Add((int)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            return result;
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////    METODOS PATENTES     //////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        public List<string> FiltrarPatentes(int usuarioId, string pantalla, List<int> gruposUsuario) {
+            List<string> result = new List<string>();
+            
+            string selectCommandTextGrupo = "" +
+                "SELECT patente_idControl " +
+                "FROM Patente " +
+                "INNER JOIN Grupo_Patente " +
+                    "ON Patente.patente_id = Grupo_Patente.grupo_patente_patente_id " +
+                "WHERE grupo_patente_grupo_id = @grupo_id " +
+                    "AND Patente.patente_idPantalla = @pantalla_id";
+            SqlCommand selectCommand;
+            SqlDataReader reader;
+            string value = "";
+
+            foreach (int grupo in gruposUsuario) {
+                selectCommand = new SqlCommand(selectCommandTextGrupo);
+                selectCommand.Parameters.AddWithValue("@grupo_id", grupo);
+                selectCommand.Parameters.AddWithValue("@pantalla_id", pantalla);
+                reader = ExecuteReader(selectCommand);
+                while (reader.Read())
+                {
+                    value = reader.GetValue(0).ToString();
+                    if (!result.Contains(value)) {
+                        result.Add(reader.GetValue(0).ToString());
+                    }
+                }
+                CloseReader(reader);
+            }
+
+            string selectCommandTextPersona = "" +
+                "SELECT patente_idControl " +
+                "FROM Patente " +
+                "INNER JOIN Persona_Patente " +
+                    "ON Patente.patente_id = Persona_Patente.persona_patente_patente_id " +
+                "WHERE Persona_Patente.persona_patente_persona_id = @persona_id " +
+                    "AND Patente.patente_idPantalla = @pantalla_id";
+
+            selectCommand = new SqlCommand(selectCommandTextPersona);
+            selectCommand.Parameters.AddWithValue("@persona_id", usuarioId);
+            selectCommand.Parameters.AddWithValue("@pantalla_id", pantalla);
+            reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                value = reader.GetValue(0).ToString();
+                if (!result.Contains(value))
+                {
+                    result.Add(reader.GetValue(0).ToString());
+                }
+            }
+            CloseReader(reader);
+
+            return result;
+        }
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////    METODOS PRIVADOS DE BD     /////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -791,7 +1722,7 @@ namespace DAL
             this.miConnection.Open();
             Object qryResult = selectCommand.ExecuteScalar();
             this.miConnection.Close();
-            if (qryResult == null)
+            if (qryResult == null || qryResult == System.DBNull.Value)
             {
                 return -1;
             }

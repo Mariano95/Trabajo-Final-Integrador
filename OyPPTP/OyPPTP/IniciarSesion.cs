@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL;
 using BLL;
+using SL;
 
 namespace OyPPTP
 {
@@ -69,6 +70,35 @@ namespace OyPPTP
             if (!passwordCorrecto) {
                 MessageBox.Show("La información de la dirección de correo electrónico o la contraseña no es válida");
                 return;
+            }
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            gestorBitacora.RegistrarEvento(1, idUsuario);
+
+            //Aca validamos los digitos verificadores
+            bool integridadok = true;
+            List<(string, int)> res = miDAL.SumaVerificadoresHorizontalesPorTabla();
+            foreach ((string, int) t in res) {
+                MessageBox.Show(t.Item1.ToString()+"-"+t.Item2.ToString());
+                bool integridadtablaok = miDAL.CoincideVerificadorVertical(t.Item2, t.Item1);
+                if (!integridadtablaok)
+                {
+                    gestorBitacora.RegistrarEvento(8, idUsuario);
+                    integridadok = false;
+                    MessageBox.Show("Fallo de integridad en la tabla " + t.Item1.ToString());
+                }
+            }
+            if (integridadok) {
+                gestorBitacora.RegistrarEvento(9, idUsuario);
+            }
+
+            //Aca recuperamos las patentes del usuario
+            MessageBox.Show(this.Name);
+            GestorPatentes gestorPatentes = new GestorPatentes();
+            List<string> patentes = gestorPatentes.ObtenerPatentes(idUsuario, this.Name);
+
+            foreach (string patente in patentes) {
+                MessageBox.Show(patente); 
             }
 
             PantallaInicial form = new PantallaInicial();

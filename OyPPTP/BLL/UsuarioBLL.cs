@@ -97,8 +97,6 @@ namespace BLL
                 GestorBitacora gestorBitacora = new GestorBitacora();
                 gestorBitacora.RegistrarEvento(2, idUsuario);
 
-
-
                 iniciosSesionFallidos += 1;
                 if (iniciosSesionFallidos >= 3)
                 {
@@ -128,6 +126,18 @@ namespace BLL
                 //Aca uso getUsuario porque ya el usuario esta ok para iniciar sesion, entonces cargo el singleton
                 UsuarioBLL usuarioSingleton = GetUsuarioBLL(DTO.nombre, DTO.apellido, DTO.dni, DTO.domicilio, DTO.email, null, null, DTO.usuarioOculto, 0, DTO.bloqueado);
                 miDAL.UpdateCantidadIniciosSesion(idUsuario, 0);
+                int verificador_horizontal = CalcularVerificadorHorizontal(idUsuario, usuarioSingleton, DTO.password, 0);
+                bool verificador_horizontal_ok = miDAL.ActualizarVerificadorHorizontal("Persona", idUsuario, verificador_horizontal);
+                if (!verificador_horizontal_ok)
+                {
+                    return false;
+                }
+                int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
+                bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona", sumaVerificadoresHorizontales);
+                if (!verificador_vertical_ok)
+                {
+                    return false;
+                }
                 return true;
             }
         }
@@ -148,14 +158,14 @@ namespace BLL
             concatenado += usuario.email;
             concatenado += password;
             if (usuario.usuarioOculto)
-                concatenado += "0";
+                concatenado += "False";
             else
-                concatenado += "1";
+                concatenado += "True";
             concatenado += fallos_autenticacion_consecutivos.ToString();
             if (usuario.bloqueado)
-                concatenado += "1";
+                concatenado += "True";
             else
-                concatenado += "0";
+                concatenado += "False";
 
 
             int digito = 0;
