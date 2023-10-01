@@ -10,13 +10,16 @@ namespace OyPPTP
 {
     public partial class PantallaInicial : Form
     {
+        List<string> patentes;
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////    CONSTRUCTOR     //////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        public PantallaInicial()
+        public PantallaInicial(List<string> patentes)
         {
             InitializeComponent();
+            this.patentes = patentes;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,6 +28,17 @@ namespace OyPPTP
 
         private void PantallaInicial_Load(object sender, EventArgs e)
         {
+
+            foreach ( ToolStripMenuItem dropdown in this.menuStrip1.Items)
+            {
+                foreach (ToolStripItem item in dropdown.DropDownItems) {
+                    if (patentes.Contains(item.Name))
+                    {
+                        item.Enabled = true;
+                    }
+                }
+
+            }
 
         }
 

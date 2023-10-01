@@ -93,15 +93,9 @@ namespace OyPPTP
             }
 
             //Aca recuperamos las patentes del usuario
-            MessageBox.Show(this.Name);
             GestorPatentes gestorPatentes = new GestorPatentes();
-            List<string> patentes = gestorPatentes.ObtenerPatentes(idUsuario, this.Name);
-
-            foreach (string patente in patentes) {
-                MessageBox.Show(patente); 
-            }
-
-            PantallaInicial form = new PantallaInicial();
+            List<string> patentes = gestorPatentes.ObtenerPatentes(idUsuario, "PantallaInicial");
+            PantallaInicial form = new PantallaInicial(patentes);
             this.Hide();
             form.Show();
         }

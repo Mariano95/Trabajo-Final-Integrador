@@ -65,6 +65,7 @@ namespace OyPPTP
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Enabled = true;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.datosPersonalesOption,
             this.busquedaTrabajadoresOption,
@@ -92,6 +93,7 @@ namespace OyPPTP
             // 
             // modificarServicios
             // 
+            this.modificarServicios.Enabled = false;
             this.modificarServicios.Name = "modificarServicios";
             this.modificarServicios.Size = new System.Drawing.Size(216, 22);
             this.modificarServicios.Text = "Modificar servicios";
@@ -99,6 +101,7 @@ namespace OyPPTP
             // 
             // modificarDatosPersonales
             // 
+            this.modificarDatosPersonales.Enabled = false;
             this.modificarDatosPersonales.Name = "modificarDatosPersonales";
             this.modificarDatosPersonales.Size = new System.Drawing.Size(216, 22);
             this.modificarDatosPersonales.Text = "Modificar datos personales";
@@ -106,6 +109,7 @@ namespace OyPPTP
             // 
             // modificarPassword
             // 
+            this.modificarPassword.Enabled = false;
             this.modificarPassword.Name = "modificarPassword";
             this.modificarPassword.Size = new System.Drawing.Size(216, 22);
             this.modificarPassword.Text = "Modificar contraseña";
@@ -113,6 +117,7 @@ namespace OyPPTP
             // 
             // ocultarUsuario
             // 
+            this.ocultarUsuario.Enabled = false;
             this.ocultarUsuario.Name = "ocultarUsuario";
             this.ocultarUsuario.Size = new System.Drawing.Size(216, 22);
             this.ocultarUsuario.Text = "Ocultar usuario";
@@ -129,6 +134,7 @@ namespace OyPPTP
             // 
             // buscarTrabajadores
             // 
+            this.buscarTrabajadores.Enabled = false;
             this.buscarTrabajadores.Name = "buscarTrabajadores";
             this.buscarTrabajadores.Size = new System.Drawing.Size(177, 22);
             this.buscarTrabajadores.Text = "Buscar trabajadores";
@@ -145,6 +151,7 @@ namespace OyPPTP
             // 
             // citacionesRecibidas
             // 
+            this.citacionesRecibidas.Enabled = false;
             this.citacionesRecibidas.Name = "citacionesRecibidas";
             this.citacionesRecibidas.Size = new System.Drawing.Size(179, 22);
             this.citacionesRecibidas.Text = "Citaciones recibidas";
@@ -152,6 +159,7 @@ namespace OyPPTP
             // 
             // citacionesEnviadas
             // 
+            this.citacionesEnviadas.Enabled = false;
             this.citacionesEnviadas.Name = "citacionesEnviadas";
             this.citacionesEnviadas.Size = new System.Drawing.Size(179, 22);
             this.citacionesEnviadas.Text = "Citaciones enviadas";
@@ -174,6 +182,7 @@ namespace OyPPTP
             // 
             // bitacora
             // 
+            this.bitacora.Enabled = false;
             this.bitacora.Name = "bitacora";
             this.bitacora.Size = new System.Drawing.Size(221, 22);
             this.bitacora.Text = "Bitácora";
@@ -181,6 +190,7 @@ namespace OyPPTP
             // 
             // backup
             // 
+            this.backup.Enabled = false;
             this.backup.Name = "backup";
             this.backup.Size = new System.Drawing.Size(221, 22);
             this.backup.Text = "Crear backup del sistema";
@@ -188,6 +198,7 @@ namespace OyPPTP
             // 
             // restaurarSistema
             // 
+            this.restaurarSistema.Enabled = false;
             this.restaurarSistema.Name = "restaurarSistema";
             this.restaurarSistema.Size = new System.Drawing.Size(221, 22);
             this.restaurarSistema.Text = "Restaurar sistema";
@@ -195,6 +206,7 @@ namespace OyPPTP
             // 
             // desbloquearUsuario
             // 
+            this.desbloquearUsuario.Enabled = false;
             this.desbloquearUsuario.Name = "desbloquearUsuario";
             this.desbloquearUsuario.Size = new System.Drawing.Size(221, 22);
             this.desbloquearUsuario.Text = "Desbloquear usuario";
@@ -202,6 +214,7 @@ namespace OyPPTP
             // 
             // patentesPorGrupo
             // 
+            this.patentesPorGrupo.Enabled = false;
             this.patentesPorGrupo.Name = "patentesPorGrupo";
             this.patentesPorGrupo.Size = new System.Drawing.Size(221, 22);
             this.patentesPorGrupo.Text = "Patentes por grupo";
@@ -209,6 +222,7 @@ namespace OyPPTP
             // 
             // patentesPorUsuario
             // 
+            this.patentesPorUsuario.Enabled = false;
             this.patentesPorUsuario.Name = "patentesPorUsuario";
             this.patentesPorUsuario.Size = new System.Drawing.Size(221, 22);
             this.patentesPorUsuario.Text = "Patentes por usuario";
@@ -216,6 +230,7 @@ namespace OyPPTP
             // 
             // gruposUsuarios
             // 
+            this.gruposUsuarios.Enabled = false;
             this.gruposUsuarios.Name = "gruposUsuarios";
             this.gruposUsuarios.Size = new System.Drawing.Size(221, 22);
             this.gruposUsuarios.Text = "Grupos de usuarios";
@@ -223,6 +238,7 @@ namespace OyPPTP
             // 
             // crearUsuarioAdmin
             // 
+            this.crearUsuarioAdmin.Enabled = false;
             this.crearUsuarioAdmin.Name = "crearUsuarioAdmin";
             this.crearUsuarioAdmin.Size = new System.Drawing.Size(221, 22);
             this.crearUsuarioAdmin.Text = "Crear usuario administrador";
@@ -241,6 +257,7 @@ namespace OyPPTP
             this.cambiarIdioma.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ingles,
             this.portugues});
+            this.cambiarIdioma.Enabled = false;
             this.cambiarIdioma.Name = "cambiarIdioma";
             this.cambiarIdioma.Size = new System.Drawing.Size(159, 22);
             this.cambiarIdioma.Text = "Cambiar idioma";
@@ -269,6 +286,7 @@ namespace OyPPTP
             // 
             // cerrarSesion
             // 
+            this.cerrarSesion.Enabled = false;
             this.cerrarSesion.Name = "cerrarSesion";
             this.cerrarSesion.Size = new System.Drawing.Size(142, 22);
             this.cerrarSesion.Text = "Cerrar sesión";
