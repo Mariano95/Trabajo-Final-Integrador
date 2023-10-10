@@ -106,6 +106,7 @@ namespace OyPPTP
             this.quitarPatente.TabIndex = 9;
             this.quitarPatente.Text = "Quitar patente";
             this.quitarPatente.UseVisualStyleBackColor = true;
+            this.quitarPatente.Click += new System.EventHandler(this.quitarPatente_Click);
             // 
             // panel2
             // 
@@ -124,6 +125,7 @@ namespace OyPPTP
             this.otorgarPatente.TabIndex = 10;
             this.otorgarPatente.Text = "Otorgar patente";
             this.otorgarPatente.UseVisualStyleBackColor = true;
+            this.otorgarPatente.Click += new System.EventHandler(this.otorgarPatente_Click);
             // 
             // patentesNoOtorgadas
             // 

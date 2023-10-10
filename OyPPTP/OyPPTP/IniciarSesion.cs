@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DAL;
 using BLL;
 using SL;
+using DTO;
 
 namespace OyPPTP
 {
@@ -60,6 +61,21 @@ namespace OyPPTP
                 return;
             }
 
+            UsuarioDTO usuarioDTO = miDAL.GetUsuarioById(idUsuario);
+            UsuarioBLL.GetUsuarioBLL(
+                usuarioDTO.id = idUsuario,
+                usuarioDTO.nombre,
+                usuarioDTO.apellido,
+                usuarioDTO.dni,
+                usuarioDTO.domicilio,
+                usuarioDTO.email,
+                "", //Rol 
+                new List<string>(), //Servicios 
+                usuarioDTO.usuarioOculto,
+                usuarioDTO.fallosAutenticacionConsecutivos,
+                usuarioDTO.bloqueado
+            );
+
             bool usuarioBloqueado = BLL.UsuarioBLL.ValidarUsuarioBloqueado(idUsuario);
             if (usuarioBloqueado) {
                 MessageBox.Show("Tu usuario se encuentra bloqueado. Por favor, contactate con un administrador.");
@@ -71,7 +87,7 @@ namespace OyPPTP
                 MessageBox.Show("La información de la dirección de correo electrónico o la contraseña no es válida");
                 return;
             }
-
+            
             GestorBitacora gestorBitacora = new GestorBitacora();
             gestorBitacora.RegistrarEvento(1, idUsuario);
 

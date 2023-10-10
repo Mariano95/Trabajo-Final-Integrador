@@ -3,33 +3,45 @@ using System.Collections.Generic;
 using DAL;
 using DTO;
 using SL;
+using BLL;
 
 namespace BLL
 {
     public class UsuarioBLL
     {
         private static UsuarioBLL usuario_singleton;
-        private string nombre;
-        private string apellido;
-        private string dni;
-        private string domicilio;
-        private string email;
-        private string rol;
-        private List<String> servicios;
-        private bool usuarioOculto;
-        private int fallosAutenticacionConsecutivos;
-        private bool bloqueado;
+        public int id { get; }
+        private string nombre { get; set; }
+        private string apellido { get; set; }
+        private string dni { get; set; }
+        private string domicilio { get; set; }
+        private string email { get; set; }
+        private string rol { get; set; }
+        private List<String> servicios { get; set; }
+        private bool usuarioOculto { get; set; }
+        private int fallosAutenticacionConsecutivos { get; set; }
+        private bool bloqueado { get; set; }
 
-        public static UsuarioBLL GetUsuarioBLL(string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
+        public static UsuarioBLL GetUsuarioBLL(int id, string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
         {
             if (usuario_singleton == null)
             {
-                usuario_singleton = new UsuarioBLL(nombre, apellido, dni, domicilio, email, rol, servicios, usuarioOculto, fallosAutenticacionConsecutivos, bloqueado);
+                usuario_singleton = new UsuarioBLL(id, nombre, apellido, dni, domicilio, email, rol, servicios, usuarioOculto, fallosAutenticacionConsecutivos, bloqueado);
             }
             return usuario_singleton;
         }
 
-        private UsuarioBLL(string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado) {
+        public static UsuarioBLL GetUsuarioBLL()
+        {
+            if (usuario_singleton == null)
+            {
+                usuario_singleton = new UsuarioBLL();
+            }
+            return usuario_singleton;
+        }
+
+        private UsuarioBLL(int id, string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado) {
+            this.id = id;
             this.nombre = nombre;
             this.apellido = apellido;
             this.dni = dni;
@@ -40,6 +52,24 @@ namespace BLL
             this.usuarioOculto = usuarioOculto;
             this.fallosAutenticacionConsecutivos = fallosAutenticacionConsecutivos;
             this.bloqueado = bloqueado;
+        }
+
+        private UsuarioBLL(string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
+        {
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.dni = dni;
+            this.domicilio = domicilio;
+            this.email = email;
+            this.rol = rol;
+            this.servicios = servicios;
+            this.usuarioOculto = usuarioOculto;
+            this.fallosAutenticacionConsecutivos = fallosAutenticacionConsecutivos;
+            this.bloqueado = bloqueado;
+        }
+
+        private UsuarioBLL()
+        {
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,6 +97,11 @@ namespace BLL
             }
 
             return true;
+        }
+
+        public static List<(int, string, string, string)> GetUsuarios() {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            return miDAL.ListaUsuarios();
         }
 
         public static bool BuscarUsuario(string dni, string email)
@@ -124,7 +159,7 @@ namespace BLL
             }
             else {
                 //Aca uso getUsuario porque ya el usuario esta ok para iniciar sesion, entonces cargo el singleton
-                UsuarioBLL usuarioSingleton = GetUsuarioBLL(DTO.nombre, DTO.apellido, DTO.dni, DTO.domicilio, DTO.email, null, null, DTO.usuarioOculto, 0, DTO.bloqueado);
+                UsuarioBLL usuarioSingleton = GetUsuarioBLL(idUsuario, DTO.nombre, DTO.apellido, DTO.dni, DTO.domicilio, DTO.email, null, null, DTO.usuarioOculto, 0, DTO.bloqueado);
                 miDAL.UpdateCantidadIniciosSesion(idUsuario, 0);
                 int verificador_horizontal = CalcularVerificadorHorizontal(idUsuario, usuarioSingleton, DTO.password, 0);
                 bool verificador_horizontal_ok = miDAL.ActualizarVerificadorHorizontal("Persona", idUsuario, verificador_horizontal);
@@ -140,6 +175,68 @@ namespace BLL
                 }
                 return true;
             }
+        }
+
+        public static List<(int, string)> GetPatentesUsuario(int usuarioId) {
+            GestorPatentes gestorPatentes = new GestorPatentes();
+
+            List<(int, string)> patentes = new List<(int, string)>();
+            patentes.AddRange(gestorPatentes.GetPatentesUsuarioGrupo(usuarioId));
+
+            return patentes;
+
+        }
+
+        public static (bool,string) QuitarPatente(int usuarioId, int patenteId) {
+            GestorPatentes gestorPatentes = new GestorPatentes();
+            (bool, string) result = gestorPatentes.PuedeQuitar(usuarioId, patenteId);
+            if (!result.Item1) {
+                return (false, result.Item2);
+            }
+            gestorPatentes.QuitarPatente(usuarioId, patenteId);
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            gestorBitacora.RegistrarEvento(18, usuarioId);
+
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Patente");
+            bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Patente", sumaVerificadoresHorizontales);
+
+            return (true, "Exito al quitar la patente");
+        }
+
+        public static (bool, string) AgregarPatente(int usuarioId, int patenteId)
+        {
+            GestorPatentes gestorPatentes = new GestorPatentes();
+            gestorPatentes.AgregarPatente(usuarioId, patenteId);
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            gestorBitacora.RegistrarEvento(17, usuarioId);
+
+            int sumaVerificadoresHorizontales = 0;
+            bool verificador_vertical_ok;
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Patente");
+            verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Patente", sumaVerificadoresHorizontales);
+
+            string concatenado = "";
+            concatenado += usuarioId.ToString();
+            concatenado += patenteId.ToString();
+            int verificador_horizontal = 0;
+            int contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            
+            bool verificador_horizontal_ok = miDAL.ActualizarVerificadorHorizontalPersonaPatente(usuarioId, patenteId, verificador_horizontal);
+            
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Patente");
+            verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Patente", sumaVerificadoresHorizontales);
+            
+
+            return (true, "Exito al agregar la patente");
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

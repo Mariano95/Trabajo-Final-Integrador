@@ -22,5 +22,10 @@ namespace SL
             return miDAL.ObtenerGrupos(usuarioId);
         }
 
+        public List<int> GetGruposPorUsuario(int usuarioId) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            return miDAL.ListaGruposPorUsuario(usuarioId);
+        }
+
     }
 }

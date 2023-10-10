@@ -98,6 +98,26 @@ namespace DAL
 
         }
 
+        public bool ActualizarVerificadorHorizontalPersonaPatente(int idPersona, int idPatente, int verificador_horizontal)
+        {
+
+            string updateCommandText = "" +
+                "UPDATE [dbo].[Persona_Patente]" +
+                "SET " +
+                    "[persona_patente_verificador_horizontal] = @verificador_horizontal " +
+                "WHERE " +
+                    "persona_patente_persona_id = @persona AND persona_patente_patente_id = @patente";
+
+            SqlCommand updateCommand = new SqlCommand(updateCommandText);
+            updateCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            updateCommand.Parameters.AddWithValue("@persona", idPersona);
+            updateCommand.Parameters.AddWithValue("@patente", idPatente);
+            ExecuteNonQuery(updateCommand);
+            return true;
+
+
+        }
+
         public int ObtenerSumaVerificadoresHorizontales(string tabla)
         {
             string selectCommandText = "" +
@@ -125,10 +145,10 @@ namespace DAL
 
         }
 
-        public List<(string, int)> SumaVerificadoresHorizontalesPorTabla(){
+        public List<(string, int)> SumaVerificadoresHorizontalesPorTabla() {
 
             List<string> tablas = new List<string>();
-            List<(string,int)> resultado = new List<(string, int)>();
+            List<(string, int)> resultado = new List<(string, int)>();
 
             string selectCommandText = "" +
                 "SELECT verificadores_verticales_tabla " +
@@ -152,7 +172,7 @@ namespace DAL
             foreach (string tabla in tablas) {
                 selectCommandText2 = "" +
                     "SELECT * " +
-                    "FROM [dbo].[" + tabla +"]";
+                    "FROM [dbo].[" + tabla + "]";
 
                 selectCommand2 = new SqlCommand(selectCommandText2);
                 reader2 = ExecuteReader(selectCommand2);
@@ -187,10 +207,10 @@ namespace DAL
             return resultado;
         }
 
-        public bool CoincideVerificadorVertical(int digito, string tabla) { 
+        public bool CoincideVerificadorVertical(int digito, string tabla) {
             string selectCommandText = "" +
                 "SELECT verificadores_verticales_numero " +
-                "FROM [dbo].[Verificadores_Verticales] " + 
+                "FROM [dbo].[Verificadores_Verticales] " +
                 "WHERE verificadores_verticales_tabla = @tabla";
 
             SqlCommand selectCommand = new SqlCommand(selectCommandText);
@@ -200,7 +220,7 @@ namespace DAL
             while (reader.Read())
             {
                 string verificador_vertical_unencrypted = DesencriptarAES((string)reader.GetValue(0));
-                if ( verificador_vertical_unencrypted != digito.ToString()) {
+                if (verificador_vertical_unencrypted != digito.ToString()) {
                     CloseReader(reader);
                     return false;
                 }
@@ -214,7 +234,7 @@ namespace DAL
         /////////////////////////////////////////////////////////////////////////////////////////////
 
         public void IncializarEventos() {
-            
+
             int id = 1;
             string nombre = EncriptarAES("Inicio de sesion exitoso");
             string descripcion = EncriptarAES("El usuario ha iniciado sesion en el portal de servicios exitosamente");
@@ -1043,7 +1063,7 @@ namespace DAL
             id = 31;
             nombre = "Pantalla inicial bitacora";
             idPantalla = "PantallaInicial";
-            idControl = "botacora";
+            idControl = "bitacora";
             concatenado = id.ToString() + nombre + idPantalla + idControl;
             verificador_horizontal = 0;
             contador = 1;
@@ -1377,7 +1397,7 @@ namespace DAL
             insertCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
             ExecuteNonQuery(insertCommand);
         }
-        
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////    METODOS USUARIO     //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1398,6 +1418,7 @@ namespace DAL
 
             while (reader.Read())
             {
+                usuario.id = (int)reader.GetValue(0);
                 usuario.nombre = (string)reader.GetValue(1);
                 usuario.apellido = (string)reader.GetValue(2);
                 usuario.dni = (string)reader.GetValue(3);
@@ -1412,9 +1433,38 @@ namespace DAL
             CloseReader(reader);
             return usuario;
         }
-        
-        public bool BuscarUsuario(string dni, string email) { 
-            string query =  "" +
+
+        public List<(int, string, string, string)> ListaUsuarios()
+        {
+
+            List<(int, string, string, string)> result = new List<(int, string, string, string)>();
+
+            string selectCommandText = "" +
+                "SELECT persona_id, persona_nombre, persona_apellido, persona_dni " +
+                "FROM [dbo].[Persona] ";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                result.Add(
+                    (
+                        (int)reader.GetValue(0), //id
+                        (string)reader.GetValue(1), //nombre
+                        (string)reader.GetValue(2), //apellido
+                        (string)reader.GetValue(3) //dni
+                    )
+                );
+            }
+            CloseReader(reader);
+
+            return result;
+
+        }
+
+        public bool BuscarUsuario(string dni, string email) {
+            string query = "" +
                 "SELECT * " +
                 "FROM [dbo].[Persona] " +
                 "WHERE " +
@@ -1583,7 +1633,7 @@ namespace DAL
             catch (Exception e) {
                 return -1;
             }
-            
+
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1613,13 +1663,43 @@ namespace DAL
             return result;
         }
 
+        public List<int> ListaGruposPorUsuario(int usuarioId) {
+            return ObtenerGrupos(usuarioId);
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////    METODOS PATENTES     //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
+        public List<(int, string)> ListaPatentes() {
+
+            List<(int, string)> result = new List<(int, string)>();
+
+            string selectCommandText = "" +
+                "SELECT patente_id, patente_nombre " +
+                "FROM [dbo].[Patente] ";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                result.Add(
+                    (
+                        (int)reader.GetValue(0), //id
+                        (string)reader.GetValue(1) //nombre
+                    )
+                );
+            }
+            CloseReader(reader);
+
+            return result;
+
+        }
+
         public List<string> FiltrarPatentes(int usuarioId, string pantalla, List<int> gruposUsuario) {
             List<string> result = new List<string>();
-            
+
             string selectCommandTextGrupo = "" +
                 "SELECT patente_idControl " +
                 "FROM Patente " +
@@ -1671,7 +1751,128 @@ namespace DAL
             return result;
         }
 
+        public List<(int, string)> ListaPatentesUsuarioGrupo(int usuarioId, int grupo) {
+            List<string> patentes = new List<string>();
+            List<(int, string)> result = new List<(int, string)>();
 
+            string selectCommandTextGrupo = "" +
+                "SELECT patente_id, patente_nombre " +
+                "FROM Patente " +
+                "INNER JOIN Grupo_Patente " +
+                    "ON Patente.patente_id = Grupo_Patente.grupo_patente_patente_id " +
+                "WHERE grupo_patente_grupo_id = @grupo_id ";
+
+            SqlCommand selectCommand;
+            SqlDataReader reader;
+            string value = "";
+
+            //En caso de que no se especifique grupo, paso derecho buscar las patentes asociadas a nivel de la persona
+            if (grupo != -1)
+            {
+                selectCommand = new SqlCommand(selectCommandTextGrupo);
+                selectCommand.Parameters.AddWithValue("@grupo_id", grupo);
+                reader = ExecuteReader(selectCommand);
+                while (reader.Read())
+                {
+                    value = reader.GetValue(0).ToString();
+                    if (!patentes.Contains(value))
+                    {
+                        result.Add(((int)reader.GetValue(0), reader.GetValue(1).ToString()));
+                    }
+                }
+                CloseReader(reader);
+            }
+
+            string selectCommandTextPersona = "" +
+                "SELECT patente_id, patente_nombre " +
+                "FROM Patente " +
+                "INNER JOIN Persona_Patente " +
+                    "ON Patente.patente_id = Persona_Patente.persona_patente_patente_id " +
+                "WHERE Persona_Patente.persona_patente_persona_id = @persona_id ";
+
+            selectCommand = new SqlCommand(selectCommandTextPersona);
+            selectCommand.Parameters.AddWithValue("@persona_id", usuarioId);
+            reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                value = reader.GetValue(0).ToString();
+                if (!patentes.Contains(value))
+                {
+                    result.Add(((int)reader.GetValue(0), reader.GetValue(1).ToString()));
+                }
+            }
+            CloseReader(reader);
+
+            return result;
+        }
+
+        public List<int> UsuariosConPatente(int patenteId) {
+            List<int> usuarios = new List<int>();
+            SqlCommand selectCommand;
+            SqlDataReader reader;
+
+            string selectCommandTextPersona = "" +
+                "SELECT persona_patente_persona_id " +
+                "FROM Persona_Patente " +
+                "WHERE persona_patente_patente_id = @patente_id ";
+
+            selectCommand = new SqlCommand(selectCommandTextPersona);
+            selectCommand.Parameters.AddWithValue("@patente_id", patenteId);
+            reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                usuarios.Add((int)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            string selectCommandTextGrupo = "" +
+                "SELECT persona_grupo_persona_id " +
+                "FROM Persona_Grupo " +
+                "INNER JOIN Grupo_Patente ON persona_grupo_grupo_id = grupo_patente_grupo_id " +
+                "WHERE grupo_patente_patente_id = @patente_id ";
+
+            selectCommand = new SqlCommand(selectCommandTextGrupo);
+            selectCommand.Parameters.AddWithValue("@patente_id", patenteId);
+            reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                usuarios.Add((int)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            return usuarios;
+
+        }
+
+        public void QuitarPatente(int usuarioId, int patenteId) {
+
+            string deleteCommandText = "" +
+                "DELETE " +
+                "FROM Persona_Patente " +
+                "WHERE persona_patente_patente_id = @patenteId and persona_patente_persona_id = @usuarioId";                    
+
+            SqlCommand deleteCommand = new SqlCommand(deleteCommandText);
+            deleteCommand.Parameters.AddWithValue("@patenteId", patenteId);
+            deleteCommand.Parameters.AddWithValue("@usuarioId", usuarioId);
+            ExecuteNonQuery(deleteCommand);
+
+        }
+
+        public void AgregarPatente(int usuarioId, int patenteId)
+        {
+
+            string insertCommandText = "" +
+                "INSERT " +
+                "INTO Persona_Patente " +
+                "VALUES (@persona_id, @patente_id, @verificadorHorizontal) ";
+
+            SqlCommand insertCommand = new SqlCommand(insertCommandText);
+            insertCommand.Parameters.AddWithValue("@persona_id", usuarioId);
+            insertCommand.Parameters.AddWithValue("@patente_id", patenteId);
+            insertCommand.Parameters.AddWithValue("@verificadorHorizontal", 0);
+            ExecuteNonQuery(insertCommand);
+
+        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////    METODOS PRIVADOS DE BD     /////////////////////////////

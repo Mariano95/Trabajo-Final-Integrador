@@ -6,6 +6,7 @@ namespace DTO
 {
     public class UsuarioDTO
     {
+        public int id { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
         public string dni { get; set; }
@@ -20,8 +21,9 @@ namespace DTO
 
         public UsuarioDTO() { }
 
-        public UsuarioDTO(string nombre, string apellido, string dni, string domicilio, string email, string password, string rol, List<String> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
+        public UsuarioDTO(int id, string nombre, string apellido, string dni, string domicilio, string email, string password, string rol, List<String> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
         {
+            this.id = id;
             this.nombre = nombre;
             this.apellido = apellido;
             this.dni = dni;
