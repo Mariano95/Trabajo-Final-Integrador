@@ -60,21 +60,7 @@ namespace OyPPTP
             // grupo_combo
             // 
             this.grupo_combo.FormattingEnabled = true;
-            this.grupo_combo.Items.AddRange(new object[] {
-            "Grupo1",
-            "Grupo2",
-            "Grupo3",
-            "Grupo4",
-            "Grupo5",
-            "Grupo6",
-            "Grupo7",
-            "Grupo8",
-            "Grupo9",
-            "Grupo10",
-            "Grupo11",
-            "Grupo12",
-            "Grupo13",
-            "Grupo14"});
+            
             this.grupo_combo.Location = new System.Drawing.Point(119, 6);
             this.grupo_combo.Name = "grupo_combo";
             this.grupo_combo.Size = new System.Drawing.Size(232, 23);
@@ -106,6 +92,7 @@ namespace OyPPTP
             this.quitarPatente.TabIndex = 9;
             this.quitarPatente.Text = "Quitar patente";
             this.quitarPatente.UseVisualStyleBackColor = true;
+            this.quitarPatente.Click += new System.EventHandler(this.quitarPatente_Click);
             // 
             // panel2
             // 
@@ -124,6 +111,7 @@ namespace OyPPTP
             this.otorgarPatente.TabIndex = 10;
             this.otorgarPatente.Text = "Otorgar patente";
             this.otorgarPatente.UseVisualStyleBackColor = true;
+            this.otorgarPatente.Click += new System.EventHandler(this.otorgarPatente_Click);
             // 
             // patentesNoOtorgadas
             // 

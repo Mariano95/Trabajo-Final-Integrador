@@ -66,21 +66,6 @@ namespace OyPPTP
             // grupo_combo
             // 
             this.grupo_combo.FormattingEnabled = true;
-            this.grupo_combo.Items.AddRange(new object[] {
-            "Grupo1",
-            "Grupo2",
-            "Grupo3",
-            "Grupo4",
-            "Grupo5",
-            "Grupo6",
-            "Grupo7",
-            "Grupo8",
-            "Grupo9",
-            "Grupo10",
-            "Grupo11",
-            "Grupo12",
-            "Grupo13",
-            "Grupo14"});
             this.grupo_combo.Location = new System.Drawing.Point(12, 11);
             this.grupo_combo.Name = "grupo_combo";
             this.grupo_combo.Size = new System.Drawing.Size(183, 23);
@@ -103,6 +88,7 @@ namespace OyPPTP
             this.quitar_del_grupo.TabIndex = 1;
             this.quitar_del_grupo.Text = "Quitar del grupo";
             this.quitar_del_grupo.UseVisualStyleBackColor = true;
+            this.quitar_del_grupo.Click += new System.EventHandler(this.quitar_del_grupo_Click);
             // 
             // miembros_grilla
             // 
@@ -112,6 +98,7 @@ namespace OyPPTP
             this.miembros_grilla.RowTemplate.Height = 25;
             this.miembros_grilla.Size = new System.Drawing.Size(356, 150);
             this.miembros_grilla.TabIndex = 0;
+            this.miembros_grilla.MultiSelect = false;
             // 
             // miembros_del_grupo
             // 
@@ -151,6 +138,7 @@ namespace OyPPTP
             this.eliminar_grupo.TabIndex = 2;
             this.eliminar_grupo.Text = "ELIMINAR GRUPO";
             this.eliminar_grupo.UseVisualStyleBackColor = false;
+            this.eliminar_grupo.Click += new System.EventHandler(this.eliminar_grupo_Click);
             // 
             // panel2
             // 
@@ -170,6 +158,7 @@ namespace OyPPTP
             this.agregar_al_grupo.TabIndex = 2;
             this.agregar_al_grupo.Text = "Agregar al grupo";
             this.agregar_al_grupo.UseVisualStyleBackColor = false;
+            this.agregar_al_grupo.Click += new System.EventHandler(this.agregar_al_grupo_Click);
             // 
             // otros_usuarios_grilla
             // 
@@ -179,6 +168,7 @@ namespace OyPPTP
             this.otros_usuarios_grilla.RowTemplate.Height = 25;
             this.otros_usuarios_grilla.Size = new System.Drawing.Size(356, 150);
             this.otros_usuarios_grilla.TabIndex = 0;
+            this.otros_usuarios_grilla.MultiSelect = false;
             // 
             // otros_usuarios
             // 
@@ -216,6 +206,7 @@ namespace OyPPTP
             this.crear_grupo.TabIndex = 2;
             this.crear_grupo.Text = "CREAR GRUPO";
             this.crear_grupo.UseVisualStyleBackColor = false;
+            this.crear_grupo.Click += new System.EventHandler(this.crear_grupo_Click);
             // 
             // crear_nuevo_grupo
             // 

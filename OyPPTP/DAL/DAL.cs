@@ -118,6 +118,26 @@ namespace DAL
 
         }
 
+        public bool ActualizarVerificadorHorizontalPersonaGrupo(int idPersona, int idGrupo, int verificador_horizontal)
+        {
+
+            string updateCommandText = "" +
+                "UPDATE [dbo].[Persona_Grupo]" +
+                "SET " +
+                    "[persona_grupo_verificador_horizontal] = @verificador_horizontal " +
+                "WHERE " +
+                    "persona_grupo_persona_id = @persona AND persona_grupo_grupo_id = @grupo";
+
+            SqlCommand updateCommand = new SqlCommand(updateCommandText);
+            updateCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            updateCommand.Parameters.AddWithValue("@persona", idPersona);
+            updateCommand.Parameters.AddWithValue("@grupo", idGrupo);
+            ExecuteNonQuery(updateCommand);
+            return true;
+
+
+        }
+
         public int ObtenerSumaVerificadoresHorizontales(string tabla)
         {
             string selectCommandText = "" +
@@ -1463,6 +1483,37 @@ namespace DAL
 
         }
 
+        public List<(int, string, string, string)> ListaIntegrantes(int grupoId) {
+
+            List<(int, string, string, string)> result = new List<(int, string, string, string)>();
+
+            string selectCommandText = "" +
+                "SELECT persona_id, persona_nombre, persona_apellido, persona_dni " +
+                "FROM [dbo].[Persona] " +
+                "INNER JOIN Persona_Grupo ON persona_grupo_persona_id = persona_id " +
+                "WHERE persona_grupo_grupo_id = @grupoId";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            selectCommand.Parameters.AddWithValue("@grupoId", grupoId);
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                result.Add(
+                    (
+                        (int)reader.GetValue(0), //id
+                        (string)reader.GetValue(1), //nombre
+                        (string)reader.GetValue(2), //apellido
+                        (string)reader.GetValue(3) //dni
+                    )
+                );
+            }
+            CloseReader(reader);
+
+            return result;
+
+        }
+
         public bool BuscarUsuario(string dni, string email) {
             string query = "" +
                 "SELECT * " +
@@ -1667,6 +1718,78 @@ namespace DAL
             return ObtenerGrupos(usuarioId);
         }
 
+        public List<(int, string)> ListaGrupos()
+        {
+
+            List<(int, string)> result = new List<(int, string)>();
+
+            string selectCommandText = "" +
+                "SELECT grupo_id, grupo_nombre " +
+                "FROM [dbo].[Grupo] ";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                result.Add(
+                    (
+                        (int)reader.GetValue(0), //id
+                        (string)reader.GetValue(1) //nombre
+                    )
+                );
+            }
+            CloseReader(reader);
+
+            return result;
+
+        }
+
+        public int CrearGrupo(string nombre_nuevo_grupo) {
+
+            try
+            {
+                string insertCommandText = "" +
+                    "INSERT INTO [dbo].[Grupo] " +
+                        "([grupo_id]" +
+                        ",[grupo_nombre]" +
+                        ",[grupo_verificador_horizontal]) " +
+                    "VALUES " +
+                        "(@id," +
+                        "@nombre," +
+                        "@verificador_horizontal)";
+
+                SqlCommand insertCommand = new SqlCommand(insertCommandText);
+
+                int id = ObtenerUltimoId("Grupo") + 1;
+                insertCommand.Parameters.AddWithValue("@id", id);
+                insertCommand.Parameters.AddWithValue("@nombre", nombre_nuevo_grupo);
+                insertCommand.Parameters.AddWithValue("@verificador_horizontal", 0);
+                ExecuteNonQuery(insertCommand);
+
+                return id;
+            }
+            catch (Exception e) {
+                return -1;
+            }
+            
+        }
+
+        public void AgregarUsuarioGrupo(int usuarioId, int grupoId) {
+
+            string insertCommandText = "" +
+                "INSERT " +
+                "INTO Persona_Grupo " +
+                "VALUES (@grupo_id, @persona_id, @verificadorHorizontal) ";
+
+            SqlCommand insertCommand = new SqlCommand(insertCommandText);
+            insertCommand.Parameters.AddWithValue("@grupo_id", grupoId);
+            insertCommand.Parameters.AddWithValue("@persona_id", usuarioId);
+            insertCommand.Parameters.AddWithValue("@verificadorHorizontal", 0);
+            ExecuteNonQuery(insertCommand);
+
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////    METODOS PATENTES     //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1790,18 +1913,21 @@ namespace DAL
                     "ON Patente.patente_id = Persona_Patente.persona_patente_patente_id " +
                 "WHERE Persona_Patente.persona_patente_persona_id = @persona_id ";
 
-            selectCommand = new SqlCommand(selectCommandTextPersona);
-            selectCommand.Parameters.AddWithValue("@persona_id", usuarioId);
-            reader = ExecuteReader(selectCommand);
-            while (reader.Read())
+            if (usuarioId != -1)
             {
-                value = reader.GetValue(0).ToString();
-                if (!patentes.Contains(value))
+                selectCommand = new SqlCommand(selectCommandTextPersona);
+                selectCommand.Parameters.AddWithValue("@persona_id", usuarioId);
+                reader = ExecuteReader(selectCommand);
+                while (reader.Read())
                 {
-                    result.Add(((int)reader.GetValue(0), reader.GetValue(1).ToString()));
+                    value = reader.GetValue(0).ToString();
+                    if (!patentes.Contains(value))
+                    {
+                        result.Add(((int)reader.GetValue(0), reader.GetValue(1).ToString()));
+                    }
                 }
+                CloseReader(reader);
             }
-            CloseReader(reader);
 
             return result;
         }

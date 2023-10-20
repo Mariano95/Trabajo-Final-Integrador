@@ -30,7 +30,8 @@ namespace SL
             return miDAL.FiltrarPatentes(usuarioId, pantalla, grupos);
         }
 
-        public List<(int, string)> GetPatentesUsuarioGrupo(int usuarioId, int grupoId = -1) {
+
+        public List<(int, string)> GetPatentesUsuarioGrupo(int usuarioId = -1, int grupoId = -1) {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             return miDAL.ListaPatentesUsuarioGrupo(usuarioId, grupoId);
         }

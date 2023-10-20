@@ -60,21 +60,6 @@ namespace OyPPTP
             // usuario_combo
             // 
             this.usuario_combo.FormattingEnabled = true;
-            this.usuario_combo.Items.AddRange(new object[] {
-            "Usuario1",
-            "Usuario2",
-            "Usuario3",
-            "Usuario4",
-            "Usuario5",
-            "Usuario6",
-            "Usuario7",
-            "Usuario8",
-            "Usuario9",
-            "Usuario10",
-            "Usuario11",
-            "Usuario12",
-            "Usuario13",
-            "Usuario14"});
             this.usuario_combo.Location = new System.Drawing.Point(119, 6);
             this.usuario_combo.Name = "usuario_combo";
             this.usuario_combo.Size = new System.Drawing.Size(232, 23);
