@@ -40,7 +40,7 @@ namespace SL
             usuarios.AddRange(miDAL.ListaIntegrantes(grupoId));
 
             return usuarios;
-            
+
         }
 
         public void CrearGrupo(string nombre_nuevo_grupo, int usuarioId) {
@@ -63,15 +63,20 @@ namespace SL
             }
 
             bool verificador_horizontal_ok = miDAL.ActualizarVerificadorHorizontal("Grupo", grupo_id, verificador_horizontal);
-            
+
             int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Grupo");
             bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Grupo", sumaVerificadoresHorizontales);
-            
+
         }
 
         public void AgregarUsuarioGrupo(int usuarioId, int grupoId) {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             miDAL.AgregarUsuarioGrupo(usuarioId, grupoId);
+        }
+
+        public void EliminarGrupo(int grupoId) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            miDAL.EliminarGrupo(grupoId);
         }
 
     }

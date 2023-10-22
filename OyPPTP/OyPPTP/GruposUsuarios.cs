@@ -102,7 +102,40 @@ namespace OyPPTP
 
         private void eliminar_grupo_Click(object sender, EventArgs e)
         {
+            int grupoId = Int32.Parse(this.grupo_combo.SelectedItem.ToString().Split(":", 2)[0].Replace(" ", ""));
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
 
+            GestorPatentes gestorPatentes = new GestorPatentes();
+            (bool, string) puedeEliminarGrupo = gestorPatentes.PuedeElminarGrupo(grupoId);
+            if (!puedeEliminarGrupo.Item1)
+            {
+                MessageBox.Show(puedeEliminarGrupo.Item2);
+                return;
+            }
+
+            GestorGrupos gestorGrupos = new GestorGrupos();
+            gestorGrupos.EliminarGrupo(grupoId);
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            gestorBitacora.RegistrarEvento(14, usuario.id);
+
+            int sumaVerificadoresHorizontales = 0;
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Grupo");
+            miDAL.ActualizarVerificadorVertical("Persona_Grupo", sumaVerificadoresHorizontales);
+
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Grupo_Patente");
+            miDAL.ActualizarVerificadorVertical("Grupo_Patente", sumaVerificadoresHorizontales);
+
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Grupo");
+            miDAL.ActualizarVerificadorVertical("Grupo", sumaVerificadoresHorizontales);
+
+            MessageBox.Show("Éxito al eliminar el grupo");
+            this.grupo_combo.Items.Remove(this.grupo_combo.SelectedItem);
+            this.grupo_combo.ResetText();
+            this.miembros_grilla.Rows.Clear();
+            this.otros_usuarios_grilla.Rows.Clear();
         }
 
         private void crear_grupo_Click(object sender, EventArgs e)
@@ -123,6 +156,8 @@ namespace OyPPTP
 
         private void quitar_del_grupo_Click(object sender, EventArgs e)
         {
+            
+
 
         }
 

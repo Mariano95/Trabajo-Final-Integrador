@@ -1519,7 +1519,7 @@ namespace DAL
                 "SELECT * " +
                 "FROM [dbo].[Persona] " +
                 "WHERE " +
-                    "persona_dni = '" + dni + "' AND persona_email = '" + email + "'";
+                    "persona_dni = '" + dni + "' OR persona_email = '" + email + "'";
 
             return ExecuteScalar(query) != -1;
 
@@ -1540,9 +1540,9 @@ namespace DAL
                 "SELECT persona_id " +
                 "FROM [dbo].[Persona] " +
                 "WHERE " +
-                    "persona_id = '" + idUsuario + "' AND persona_bloqueada = 0";
+                    "persona_id = '" + idUsuario + "' AND persona_bloqueada = 1";
 
-            return ExecuteScalar(query) != 1;
+            return ExecuteScalar(query) != -1;
         }
 
         public bool ValidarPasswordUsuario(int idUsuario, string passwordEncrypted) {
@@ -1790,6 +1790,33 @@ namespace DAL
 
         }
 
+        public void EliminarGrupo(int grupoId) {
+            string deleteCommandText1 = "" +
+                "DELETE " +
+                "FROM Grupo_Patente " +
+                "WHERE grupo_patente_grupo_id = @grupoId";
+
+            string deleteCommandText2 = "" +
+                "DELETE " +
+                "FROM Persona_Grupo " +
+                "WHERE persona_grupo_grupo_id = @grupoId";
+
+            string deleteCommandText3 = "" +
+                "DELETE " +
+                "FROM Grupo " +
+                "WHERE grupo_id = @grupoId";
+
+            SqlCommand deleteCommand1 = new SqlCommand(deleteCommandText1);
+            SqlCommand deleteCommand2 = new SqlCommand(deleteCommandText2);
+            SqlCommand deleteCommand3 = new SqlCommand(deleteCommandText3);
+            deleteCommand1.Parameters.AddWithValue("@grupoId", grupoId);
+            deleteCommand2.Parameters.AddWithValue("@grupoId", grupoId);
+            deleteCommand3.Parameters.AddWithValue("@grupoId", grupoId);
+            ExecuteNonQuery(deleteCommand1);
+            ExecuteNonQuery(deleteCommand2);
+            ExecuteNonQuery(deleteCommand3);
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////    METODOS PATENTES     //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -1818,6 +1845,11 @@ namespace DAL
 
             return result;
 
+        }
+
+        public List<(int, string)> ListaPatentes(int grupoId)
+        {
+            return ListaPatentesUsuarioGrupo(-1, grupoId);
         }
 
         public List<string> FiltrarPatentes(int usuarioId, string pantalla, List<int> gruposUsuario) {
@@ -1930,6 +1962,49 @@ namespace DAL
             }
 
             return result;
+        }
+
+        public List<int> UsuariosConPatente(int grupoId, int patenteId)
+        {
+            
+            //Esta funcion busca todas las patentes otorgadas al usuario a excepcion de aquellas que le fueron otorgadas a nivel del grupo especificado
+            
+            List<int> usuarios = new List<int>();
+            SqlCommand selectCommand;
+            SqlDataReader reader;
+
+            string selectCommandTextPersona = "" +
+                "SELECT persona_patente_persona_id " +
+                "FROM Persona_Patente " +
+                "WHERE persona_patente_patente_id = @patente_id ";
+
+            selectCommand = new SqlCommand(selectCommandTextPersona);
+            selectCommand.Parameters.AddWithValue("@patente_id", patenteId);
+            reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                usuarios.Add((int)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            string selectCommandTextGrupo = "" +
+                "SELECT persona_grupo_persona_id " +
+                "FROM Persona_Grupo " +
+                "INNER JOIN Grupo_Patente ON persona_grupo_grupo_id = grupo_patente_grupo_id " +
+                "WHERE grupo_patente_patente_id = @patente_id " +
+                "AND grupo_patente_grupo_id not in (" + grupoId +")";
+
+            selectCommand = new SqlCommand(selectCommandTextGrupo);
+            selectCommand.Parameters.AddWithValue("@patente_id", patenteId);
+            reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                usuarios.Add((int)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            return usuarios;
+
         }
 
         public List<int> UsuariosConPatente(int patenteId) {

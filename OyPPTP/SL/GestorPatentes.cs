@@ -67,5 +67,23 @@ namespace SL
             miDAL.AgregarPatente(usuarioId, patenteId);
         }
 
+        public (bool, string) PuedeElminarGrupo(int grupoId) {
+
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            List<(int, string)> patentesGrupo = miDAL.ListaPatentes(grupoId);
+
+            int patenteId;
+            List<int> usuarios = new List<int>();
+            foreach ((int, string) patente in patentesGrupo) {
+                patenteId = patente.Item1;
+                usuarios = miDAL.UsuariosConPatente(grupoId, patenteId);
+                if (usuarios.Count < 1) {
+                    return (false, "No se puede eliminar el grupo, quedarían patentes vacías.");
+                }
+            }
+            return (true, "Ok");
+
+        }
+
     }
 }

@@ -61,11 +61,11 @@ namespace OyPPTP
             int usuarioId = Int32.Parse(this.usuario_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
 
             UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
-            if (usuario.id == usuarioId)
-            {
-                MessageBox.Show("No es posible modificar las patentes de tu propio usuario");
-                return;
-            }
+            //if (usuario.id == usuarioId)
+            //{
+            //    MessageBox.Show("No es posible modificar las patentes de tu propio usuario");
+            //    return;
+            //}
 
             GestorPatentes gestorPatentes = new GestorPatentes();
             List<(int, string)> listaPatentes = gestorPatentes.GetPatentes();
