@@ -56,6 +56,19 @@ namespace SL
             return (false, "No se puede quitar esta patente, quedaría vacía.");
         }
 
+        public (bool, string) PuedeQuitarDelGrupo(int grupoId, int patenteId)
+        {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            List<int> usuariosConPatente = miDAL.UsuariosConPatente(grupoId, patenteId);
+
+            if (usuariosConPatente.Count > 0)
+            {
+                return (true, "La patente puede ser quitada del grupo");
+            }
+            
+            return (false, "No se puede quitar esta patente del grupo, quedaría vacía.");
+        }
+
         public void QuitarPatente(int usuarioId, int patenteId) {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             miDAL.QuitarPatente(usuarioId, patenteId);

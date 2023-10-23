@@ -102,6 +102,11 @@ namespace OyPPTP
 
         private void eliminar_grupo_Click(object sender, EventArgs e)
         {
+            if (this.grupo_combo.SelectedItem == null) {
+                MessageBox.Show("Por favor, seleccioná un grupo antes de continuar");
+                return;
+            }
+            
             int grupoId = Int32.Parse(this.grupo_combo.SelectedItem.ToString().Split(":", 2)[0].Replace(" ", ""));
             UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
 
@@ -169,10 +174,23 @@ namespace OyPPTP
             if (this.otros_usuarios_grilla.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = this.otros_usuarios_grilla.SelectedRows[0];
+
+                if (row.Cells[0].Value == null)
+                {
+                    MessageBox.Show("Por favor, seleccioná un usuario antes de continuar");
+                    return;
+                }
+
                 idUsuarioSeleccionado = (int)row.Cells[0].Value;
                 if (idUsuarioSeleccionado == usuario.id)
                 {
                     MessageBox.Show("No podés agregar o quitar de grupos a tu propio usuario.");
+                    return;
+                }
+
+                if (this.grupo_combo.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor, seleccioná un grupo antes de continuar");
                     return;
                 }
 

@@ -36,6 +36,13 @@ namespace OyPPTP
             this.patentesNoOtorgadas.Columns.Clear();
 
             int grupoId = Int32.Parse(this.grupo_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+            GestorGrupos gestorGrupos = new GestorGrupos();
+            List<int> gruposUsuario = gestorGrupos.GetGruposPorUsuario(usuario.id);
+            if (gruposUsuario.Contains(grupoId)) {
+                MessageBox.Show("No es posible modificar las patentes de un grupo al cual pertenecés");
+                return;
+            }
 
             GestorPatentes gestorPatentes = new GestorPatentes();
             List<(int, string)> listaPatentes = gestorPatentes.GetPatentes();
@@ -92,12 +99,90 @@ namespace OyPPTP
 
         private void quitarPatente_Click(object sender, EventArgs e)
         {
+            if (this.grupo_combo.SelectedItem == null) {
+                MessageBox.Show("Por favor, seleccioná un grupo antes de continuar");
+                return;
+            }
+            
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+            int grupoId = Int32.Parse(this.grupo_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
+
+            GestorGrupos gestorGrupos = new GestorGrupos();
+
+            string patente = "";
+            (bool, string) result;
+            bool success = true;
+            string message = "";
+
+            foreach (DataGridViewRow row in this.patentesOtorgadas.SelectedRows)
+            {
+                if (row.Cells[0].Value == null || row.Cells[1].Value == null)
+                {
+                    continue;
+                }
+                result = gestorGrupos.QuitarPatente(usuario.id, grupoId, (int)row.Cells[0].Value);
+                success = result.Item1;
+                message = result.Item2;
+                patente = row.Cells[1].Value.ToString();
+                if (!success)
+                {
+                    MessageBox.Show("No se puede quitar la patente " + patente + " : " + message);
+                }
+                else
+                {
+                    this.patentesOtorgadas.Rows.Remove(row);
+                    this.patentesOtorgadas.Refresh();
+                    this.patentesNoOtorgadas.Rows.Add(row);
+                    this.patentesNoOtorgadas.Refresh();
+                    this.patentesNoOtorgadas.AutoResizeColumns();
+                    MessageBox.Show("Éxito al quitar la patente " + patente + " al grupo.");
+                }
+            }            
 
         }
 
         private void otorgarPatente_Click(object sender, EventArgs e)
         {
+            if (this.grupo_combo.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccioná un grupo antes de continuar");
+                return;
+            }
 
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+            int grupoId = Int32.Parse(this.grupo_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
+
+            GestorGrupos gestorGrupos = new GestorGrupos();
+
+            string patente = "";
+            (bool, string) result;
+            bool success = true;
+            string message = "";
+
+            foreach (DataGridViewRow row in this.patentesNoOtorgadas.SelectedRows)
+            {
+                if (row.Cells[0].Value == null || row.Cells[1].Value == null)
+                {
+                    continue;
+                }
+                result = gestorGrupos.AgregarPatente(usuario.id, grupoId, (int)row.Cells[0].Value);
+                success = result.Item1;
+                message = result.Item2;
+                patente = row.Cells[1].Value.ToString();
+                if (!success)
+                {
+                    MessageBox.Show("No se puede agregar la patente " + patente + " : " + message);
+                }
+                else
+                {
+                    this.patentesNoOtorgadas.Rows.Remove(row);
+                    this.patentesNoOtorgadas.Refresh();
+                    this.patentesOtorgadas.Rows.Add(row);
+                    this.patentesOtorgadas.Refresh();
+                    this.patentesOtorgadas.AutoResizeColumns();
+                    MessageBox.Show("Éxito al agregar la patente " + patente + " al grupo.");
+                }
+            }
         }
     }
 }

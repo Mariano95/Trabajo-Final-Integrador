@@ -118,6 +118,26 @@ namespace DAL
 
         }
 
+        public bool ActualizarVerificadorHorizontalGrupoPatente(int idGrupo, int idPatente, int verificador_horizontal)
+        {
+
+            string updateCommandText = "" +
+                "UPDATE [dbo].[Grupo_Patente]" +
+                "SET " +
+                    "[grupo_patente_verificador_horizontal] = @verificador_horizontal " +
+                "WHERE " +
+                    "grupo_patente_grupo_id = @grupo AND grupo_patente_patente_id = @patente";
+
+            SqlCommand updateCommand = new SqlCommand(updateCommandText);
+            updateCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            updateCommand.Parameters.AddWithValue("@grupo", idGrupo);
+            updateCommand.Parameters.AddWithValue("@patente", idPatente);
+            ExecuteNonQuery(updateCommand);
+            return true;
+
+
+        }
+
         public bool ActualizarVerificadorHorizontalPersonaGrupo(int idPersona, int idGrupo, int verificador_horizontal)
         {
 
@@ -1815,6 +1835,37 @@ namespace DAL
             ExecuteNonQuery(deleteCommand1);
             ExecuteNonQuery(deleteCommand2);
             ExecuteNonQuery(deleteCommand3);
+        }
+
+        public void QuitarPatenteDelGrupo(int grupoId, int patenteId)
+        {
+
+            string deleteCommandText = "" +
+                "DELETE " +
+                "FROM Grupo_Patente " +
+                "WHERE grupo_patente_patente_id = @patenteId and grupo_patente_grupo_id = @grupoId";
+
+            SqlCommand deleteCommand = new SqlCommand(deleteCommandText);
+            deleteCommand.Parameters.AddWithValue("@patenteId", patenteId);
+            deleteCommand.Parameters.AddWithValue("@grupoId", grupoId);
+            ExecuteNonQuery(deleteCommand);
+
+        }
+
+        public void AgregarPatenteAGrupo(int grupoId, int patenteId)
+        {
+
+            string insertCommandText = "" +
+                "INSERT " +
+                "INTO Grupo_Patente " +
+                "VALUES (@grupo_id, @patente_id, @verificadorHorizontal) ";
+
+            SqlCommand insertCommand = new SqlCommand(insertCommandText);
+            insertCommand.Parameters.AddWithValue("@grupo_id", grupoId);
+            insertCommand.Parameters.AddWithValue("@patente_id", patenteId);
+            insertCommand.Parameters.AddWithValue("@verificadorHorizontal", 0);
+            ExecuteNonQuery(insertCommand);
+
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

@@ -61,11 +61,11 @@ namespace OyPPTP
             int usuarioId = Int32.Parse(this.usuario_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
 
             UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
-            //if (usuario.id == usuarioId)
-            //{
-            //    MessageBox.Show("No es posible modificar las patentes de tu propio usuario");
-            //    return;
-            //}
+            if (usuario.id == usuarioId)
+            {
+                MessageBox.Show("No es posible modificar las patentes de tu propio usuario");
+                return;
+            }
 
             GestorPatentes gestorPatentes = new GestorPatentes();
             List<(int, string)> listaPatentes = gestorPatentes.GetPatentes();
@@ -102,6 +102,12 @@ namespace OyPPTP
 
         private void quitarPatente_Click(object sender, EventArgs e)
         {
+            if (this.usuario_combo.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccioná un usuario antes de continuar");
+                return;
+            }
+
             int usuarioId = Int32.Parse(this.usuario_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
             string patente = "";
             (bool, string) result;
@@ -109,6 +115,10 @@ namespace OyPPTP
             string message = "";
 
             foreach (DataGridViewRow row in this.patentesOtorgadas.SelectedRows) {
+                if (row.Cells[0].Value == null || row.Cells[1].Value == null)
+                {
+                    continue;
+                }
                 result = UsuarioBLL.QuitarPatente(usuarioId, (int)row.Cells[0].Value);
                 success = result.Item1;
                 message = result.Item2;
@@ -131,6 +141,12 @@ namespace OyPPTP
 
         private void otorgarPatente_Click(object sender, EventArgs e)
         {
+            if (this.usuario_combo.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccioná un usuario antes de continuar");
+                return;
+            }
+
             int usuarioId = Int32.Parse(this.usuario_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
             string patente = "";
             (bool, string) result;
@@ -139,6 +155,10 @@ namespace OyPPTP
 
             foreach (DataGridViewRow row in this.patentesNoOtorgadas.SelectedRows)
             {
+                if (row.Cells[0].Value == null || row.Cells[1].Value == null)
+                {
+                    continue;
+                }
                 result = UsuarioBLL.AgregarPatente(usuarioId, (int)row.Cells[0].Value);
                 success = result.Item1;
                 message = result.Item2;

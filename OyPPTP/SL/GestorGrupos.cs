@@ -79,5 +79,54 @@ namespace SL
             miDAL.EliminarGrupo(grupoId);
         }
 
+        public (bool, string) QuitarPatente(int usuarioId, int grupoId, int patenteId)
+        {
+            GestorPatentes gestorPatentes = new GestorPatentes();
+            (bool, string) resultado = gestorPatentes.PuedeQuitarDelGrupo(grupoId, patenteId);
+            if (!resultado.Item1) {
+                return resultado;
+            }
+
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            miDAL.QuitarPatenteDelGrupo(grupoId, patenteId);
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            gestorBitacora.RegistrarEvento(20, usuarioId);
+
+            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Grupo");
+            bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Grupo", sumaVerificadoresHorizontales);
+
+            return (true, "Exito al quitar la patente del grupo");
+        }
+
+        public (bool, string) AgregarPatente(int usuarioId, int grupoId, int patenteId)
+        {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            miDAL.AgregarPatenteAGrupo(grupoId, patenteId);
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            gestorBitacora.RegistrarEvento(19, usuarioId);
+
+            string concatenado = "";
+            concatenado += grupoId.ToString();
+            concatenado += patenteId.ToString();
+            int verificador_horizontal = 0;
+            int contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+
+            miDAL.ActualizarVerificadorHorizontalGrupoPatente(grupoId, patenteId, verificador_horizontal);
+
+            int sumaVerificadoresHorizontales = 0;
+            bool verificador_vertical_ok;
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Grupo_Patente");
+            verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Grupo_Patente", sumaVerificadoresHorizontales);
+
+            return (true, "Exito al agregar la patente al grupo");
+        }
+
     }
 }
