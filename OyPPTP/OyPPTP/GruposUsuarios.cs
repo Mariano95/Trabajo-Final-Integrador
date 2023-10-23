@@ -161,7 +161,65 @@ namespace OyPPTP
 
         private void quitar_del_grupo_Click(object sender, EventArgs e)
         {
-            
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+            int idUsuarioSeleccionado;
+
+            if (this.miembros_grilla.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = this.miembros_grilla.SelectedRows[0];
+
+                if (row.Cells[0].Value == null)
+                {
+                    MessageBox.Show("Por favor, seleccioná un usuario antes de continuar");
+                    return;
+                }
+
+                idUsuarioSeleccionado = (int)row.Cells[0].Value;
+                if (idUsuarioSeleccionado == usuario.id)
+                {
+                    MessageBox.Show("No podés agregar o quitar de grupos a tu propio usuario.");
+                    return;
+                }
+
+                if (this.grupo_combo.SelectedItem == null)
+                {
+                    MessageBox.Show("Por favor, seleccioná un grupo antes de continuar");
+                    return;
+                }
+
+                int grupoId = Int32.Parse(this.grupo_combo.SelectedItem.ToString().Split(":", 2)[0].Replace(" ", ""));
+
+                GestorPatentes gestorPatentes = new GestorPatentes();
+                (bool, string) puedeQuitarUsuarioGrupo = gestorPatentes.PuedeQuitarUsuarioGrupo(usuario.id, grupoId);
+
+                if (!puedeQuitarUsuarioGrupo.Item1) {
+                    MessageBox.Show(puedeQuitarUsuarioGrupo.Item2);
+                    return;
+                }
+
+                GestorGrupos gestorGrupos = new GestorGrupos();
+                gestorGrupos.QuitarUsuarioGrupo(idUsuarioSeleccionado, grupoId);
+
+                GestorBitacora gestorBitacora = new GestorBitacora();
+                gestorBitacora.RegistrarEvento(16, usuario.id);
+
+                DAL.DAL miDAL = DAL.DAL.GetDAL();
+                
+                int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Grupo");
+                bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Grupo", sumaVerificadoresHorizontales);
+
+                this.miembros_grilla.Rows.Remove(row);
+                this.miembros_grilla.Refresh();
+                this.otros_usuarios_grilla.Rows.Add(row);
+                this.otros_usuarios_grilla.Refresh();
+                MessageBox.Show("Éxito al quitar al usuario al grupo");
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccioná el usuario a quitar antes de continuar.");
+                return;
+            }
 
 
         }

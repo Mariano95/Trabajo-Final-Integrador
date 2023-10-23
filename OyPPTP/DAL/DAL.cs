@@ -1738,6 +1738,27 @@ namespace DAL
             return ObtenerGrupos(usuarioId);
         }
 
+        public List<int> ListaUsuariosPorGrupo(int grupoId) {
+            List<int> result = new List<int>();
+
+            string selectCommandText = "" +
+                "SELECT persona_grupo_persona_id " +
+                "FROM Persona_Grupo " +
+                "WHERE persona_grupo_grupo_id = @grupo_id";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            selectCommand.Parameters.AddWithValue("@grupo_id", grupoId);
+
+            SqlDataReader reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                result.Add((int)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            return result;
+        }
+
         public List<(int, string)> ListaGrupos()
         {
 
@@ -1807,6 +1828,21 @@ namespace DAL
             insertCommand.Parameters.AddWithValue("@persona_id", usuarioId);
             insertCommand.Parameters.AddWithValue("@verificadorHorizontal", 0);
             ExecuteNonQuery(insertCommand);
+
+        }
+
+        public void QuitarUsuarioGrupo(int usuarioId, int grupoId)
+        {
+
+            string deleteCommandText = "" +
+                "DELETE " +
+                "FROM Persona_Grupo " +
+                "WHERE persona_grupo_persona_id = @persona_id AND persona_grupo_grupo_id = @grupo_id ";
+
+            SqlCommand deleteCommand = new SqlCommand(deleteCommandText);
+            deleteCommand.Parameters.AddWithValue("@persona_id", usuarioId);
+            deleteCommand.Parameters.AddWithValue("@grupo_id", grupoId);            
+            ExecuteNonQuery(deleteCommand);
 
         }
 

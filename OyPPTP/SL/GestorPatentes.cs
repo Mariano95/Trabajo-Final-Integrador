@@ -98,5 +98,26 @@ namespace SL
 
         }
 
+        public (bool, string) PuedeQuitarUsuarioGrupo(int usuarioId, int grupoId) {
+            
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            List<int> usuariosGrupo = miDAL.ListaUsuariosPorGrupo(grupoId);
+            if (usuariosGrupo.Count > 1) {
+                return (true, "Ok");
+            }
+
+            List<(int, string)> patentesGrupo = miDAL.ListaPatentes(grupoId);
+            List<int> usuariosConPatente;
+            foreach ((int,string) patente in patentesGrupo)
+            {
+                usuariosConPatente = miDAL.UsuariosConPatente(grupoId, patente.Item1);
+                if (!(usuariosConPatente.Count > 0)) {
+                    return (false, "No se puede eliminar al usuario del grupo, quedarían patentes vacías.");
+                }
+            }
+
+            return (true, "Ok");
+        }
+
     }
 }

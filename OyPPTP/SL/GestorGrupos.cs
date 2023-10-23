@@ -74,6 +74,12 @@ namespace SL
             miDAL.AgregarUsuarioGrupo(usuarioId, grupoId);
         }
 
+        public void QuitarUsuarioGrupo(int usuarioId, int grupoId)
+        {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            miDAL.QuitarUsuarioGrupo(usuarioId, grupoId);
+        }
+
         public void EliminarGrupo(int grupoId) {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             miDAL.EliminarGrupo(grupoId);
