@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using SL;
+using BLL;
 
 namespace OyPPTP
 {
@@ -128,6 +130,7 @@ namespace OyPPTP
                     break;
                 case "cerrarSesion":
                     PreLogin form11 = new PreLogin();
+                    this.Hide();
                     this.Close();
                     form11.Show();
                     break;
@@ -233,6 +236,11 @@ namespace OyPPTP
             {
                 DialogResult result = MessageBox.Show("Se va a cerrar la aplicación", "Cerrando aplicación");
                 System.Windows.Forms.Application.Exit();
+            }
+            else{
+                GestorBitacora gestorBitacora = new GestorBitacora();
+                UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+                gestorBitacora.RegistrarEvento(4, usuario.id);
             }
         }        
 
