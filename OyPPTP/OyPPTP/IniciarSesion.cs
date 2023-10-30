@@ -79,12 +79,14 @@ namespace OyPPTP
             bool usuarioBloqueado = BLL.UsuarioBLL.ValidarUsuarioBloqueado(idUsuario);
             if (usuarioBloqueado) {
                 MessageBox.Show("Tu usuario se encuentra bloqueado. Por favor, contactate con un administrador.");
+                UsuarioBLL.ResetSingleton();
                 return;
             }
 
             bool passwordCorrecto = BLL.UsuarioBLL.ValidarPasswordUsuario(idUsuario, passwordEncrypted);
             if (!passwordCorrecto) {
                 MessageBox.Show("La información de la dirección de correo electrónico o la contraseña no es válida");
+                UsuarioBLL.ResetSingleton();
                 return;
             }
             

@@ -4,6 +4,7 @@ using DAL;
 using DTO;
 using SL;
 using BLL;
+using DTO;
 
 namespace BLL
 {
@@ -38,6 +39,10 @@ namespace BLL
                 usuario_singleton = new UsuarioBLL();
             }
             return usuario_singleton;
+        }
+
+        public static void ResetSingleton() {
+            usuario_singleton = null;
         }
 
         private UsuarioBLL(int id, string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado) {
@@ -133,9 +138,11 @@ namespace BLL
                 gestorBitacora.RegistrarEvento(2, idUsuario);
 
                 iniciosSesionFallidos += 1;
+                DTO.fallosAutenticacionConsecutivos += 1;
                 if (iniciosSesionFallidos >= 3)
                 {
                     miDAL.BloquearUsuario(idUsuario);
+                    DTO.bloqueado = true;
                 }
                 miDAL.UpdateCantidadIniciosSesion(idUsuario, iniciosSesionFallidos);
 
@@ -239,6 +246,28 @@ namespace BLL
             return (true, "Exito al agregar la patente");
         }
 
+        public static bool DesbloquearUsuario(string mailEncrypted) {
+            int idUsuario = BuscarUsuarioPorMail(mailEncrypted);
+            if (idUsuario == -1) {
+                return false;
+            }
+
+            Desbloquear(idUsuario);
+
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            UsuarioDTO DTO = miDAL.GetUsuarioById(idUsuario);
+            UsuarioBLL usuario = new UsuarioBLL(DTO.nombre, DTO.apellido, DTO.dni, DTO.domicilio, DTO.email, null, null, DTO.usuarioOculto, DTO.fallosAutenticacionConsecutivos, DTO.bloqueado);
+
+            int verificador_horizontal = CalcularVerificadorHorizontal(idUsuario, usuario, DTO.password, 0);
+            miDAL.ActualizarVerificadorHorizontal("Persona", idUsuario, verificador_horizontal);
+            
+            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
+            miDAL.ActualizarVerificadorVertical("Persona", sumaVerificadoresHorizontales);
+
+            return true;
+
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////    METODOS PRIVADOS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -275,5 +304,11 @@ namespace BLL
             }
             return digito;
         }
+
+        private static void Desbloquear(int idUsuario) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            miDAL.DesbloquearUsuario(idUsuario);
+        }
+
     }
 }

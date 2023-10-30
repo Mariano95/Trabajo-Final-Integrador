@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using DAL;
+using BLL;
 
 namespace OyPPTP
 {
@@ -25,6 +27,16 @@ namespace OyPPTP
 
         private void desbloquear_usuario_Click(object sender, EventArgs e)
         {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            string mailUsuario = miDAL.EncriptarAES(this.mail_usuario_text.Text);
+
+            bool result = UsuarioBLL.DesbloquearUsuario(mailUsuario);
+
+            if (!result) {
+                MessageBox.Show("La dirección de email ingresada no corresponde a ningún usuario del sistema.");
+                return;
+            }
+
             MessageBox.Show("Usuario desbloqueado con éxito.");
             this.Close();
         }

@@ -224,7 +224,7 @@ namespace DAL
                     //Voy hasta el anteultimo campo inclusive porque no quiero agarrar el ultimo que es el verificador horizontal
                     for (int i = 0; i < reader2.FieldCount - 1; i++) {
                         concatenado += reader2.GetValue(i).ToString();
-                        if (tabla == "Bitacora")
+                        if (tabla == "Persona")
                         {
                             continue;
                         }
@@ -1666,6 +1666,21 @@ namespace DAL
             catch (Exception e) {
                 return -1;
             }
+        }
+
+        public bool DesbloquearUsuario(int idUsuario) {
+            string updateCommandText = "" +
+                "UPDATE Persona " +
+                "SET " +
+                    "persona_fallos_autenticacion_consecutivos = 0, " +
+                    "persona_bloqueada = 0 " +
+                "WHERE " +
+                    "persona_id = @id";
+
+            SqlCommand updateCommand = new SqlCommand(updateCommandText);
+            updateCommand.Parameters.AddWithValue("@id", idUsuario);
+            ExecuteNonQuery(updateCommand);
+            return true;
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

@@ -241,6 +241,7 @@ namespace OyPPTP
                 GestorBitacora gestorBitacora = new GestorBitacora();
                 UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
                 gestorBitacora.RegistrarEvento(4, usuario.id);
+                UsuarioBLL.ResetSingleton();
             }
         }        
 
