@@ -11,6 +11,8 @@ using SL;
 using System.Configuration;
 using DAL;
 using System.Security.Cryptography;
+using System.Net;
+using System.Net.Mail;
 
 namespace OyPPTP
 {
@@ -32,7 +34,6 @@ namespace OyPPTP
 
         private void ProbandoBD_Load(object sender, EventArgs e)
         {
-            
             //Pruebo encodear
             //string cstring = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
             //MessageBox.Show(cstring);

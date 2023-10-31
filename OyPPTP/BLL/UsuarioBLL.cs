@@ -268,6 +268,24 @@ namespace BLL
 
         }
 
+        public static bool ActualizarUsuario(int usuarioId, string nuevoPassword) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            miDAL.ActualizarUsuario(usuarioId, nuevoPassword);
+
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+
+            int verificador_horizontal = CalcularVerificadorHorizontal(usuarioId, usuario, nuevoPassword, usuario.fallosAutenticacionConsecutivos);
+            miDAL.ActualizarVerificadorHorizontal("Persona", usuarioId, verificador_horizontal);
+
+            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
+            miDAL.ActualizarVerificadorVertical("Persona", sumaVerificadoresHorizontales);
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            gestorBitacora.RegistrarEvento(7, usuarioId);
+
+            return true;
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////    METODOS PRIVADOS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////

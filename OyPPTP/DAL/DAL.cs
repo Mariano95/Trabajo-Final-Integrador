@@ -1683,6 +1683,21 @@ namespace DAL
             return true;
         }
 
+        public bool ActualizarUsuario(int usuarioId, string nuevoPassword) {
+            string updateCommandText = "" +
+                "UPDATE Persona " +
+                "SET " +
+                    "persona_password = @password " +
+                "WHERE " +
+                    "persona_id = @id";
+
+            SqlCommand updateCommand = new SqlCommand(updateCommandText);
+            updateCommand.Parameters.AddWithValue("@password", nuevoPassword);
+            updateCommand.Parameters.AddWithValue("@id", usuarioId);
+            ExecuteNonQuery(updateCommand);
+            return true;
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////    METODOS BITACORA     //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
