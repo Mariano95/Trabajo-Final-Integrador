@@ -271,6 +271,10 @@
             "CrystalReports": {
               "target": "Package",
               "version": "[13.0.5.891, )"
+            },
+            "iTextSharp": {
+              "target": "Package",
+              "version": "[5.5.13.3, )"
             }
           },
           "imports": [

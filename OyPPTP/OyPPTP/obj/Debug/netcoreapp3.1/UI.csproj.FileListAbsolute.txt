@@ -30,7 +30,6 @@ C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcor
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\DAL.pdb
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\UI.csprojAssemblyReference.cache
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.Backup.resources
-C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.Bitacora.resources
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.BuscarTrabajadores.resources
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.CalificarUsuario.resources
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.CambiarPassword.resources
@@ -91,3 +90,6 @@ C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcor
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.LoadingForm.resources
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\DTO.dll
 C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\DTO.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Debug\netcoreapp3.1\itextsharp.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\obj\Debug\netcoreapp3.1\OyPPTP.Footer.resources

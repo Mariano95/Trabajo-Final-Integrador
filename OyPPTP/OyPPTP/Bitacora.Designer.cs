@@ -38,9 +38,13 @@ namespace OyPPTP
             // 
             // grilla_bitacora
             // 
+            this.grilla_bitacora.AllowUserToAddRows = false;
+            this.grilla_bitacora.AllowUserToDeleteRows = false;
+            this.grilla_bitacora.AllowUserToOrderColumns = true;
             this.grilla_bitacora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grilla_bitacora.Location = new System.Drawing.Point(12, 12);
             this.grilla_bitacora.Name = "grilla_bitacora";
+            this.grilla_bitacora.ReadOnly = true;
             this.grilla_bitacora.RowTemplate.Height = 25;
             this.grilla_bitacora.Size = new System.Drawing.Size(840, 323);
             this.grilla_bitacora.TabIndex = 0;
@@ -73,6 +77,7 @@ namespace OyPPTP
             this.imprimir.TabIndex = 3;
             this.imprimir.Text = "Imprimir";
             this.imprimir.UseVisualStyleBackColor = true;
+            this.imprimir.Click += new System.EventHandler(this.imprimir_Click);
             // 
             // Bitacora
             // 

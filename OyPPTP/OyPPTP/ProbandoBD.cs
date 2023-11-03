@@ -79,7 +79,8 @@ namespace OyPPTP
                 //miDAL.InicializarPatentes();
 
                 MessageBox.Show("Éxito al inicializar la base de datos");
-                PreLogin form1 = new PreLogin();
+                PreBitacora form1 = new PreBitacora();
+                //PreLogin form1 = new PreLogin();
                 this.Hide();
                 form1.Show();
             }

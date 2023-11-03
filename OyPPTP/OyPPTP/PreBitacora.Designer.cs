@@ -58,12 +58,6 @@ namespace OyPPTP
             // evento_combo
             // 
             this.evento_combo.FormattingEnabled = true;
-            this.evento_combo.Items.AddRange(new object[] {
-            "Inicio de sesión fallido",
-            "Citación creada",
-            "Citación rechazada",
-            "Citación cancelada",
-            "Citación cumplida"});
             this.evento_combo.Location = new System.Drawing.Point(245, 181);
             this.evento_combo.Name = "evento_combo";
             this.evento_combo.Size = new System.Drawing.Size(200, 23);
@@ -72,12 +66,6 @@ namespace OyPPTP
             // usuario_combo
             // 
             this.usuario_combo.FormattingEnabled = true;
-            this.usuario_combo.Items.AddRange(new object[] {
-            "DNI 11111111 - Usuario 1",
-            "DNI 22222222 - Usuario 2",
-            "DNI 33333333 - Usuario 3",
-            "DNI 44444444 - Usuario 4",
-            "DNI 55555555 - Usuario 5"});
             this.usuario_combo.Location = new System.Drawing.Point(245, 233);
             this.usuario_combo.Name = "usuario_combo";
             this.usuario_combo.Size = new System.Drawing.Size(200, 23);

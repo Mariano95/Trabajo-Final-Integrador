@@ -41,6 +41,17 @@ namespace SL
             return true;
         }
 
+        public List<(int, string)> ListaEventos()
+        {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            return miDAL.ListaEventos();
+        }
+
+        public List<(string, string, string, string, string, int, DateTime)> ObtenerBitacora(DateTime fechaDesde, DateTime fechaHasta, int eventoId, int usuarioId) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            return miDAL.ObtenerBitacora(fechaDesde, fechaHasta, eventoId, usuarioId);
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////    METODOS PRIVADOS     ///////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////

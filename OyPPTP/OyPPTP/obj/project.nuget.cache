@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "zywVTd55i+KxG8h+H5Q2BSfwODQ4YmjuccHaNS025ZUNuPMkiiKfRee3Jm5rfsHRF1ZEU5qYGBioVC81QJvJRg==",
+  "dgSpecHash": "GtyWFX2LyIOH1njJk7RnWfMManMBlgL5Y53eP/8rNRBOWKFGGe9/tVE4JpVhCJKGUm1nGB+NMNSonKAqigT/xg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mariano\\Desktop\\Trabajo-Final-Integrador\\OyPPTP\\OyPPTP\\UI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Mariano\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.crystalreports.engine\\1.0.0\\crystaldecisions.crystalreports.engine.1.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.reportsource\\1.0.0\\crystaldecisions.reportsource.1.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.shared\\1.0.0\\crystaldecisions.shared.1.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\crystaldecisions.windows.forms\\1.0.0\\crystaldecisions.windows.forms.1.0.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\crystalreports\\13.0.5.891\\crystalreports.13.0.5.891.nupkg.sha512",
+    "C:\\Users\\Mariano\\.nuget\\packages\\itextsharp\\5.5.13.3\\itextsharp.5.5.13.3.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
     "C:\\Users\\Mariano\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
@@ -23,6 +25,16 @@
     "C:\\Users\\Mariano\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.25\\microsoft.netcore.app.host.win-x64.3.1.25.nupkg.sha512"
   ],
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'BouncyCastle 1.8.9' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "BouncyCastle",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",
@@ -69,6 +81,16 @@
       "warningLevel": 1,
       "message": "Package 'CrystalReports 13.0.5.891' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
       "libraryId": "CrystalReports",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'iTextSharp 5.5.13.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "iTextSharp",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
       ]

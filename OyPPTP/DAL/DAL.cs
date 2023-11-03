@@ -1737,6 +1737,107 @@ namespace DAL
 
         }
 
+        public List<(int, string)> ListaEventos()
+        {
+
+            List<(int, string)> result = new List<(int, string)>();
+
+            string selectCommandText = "" +
+                "SELECT evento_id, evento_nombre " +
+                "FROM [dbo].[Evento] ";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                result.Add(
+                    (
+                        (int)reader.GetValue(0), //id
+                        (string)reader.GetValue(1) //nombre
+                    )
+                );
+            }
+            CloseReader(reader);
+
+            return result;
+
+        }
+
+        public List<(string, string, string, string, string, int, DateTime)> ObtenerBitacora(DateTime fechaDesde, DateTime fechaHasta, int eventoId, int usuarioId)
+        {
+            //usuario, evento, criticidad, hora
+            List<(string, string, string, string, string, int, DateTime)> result = new List<(string, string, string, string, string, int, DateTime)>();
+
+            string selectCommandText = "" +
+                "SELECT Persona.persona_nombre, Persona.persona_apellido, Persona.persona_dni, Persona.persona_email, Evento.evento_nombre, Evento.evento_criticidad, Bitacora.bitacora_hora " +
+                "FROM Bitacora " +
+                "INNER JOIN Evento ON Bitacora.bitacora_evento = Evento.evento_id " +
+                "INNER JOIN Persona ON Bitacora.bitacora_usuario = Persona.persona_id " + 
+                "WHERE Persona.persona_id >= 1 ";
+
+            if (fechaDesde != null) {
+                selectCommandText += "AND Bitacora.bitacora_hora >= @fechaDesde ";
+            }
+
+            if (fechaHasta != null)
+            {
+                selectCommandText += "AND Bitacora.bitacora_hora <= @fechaHasta ";
+            }
+
+            if (eventoId != -1)
+            {
+                selectCommandText += "AND Bitacora.bitacora_evento = @eventoId ";
+            }
+
+            if (usuarioId != -1)
+            {
+                selectCommandText += "AND Bitacora.bitacora_usuario = @usuarioId ";
+            }
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+
+            if (fechaDesde != null)
+            {
+                selectCommand.Parameters.AddWithValue("@fechaDesde", fechaDesde);
+            }
+
+            if (fechaHasta != null)
+            {
+                selectCommand.Parameters.AddWithValue("@fechaHasta", fechaHasta);
+            }
+
+            if (eventoId != -1)
+            {
+                selectCommand.Parameters.AddWithValue("@eventoId", eventoId);
+            }
+
+            if (usuarioId != -1)
+            {
+                selectCommand.Parameters.AddWithValue("@usuarioId", usuarioId);
+            }
+            
+            SqlDataReader reader = ExecuteReader(selectCommand);
+
+            while (reader.Read())
+            {
+                result.Add(
+                    (
+                        (string)reader.GetValue(0), //nombre
+                        (string)reader.GetValue(1), //apellido
+                        (string)reader.GetValue(2), //dni
+                        (string)reader.GetValue(3), //email
+                        (string)reader.GetValue(4), //evento
+                        (int)reader.GetValue(5), //criticidad
+                        (DateTime)reader.GetValue(6)  //hora
+                    )
+                );
+            }
+            CloseReader(reader);
+
+            return result;
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////    METODOS GRUPOS     ///////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////

@@ -4,9 +4,6 @@
     <Compile Update="Backup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Bitacora.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="CargarServicios.cs">
       <SubType>Form</SubType>
     </Compile>
