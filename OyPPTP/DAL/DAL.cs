@@ -1114,6 +1114,20 @@ namespace DAL
             }
             InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
 
+            id = 53;
+            nombre = "Pantalla inicial backup";
+            idPantalla = "PantallaInicial";
+            idControl = "backup";
+            concatenado = id.ToString() + nombre + idPantalla + idControl;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPatente(id, nombre, idPantalla, idControl, verificador_horizontal);
+
             id = 32;
             nombre = "Pantalla inicial restaurar sistema";
             idPantalla = "PantallaInicial";
@@ -2294,6 +2308,59 @@ namespace DAL
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    METODOS BACKUP    ///////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        public bool GenerarArchivoBackup(string savePath) {
+
+            try
+            {
+                string backupCommandText = "" +
+                "BACKUP DATABASE [TFI_DB] " +
+                "TO DISK = @savepath " +
+                "WITH FORMAT";
+
+                SqlCommand backupCommand = new SqlCommand(backupCommandText);
+                backupCommand.Parameters.AddWithValue("@savepath", savePath);
+                ExecuteNonQuery(backupCommand);
+
+                return true;
+            }
+            catch (Exception e) {
+                return false;
+            }
+
+        }
+
+        public bool RestaurarSistema(string savePath)
+        {
+
+            try
+            {
+                string restoreCommandText = "" +
+                "USE MASTER " +
+                "ALTER DATABASE [TFI_DB] SET SINGLE_USER WITH ROLLBACK IMMEDIATE " +
+                "RESTORE DATABASE [TFI_DB] " +
+                "FROM DISK = @savepath " +
+                "WITH REPLACE, RECOVERY, STATS = 10 ";
+
+                SqlCommand restoreCommand = new SqlCommand(restoreCommandText);
+                restoreCommand.Parameters.AddWithValue("@savepath", savePath);
+                ExecuteNonQuery(restoreCommand);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+
+
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////    METODOS PRIVADOS DE BD     /////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -2313,7 +2380,10 @@ namespace DAL
         private SqlDataReader ExecuteReader(SqlCommand command)
         {
             command.Connection = this.miConnection;
-            this.miConnection.Open();
+            if (this.miConnection.State.ToString() != "Open")
+            {
+                this.miConnection.Open();
+            }
             SqlDataReader reader = command.ExecuteReader();
             return reader;
         }

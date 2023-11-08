@@ -5,6 +5,9 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using SL;
+using BLL;
 
 namespace OyPPTP
 {
@@ -35,7 +38,26 @@ namespace OyPPTP
 
         private void iniciar_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Copia de seguridad creada con éxito.");
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "BAK (*.bak)|*.bak";
+            sfd.FileName = "TFI_DB_Backup.bak";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string savePath = Path.GetDirectoryName(sfd.FileName);
+                GestorBackup gestorBackup = new GestorBackup();
+                bool success = gestorBackup.GenerarArchivoBackup(sfd.FileName);
+                if (!success) {
+                    MessageBox.Show("Error al generar el backup");
+                    return;
+                }
+
+                UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+
+                GestorBitacora gestorBitacora = new GestorBitacora();
+                gestorBitacora.RegistrarEvento(11, usuario.id);
+
+                MessageBox.Show("Copia de seguridad creada con éxito en " + savePath);
+            }
             this.Close();
         }
 
