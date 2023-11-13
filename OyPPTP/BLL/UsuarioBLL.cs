@@ -12,11 +12,11 @@ namespace BLL
     {
         private static UsuarioBLL usuario_singleton;
         public int id { get; }
-        private string nombre { get; set; }
-        private string apellido { get; set; }
-        private string dni { get; set; }
-        private string domicilio { get; set; }
-        private string email { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
+        public string dni { get; set; }
+        public string domicilio { get; set; }
+        public string email { get; set; }
         private string rol { get; set; }
         private List<String> servicios { get; set; }
         private bool usuarioOculto { get; set; }

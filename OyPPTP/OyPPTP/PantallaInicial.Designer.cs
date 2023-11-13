@@ -51,8 +51,6 @@ namespace OyPPTP
             this.crearUsuarioAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.opciones = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarIdioma = new System.Windows.Forms.ToolStripMenuItem();
-            this.ingles = new System.Windows.Forms.ToolStripMenuItem();
-            this.portugues = new System.Windows.Forms.ToolStripMenuItem();
             this.sesion = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesion = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -251,30 +249,10 @@ namespace OyPPTP
             this.opciones.Name = "opciones";
             this.opciones.Size = new System.Drawing.Size(69, 20);
             this.opciones.Text = "Opciones";
-            // 
-            // cambiarIdioma
-            // 
-            this.cambiarIdioma.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ingles,
-            this.portugues});
             this.cambiarIdioma.Enabled = false;
             this.cambiarIdioma.Name = "cambiarIdioma";
             this.cambiarIdioma.Size = new System.Drawing.Size(159, 22);
             this.cambiarIdioma.Text = "Cambiar idioma";
-            // 
-            // ingles
-            // 
-            this.ingles.Name = "ingles";
-            this.ingles.Size = new System.Drawing.Size(128, 22);
-            this.ingles.Text = "Inglés";
-            this.ingles.Click += new System.EventHandler(this.menuStripOptionClicked);
-            // 
-            // portugues
-            // 
-            this.portugues.Name = "portugues";
-            this.portugues.Size = new System.Drawing.Size(128, 22);
-            this.portugues.Text = "Portugués";
-            this.portugues.Click += new System.EventHandler(this.menuStripOptionClicked);
             // 
             // sesion
             // 
@@ -373,8 +351,6 @@ namespace OyPPTP
         private System.Windows.Forms.ToolStripMenuItem restaurarSistema;
         private System.Windows.Forms.ToolStripMenuItem opciones;
         private System.Windows.Forms.ToolStripMenuItem cambiarIdioma;
-        private System.Windows.Forms.ToolStripMenuItem ingles;
-        private System.Windows.Forms.ToolStripMenuItem portugues;
         private System.Windows.Forms.ToolStripMenuItem sesion;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesion;
         private System.Windows.Forms.ToolStripMenuItem desbloquearUsuario;

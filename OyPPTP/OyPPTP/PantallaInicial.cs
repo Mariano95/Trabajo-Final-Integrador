@@ -13,6 +13,7 @@ namespace OyPPTP
     public partial class PantallaInicial : Form
     {
         List<string> patentes;
+        int idIdioma;
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////    CONSTRUCTOR     //////////////////////////////////
@@ -22,6 +23,7 @@ namespace OyPPTP
         {
             InitializeComponent();
             this.patentes = patentes;
+            this.idIdioma = 3; //Español por defecto
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,9 +33,61 @@ namespace OyPPTP
         private void PantallaInicial_Load(object sender, EventArgs e)
         {
 
-            foreach ( ToolStripMenuItem dropdown in this.menuStrip1.Items)
+            inicializarCampos();
+            
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void inicializarCampos() {
+            GestorIdioma gestorIdioma = new GestorIdioma();
+            List<(int, string)> idiomas = gestorIdioma.ObtenerListadoIdiomas(this.idIdioma);
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            string texto;
+
+            texto = gestorIdioma.ObtenerTextos("pantalla_inicial_label_1", this.idIdioma);
+            if (texto == ""){
+                this.pantalla_inicial_label_1.Text = "Hola, ";
+            }
+            else {
+                this.pantalla_inicial_label_1.Text = texto;
+            }
+            this.pantalla_inicial_label_1.Text += miDAL.DesencriptarAES(usuario.apellido).ToUpper() + " " + miDAL.DesencriptarAES(usuario.nombre).ToUpper();
+
+            texto = gestorIdioma.ObtenerTextos("pantalla_inicial_label_2", this.idIdioma);
+            if (texto != "")
             {
-                foreach (ToolStripItem item in dropdown.DropDownItems) {
+                this.pantalla_inicial_label_2.Text = texto;
+            }
+
+            this.Refresh();
+
+            foreach ((int, string) idioma in idiomas)
+            {
+                this.cambiarIdioma.DropDownItems.AddRange(
+                    new System.Windows.Forms.ToolStripItem[] {
+                        new System.Windows.Forms.ToolStripMenuItem(idioma.Item2, null, new System.EventHandler(this.menuStripOptionClicked))
+                    }
+                );
+            }
+
+            foreach (ToolStripMenuItem dropdown in this.menuStrip1.Items)
+            {
+                texto = gestorIdioma.ObtenerTextos(dropdown.Name, this.idIdioma);
+                if (texto != "") {
+                    dropdown.Text = texto;
+                }
+
+                foreach (ToolStripItem item in dropdown.DropDownItems)
+                {
+                    texto = gestorIdioma.ObtenerTextos(item.Name, this.idIdioma);
+                    if (texto != "")
+                    {
+                        item.Text = texto;
+                    }
                     if (patentes.Contains(item.Name))
                     {
                         item.Enabled = true;
@@ -41,17 +95,14 @@ namespace OyPPTP
                 }
 
             }
-
         }
+        
+        private void menuStripOptionClicked(object sender, EventArgs e)
+        {
 
-        /////////////////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////    SUBFORMS CREATION     ///////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////
-
-        private void menuStripOptionClicked(object sender, EventArgs e) {
-            
             ToolStripMenuItem selectedItem = (ToolStripMenuItem)sender;
-            switch (selectedItem.Name) {
+            switch (selectedItem.Name)
+            {
                 case "modificarServicios":
                     CargarServicios form = new CargarServicios();
                     form.precargar();
@@ -99,7 +150,8 @@ namespace OyPPTP
                         this.menuStrip1.Items.Find("ocultarUsuario", true)[0].Text = "Ocultar usuario";
                         form7.PrecargarReactivacion();
                     }
-                    else {
+                    else
+                    {
                         this.menuStrip1.Items.Find("ocultarUsuario", true)[0].Text = "Reactivar usuario";
                     }
                     form7.Show();
@@ -121,12 +173,6 @@ namespace OyPPTP
                     this.Hide();
                     form10.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_RestaurarSistemaClosed);
                     form10.Show();
-                    break;
-                case "ingles":
-                    MessageBox.Show("Idioma cambiado con éxito.");
-                    break;
-                case "portugues":
-                    MessageBox.Show("Idioma cambiado con éxito.");
                     break;
                 case "cerrarSesion":
                     PreLogin form11 = new PreLogin();
@@ -163,6 +209,24 @@ namespace OyPPTP
                     this.Hide();
                     form16.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_RegistrarUsuarioClosed);
                     form16.Show();
+                    break;
+            }
+            switch (selectedItem.Text)
+            {
+                case "English":
+                    this.idIdioma = 1;
+                    MessageBox.Show("Language set successfully.");
+                    this.cambiarIdioma.DropDownItems.Clear();
+                    inicializarCampos();
+                    break;
+                case "Português":
+                    MessageBox.Show("Idioma ainda não implementado");
+                    break;
+                case "Español":
+                    this.idIdioma = 3;
+                    MessageBox.Show("Idioma cambiado con éxito.");
+                    this.cambiarIdioma.DropDownItems.Clear();
+                    inicializarCampos();
                     break;
             }
         }

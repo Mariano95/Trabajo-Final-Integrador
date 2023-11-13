@@ -1452,6 +1452,1251 @@ namespace DAL
             ExecuteNonQuery(insertCommand);
         }
 
+        public void InicializarIdiomas() {
+            int id = 1;
+            string idioma_nombre = "English";
+            string concatenado = id.ToString() + idioma_nombre;
+            int verificador_horizontal = 0;
+            int contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertIdioma(id, idioma_nombre, verificador_horizontal);
+
+            id = 2;
+            idioma_nombre = "Português";
+            concatenado = id.ToString() + idioma_nombre;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertIdioma(id, idioma_nombre, verificador_horizontal);
+
+            id = 3;
+            idioma_nombre = "Español";
+            concatenado = id.ToString() + idioma_nombre;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertIdioma(id, idioma_nombre, verificador_horizontal);
+
+
+            int sumaVerificadoresHorizontales = ObtenerSumaVerificadoresHorizontales("Idioma");
+            bool verificador_vertical_ok = ActualizarVerificadorVertical("Idioma", sumaVerificadoresHorizontales);
+
+        }
+
+        private void InsertIdioma(int id, string nombre, int verificador_horizontal)
+        {
+            string insertCommandText = "" +
+                    "INSERT INTO [dbo].[Idioma] " +
+                        "([idioma_id]" +
+                        ",[idioma_nombre]" +
+                        ",[idioma_verificador_horizontal]) " +
+                    "VALUES " +
+                        "(@id," +
+                        "@nombre," +
+                        "@verificador_horizontal)";
+
+            SqlCommand insertCommand = new SqlCommand(insertCommandText);
+
+            insertCommand.Parameters.AddWithValue("@id", id);
+            insertCommand.Parameters.AddWithValue("@nombre", nombre);
+            insertCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            ExecuteNonQuery(insertCommand);
+        }
+
+        public void InicializarTextosIdiomas()
+        {
+            int id = 1;
+            int id_idioma = 1;
+            string nombre_control = "cancelar";
+            string texto_control = "Cancel";
+            string concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            int verificador_horizontal = 0;
+            int contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 2;
+            id_idioma = 1;
+            nombre_control = "iniciar";
+            texto_control = "Start";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 3;
+            id_idioma = 1;
+            nombre_control = "nueva_contrasena";
+            texto_control = "New password";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 4;
+            id_idioma = 1;
+            nombre_control = "actualizar";
+            texto_control = "Update";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 5;
+            id_idioma = 1;
+            nombre_control = "desbloquear_usuario_label";
+            texto_control = "Unlock user";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 6;
+            id_idioma = 1;
+            nombre_control = "desbloquear_usuario";
+            texto_control = "Unlock user";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 7;
+            id_idioma = 1;
+            nombre_control = "grupo";
+            texto_control = "Group";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 8;
+            id_idioma = 1;
+            nombre_control = "eliminar_grupo";
+            texto_control = "Delete group";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 9;
+            id_idioma = 1;
+            nombre_control = "crear_nuevo_grupo";
+            texto_control = "Create group";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 10;
+            id_idioma = 1;
+            nombre_control = "crear_nuevo_grupo_text";
+            texto_control = "Create group";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 11;
+            id_idioma = 1;
+            nombre_control = "crear_grupo";
+            texto_control = "Create group";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 12;
+            id_idioma = 1;
+            nombre_control = "miembros_del_grupo";
+            texto_control = "Group members";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 13;
+            id_idioma = 1;
+            nombre_control = "quitar_del_grupo";
+            texto_control = "Remove from group";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 14;
+            id_idioma = 1;
+            nombre_control = "otros_usuarios";
+            texto_control = "Other members";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 15;
+            id_idioma = 1;
+            nombre_control = "agregar_al_grupo";
+            texto_control = "Add to group";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 16;
+            id_idioma = 1;
+            nombre_control = "volver";
+            texto_control = "Return";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 17;
+            id_idioma = 1;
+            nombre_control = "datosPersonalesOption ";
+            texto_control = "Personal details";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 18;
+            id_idioma = 1;
+            nombre_control = "modificarServicios";
+            texto_control = "Edit services";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 19;
+            id_idioma = 1;
+            nombre_control = "modificarDatosPersonales";
+            texto_control = "Edit personal details";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 20;
+            id_idioma = 1;
+            nombre_control = "modificarPassword";
+            texto_control = "Change password";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 21;
+            id_idioma = 1;
+            nombre_control = "ocultarUsuario";
+            texto_control = "Hide user";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 22;
+            id_idioma = 1;
+            nombre_control = "busquedaTrabajadoresOption ";
+            texto_control = "Search workers";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 23;
+            id_idioma = 1;
+            nombre_control = "buscarTrabajadores";
+            texto_control = "Search workers";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 24;
+            id_idioma = 1;
+            nombre_control = "citacionesOption";
+            texto_control = "Citations";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 25;
+            id_idioma = 1;
+            nombre_control = "citacionesRecibidas";
+            texto_control = "Received citations";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 26;
+            id_idioma = 1;
+            nombre_control = "citacionesEnviadas";
+            texto_control = "Sent citations";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 27;
+            id_idioma = 1;
+            nombre_control = "administracionOption ";
+            texto_control = "Administration";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 28;
+            id_idioma = 1;
+            nombre_control = "bitacora";
+            texto_control = "Log";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 29;
+            id_idioma = 1;
+            nombre_control = "backup";
+            texto_control = "Create system backup";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 30;
+            id_idioma = 1;
+            nombre_control = "restaurarSistema";
+            texto_control = "Restore backup";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 31;
+            id_idioma = 1;
+            nombre_control = "desbloquearUsuario";
+            texto_control = "Unlock user";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 32;
+            id_idioma = 1;
+            nombre_control = "patentesPorGrupo";
+            texto_control = "Group patents";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 33;
+            id_idioma = 1;
+            nombre_control = "patentesPorUsuario";
+            texto_control = "User patents";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 34;
+            id_idioma = 1;
+            nombre_control = "gruposUsuarios";
+            texto_control = "User groups";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 35;
+            id_idioma = 1;
+            nombre_control = "crearUsuarioAdmin";
+            texto_control = "Create admin user";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 36;
+            id_idioma = 1;
+            nombre_control = "opciones";
+            texto_control = "Options";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 37;
+            id_idioma = 1;
+            nombre_control = "cambiarIdioma";
+            texto_control = "Change language";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 38;
+            id_idioma = 1;
+            nombre_control = "sesion";
+            texto_control = "Session";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 39;
+            id_idioma = 1;
+            nombre_control = "cerrarSesion";
+            texto_control = "End session";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 40;
+            id_idioma = 1;
+            nombre_control = "pantalla_inicial_label_1";
+            texto_control = "Welcome, ";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 41;
+            id_idioma = 1;
+            nombre_control = "pantalla_inicial_label_2";
+            texto_control = "Welcome to the service portal. Please select one of the options above to continue.";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 42;
+            id_idioma = 3;
+            nombre_control = "cancelar";
+            texto_control = "Cancelar";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 43;
+            id_idioma = 3;
+            nombre_control = "iniciar";
+            texto_control = "Iniciar";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 44;
+            id_idioma = 3;
+            nombre_control = "nueva_contrasena";
+            texto_control = "Nueva contraseña";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 45;
+            id_idioma = 3;
+            nombre_control = "actualizar";
+            texto_control = "Actualizar";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 46;
+            id_idioma = 3;
+            nombre_control = "desbloquear_usuario_label";
+            texto_control = "Desbloquear usuario";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 47;
+            id_idioma = 3;
+            nombre_control = "desbloquear_usuario";
+            texto_control = "Desbloquear usuario";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 48;
+            id_idioma = 3;
+            nombre_control = "grupo";
+            texto_control = "Grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 49;
+            id_idioma = 3;
+            nombre_control = "eliminar_grupo";
+            texto_control = "Eliminar grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 50;
+            id_idioma = 3;
+            nombre_control = "crear_nuevo_grupo";
+            texto_control = "Crear grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 51;
+            id_idioma = 3;
+            nombre_control = "crear_nuevo_grupo_text";
+            texto_control = "Crear grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 52;
+            id_idioma = 3;
+            nombre_control = "crear_grupo";
+            texto_control = "Crear grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 53;
+            id_idioma = 3;
+            nombre_control = "miembros_del_grupo";
+            texto_control = "Miembros del grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 54;
+            id_idioma = 3;
+            nombre_control = "quitar_del_grupo";
+            texto_control = "Quitar del grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 55;
+            id_idioma = 3;
+            nombre_control = "otros_usuarios";
+            texto_control = "Otros usuarios";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 56;
+            id_idioma = 3;
+            nombre_control = "agregar_al_grupo";
+            texto_control = "Agregar al grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 57;
+            id_idioma = 3;
+            nombre_control = "volver";
+            texto_control = "Volver";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 58;
+            id_idioma = 3;
+            nombre_control = "datosPersonalesOption";
+            texto_control = "Datos personales";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 59;
+            id_idioma = 3;
+            nombre_control = "modificarServicios";
+            texto_control = "Modificar servicios";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 60;
+            id_idioma = 3;
+            nombre_control = "modificarDatosPersonales";
+            texto_control = "Modificar datos personales";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 61;
+            id_idioma = 3;
+            nombre_control = "modificarPassword ";
+            texto_control = "Modificar contraseña";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 62;
+            id_idioma = 3;
+            nombre_control = "ocultarUsuario";
+            texto_control = "Ocultar usuario";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 63;
+            id_idioma = 3;
+            nombre_control = "busquedaTrabajadoresOption ";
+            texto_control = "Búsqueda de trabajadores";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 64;
+            id_idioma = 3;
+            nombre_control = "buscarTrabajadores";
+            texto_control = "Buscar trabajadores";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 65;
+            id_idioma = 3;
+            nombre_control = "citacionesOption ";
+            texto_control = "Citaciones";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 66;
+            id_idioma = 3;
+            nombre_control = "citacionesRecibidas";
+            texto_control = "Citaciones recibidas";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 67;
+            id_idioma = 3;
+            nombre_control = "citacionesEnviadas";
+            texto_control = "Citaciones enviadas";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 68;
+            id_idioma = 3;
+            nombre_control = "administracionOption ";
+            texto_control = "Administación";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+
+            id = 69;
+            id_idioma = 3;
+            nombre_control = "bitacora";
+            texto_control = "Bitácora";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 70;
+            id_idioma = 3;
+            nombre_control = "backup";
+            texto_control = "Backup";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 71;
+            id_idioma = 3;
+            nombre_control = "restaurarSistema";
+            texto_control = "Restaurar sistema";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 72;
+            id_idioma = 3;
+            nombre_control = "desbloquearUsuario";
+            texto_control = "Desbloquear usuario";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 73;
+            id_idioma = 3;
+            nombre_control = "patentesPorGrupo";
+            texto_control = "Patentes por grupo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 74;
+            id_idioma = 3;
+            nombre_control = "patentesPorUsuario";
+            texto_control = "Patentes por usuario";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 75;
+            id_idioma = 3;
+            nombre_control = "gruposUsuarios";
+            texto_control = "Grupos de usuarios";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 76;
+            id_idioma = 3;
+            nombre_control = "crearUsuarioAdmin ";
+            texto_control = "Crear usuario administrador";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 77;
+            id_idioma = 3;
+            nombre_control = "opciones";
+            texto_control = "Opciones";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 78;
+            id_idioma = 3;
+            nombre_control = "cambiarIdioma";
+            texto_control = "Cambiar idioma";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 79;
+            id_idioma = 3;
+            nombre_control = "sesion";
+            texto_control = "Sesión";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 80;
+            id_idioma = 3;
+            nombre_control = "cerrarSesion";
+            texto_control = "Cerrar sesión";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 81;
+            id_idioma = 3;
+            nombre_control = "pantalla_inicial_label_1";
+            texto_control = "Bienvenido, ";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 82;
+            id_idioma = 3;
+            nombre_control = "pantalla_inicial_label_2";
+            texto_control = "Bienvenido al portal de servicios. Por favor, seleccioná una de las opciones de arriba para continuar.";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            int sumaVerificadoresHorizontales = ObtenerSumaVerificadoresHorizontales("Idioma_Texto");
+            bool verificador_vertical_ok = ActualizarVerificadorVertical("Idioma_Texto", sumaVerificadoresHorizontales);
+
+        }
+
+        private void InsertTextoIdioma(int id, int id_idioma, string nombre_control, string texto_control, int verificador_horizontal)
+        {
+            string insertCommandText = "" +
+                    "INSERT INTO [dbo].[Idioma_Texto] " +
+                        "([idioma_texto_id]" +
+                        ",[idioma_texto_id_idioma]" +
+                        ",[idioma_texto_nombre_control]" +
+                        ",[idioma_texto_control]" +
+                        ",[idioma_texto_verificador_horizontal]) " +
+                    "VALUES " +
+                        "(@id," +
+                        "@id_idioma," +
+                        "@nombre_control," +
+                        "@texto_control," +
+                        "@verificador_horizontal)";
+
+            SqlCommand insertCommand = new SqlCommand(insertCommandText);
+
+            insertCommand.Parameters.AddWithValue("@id", id);
+            insertCommand.Parameters.AddWithValue("@id_idioma", id_idioma);
+            insertCommand.Parameters.AddWithValue("@nombre_control", nombre_control);
+            insertCommand.Parameters.AddWithValue("@texto_control", texto_control);
+            insertCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            ExecuteNonQuery(insertCommand);
+        }
+
         /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////    METODOS USUARIO     //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -2357,7 +3602,62 @@ namespace DAL
 
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////    METODOS IDIOMAS     /////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
 
+        public List<(int, string)> ObtenerListadoIdiomas(int idioma_actual) {
+            List<(int, string)> idiomas = new List<(int, string)>();
+            SqlCommand selectCommand;
+            SqlDataReader reader;
+
+            string selectCommandIdioma = "" +
+                "SELECT idioma_id, idioma_nombre " +
+                "FROM Idioma " + 
+                "WHERE idioma_id != @idioma_id";
+
+            selectCommand = new SqlCommand(selectCommandIdioma);
+            selectCommand.Parameters.AddWithValue("@idioma_id", idioma_actual);
+
+            reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                idiomas.Add(((int)reader.GetValue(0), (string)reader.GetValue(1)));
+            }
+            CloseReader(reader);
+
+            return idiomas;
+        }
+
+        public string ObtenerTextos(string control, int idIdioma)
+        {
+            SqlCommand selectCommand;
+            SqlDataReader reader;
+
+            string selectCommandText = "" +
+                "SELECT idioma_texto_control " +
+                "FROM Idioma_Texto " +
+                "WHERE idioma_texto_nombre_control = @nombre_control AND idioma_texto_id_idioma = @idioma_id";
+
+            selectCommand = new SqlCommand(selectCommandText);
+            selectCommand.Parameters.AddWithValue("@nombre_control", control);
+            selectCommand.Parameters.AddWithValue("@idioma_id", idIdioma);
+
+            
+            reader = ExecuteReader(selectCommand);
+            string texto;
+            
+            if (reader.Read())
+            {
+                texto = (string)reader.GetValue(0);
+            }
+            else {
+                texto = "";
+            }
+            
+            CloseReader(reader);
+            return texto;
+        }
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////
