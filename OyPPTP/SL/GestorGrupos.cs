@@ -49,7 +49,7 @@ namespace SL
             int grupo_id = miDAL.CrearGrupo(nombre_nuevo_grupo);
 
             GestorBitacora gestorBitacora = new GestorBitacora();
-            gestorBitacora.RegistrarEvento(13, usuarioId);
+            gestorBitacora.RegistrarEvento(13, usuarioId, id_grupo:grupo_id);
 
             string concatenado = "";
             concatenado += grupo_id.ToString();
@@ -97,7 +97,7 @@ namespace SL
             miDAL.QuitarPatenteDelGrupo(grupoId, patenteId);
 
             GestorBitacora gestorBitacora = new GestorBitacora();
-            gestorBitacora.RegistrarEvento(20, usuarioId);
+            gestorBitacora.RegistrarEvento(20, usuarioId, id_grupo: grupoId, id_patente: patenteId);
 
             int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Grupo");
             bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Grupo", sumaVerificadoresHorizontales);
@@ -111,7 +111,7 @@ namespace SL
             miDAL.AgregarPatenteAGrupo(grupoId, patenteId);
 
             GestorBitacora gestorBitacora = new GestorBitacora();
-            gestorBitacora.RegistrarEvento(19, usuarioId);
+            gestorBitacora.RegistrarEvento(19, usuarioId, id_grupo: grupoId, id_patente: patenteId);
 
             string concatenado = "";
             concatenado += grupoId.ToString();

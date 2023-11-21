@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
 using DAL;
 using DTO;
 using SL;
@@ -202,8 +204,10 @@ namespace BLL
             }
             gestorPatentes.QuitarPatente(usuarioId, patenteId);
 
+            UsuarioBLL usuarioResponsable = UsuarioBLL.GetUsuarioBLL();
+            
             GestorBitacora gestorBitacora = new GestorBitacora();
-            gestorBitacora.RegistrarEvento(18, usuarioId);
+            gestorBitacora.RegistrarEvento(18, usuarioResponsable.id, id_patente: patenteId, id_usuario_afectado: usuarioId);
 
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Patente");
@@ -214,11 +218,13 @@ namespace BLL
 
         public static (bool, string) AgregarPatente(int usuarioId, int patenteId)
         {
+            UsuarioBLL usuarioResponsable = UsuarioBLL.GetUsuarioBLL();
+            
             GestorPatentes gestorPatentes = new GestorPatentes();
             gestorPatentes.AgregarPatente(usuarioId, patenteId);
 
             GestorBitacora gestorBitacora = new GestorBitacora();
-            gestorBitacora.RegistrarEvento(17, usuarioId);
+            gestorBitacora.RegistrarEvento(17, usuarioResponsable.id, id_patente: patenteId, id_usuario_afectado: usuarioId);
 
             int sumaVerificadoresHorizontales = 0;
             bool verificador_vertical_ok;
@@ -284,6 +290,46 @@ namespace BLL
             gestorBitacora.RegistrarEvento(7, usuarioId);
 
             return true;
+        }
+
+        public static (bool, string) EnviarMailUsuario(string dni) {
+            try
+            {
+                DAL.DAL miDAL = DAL.DAL.GetDAL();
+                string dniEncrypted = miDAL.EncriptarAES(dni);
+
+                int idUsuario = miDAL.BuscarUsuario(dniEncrypted);
+                if (idUsuario == -1)
+                {
+                    return (false, "No existe ningún usuario en el sistema para el número de dni ingresado");
+                }
+
+                GestorPassword gestorPassword = new GestorPassword();
+                string nuevaPassword = gestorPassword.GenerarPasswordRandom();
+                string nuevaPasswordEncrypted = miDAL.EncriptarMD5(nuevaPassword);
+
+                //miDAL.ActualizarUsuario(idUsuario, nuevaPasswordEncrypted);
+
+                //Enviando mail al usuario
+                string remitente = "info.contacto.ati@gmail.com";
+                string password = "atipass2023";
+                string destinatario = "marianomartin806@gmail.com";
+                string asunto = "Portal de servicios ATI - Contraseña restaurada";
+                string cuerpo = "Tu nueva contraseña es " + nuevaPassword;
+
+                SmtpClient clienteSmtp = new SmtpClient("smtp.gmail.com", 587);
+                clienteSmtp.EnableSsl = true;
+                clienteSmtp.UseDefaultCredentials = false;
+                clienteSmtp.Credentials = new NetworkCredential(remitente, password);
+
+                MailMessage mensaje = new MailMessage(remitente, destinatario, asunto, cuerpo);
+                clienteSmtp.Send(mensaje);
+                return (true, "Correo enviado");
+            }
+            catch (Exception ex) {
+                return (false, ex.Message);
+            }
+
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

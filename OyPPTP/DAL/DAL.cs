@@ -185,7 +185,7 @@ namespace DAL
 
         }
 
-        public List<(string, int)> SumaVerificadoresHorizontalesPorTabla() {
+        public List<(string, int)> SumaVerificadoresHorizontalesPorTabla(List<string> excepciones) {
 
             List<string> tablas = new List<string>();
             List<(string, int)> resultado = new List<(string, int)>();
@@ -210,38 +210,52 @@ namespace DAL
             int sumaVerificadoresHorizontales;
             int contador;
             foreach (string tabla in tablas) {
-                selectCommandText2 = "" +
+
+                if (!excepciones.Contains(tabla)) {
+
+                    selectCommandText2 = "" +
                     "SELECT * " +
                     "FROM [dbo].[" + tabla + "]";
 
-                selectCommand2 = new SqlCommand(selectCommandText2);
-                reader2 = ExecuteReader(selectCommand2);
-                sumaVerificadoresHorizontales = 0;
+                    selectCommand2 = new SqlCommand(selectCommandText2);
+                    reader2 = ExecuteReader(selectCommand2);
+                    sumaVerificadoresHorizontales = 0;
 
-                while (reader2.Read())
-                {
-                    concatenado = "";
-                    //Voy hasta el anteultimo campo inclusive porque no quiero agarrar el ultimo que es el verificador horizontal
-                    for (int i = 0; i < reader2.FieldCount - 1; i++) {
-                        concatenado += reader2.GetValue(i).ToString();
-                        if (tabla == "Persona")
+                    while (reader2.Read())
+                    {
+                        concatenado = "";
+                        //Voy hasta el anteultimo campo inclusive porque no quiero agarrar el ultimo que es el verificador horizontal
+                        for (int i = 0; i < reader2.FieldCount - 1; i++)
                         {
-                            continue;
+                            concatenado += reader2.GetValue(i).ToString();
+                            if (tabla == "Bitacora_Detalle")
+                            {
+                                int a = 1;
+                            }
+                        }
+
+                        contador = 1;
+                        foreach (char c in concatenado)
+                        {
+                            sumaVerificadoresHorizontales += (int)c * contador;
+                            contador++;
+                        }
+
+                        if (tabla == "Bitacora_Detalle")
+                        {
+                            int a = 1;
                         }
                     }
+                    CloseReader(reader);
 
-                    contador = 1;
-                    foreach (char c in concatenado) {
-                        sumaVerificadoresHorizontales += (int)c * contador;
-                        contador++;
+                    //Ignoro a las tablas que no tienen ni un registro
+                    if (sumaVerificadoresHorizontales > 0)
+                    {
+                        resultado.Add((tabla, sumaVerificadoresHorizontales));
                     }
-                }
-                CloseReader(reader);
 
-                //Ignoro a las tablas que no tienen ni un registro
-                if (sumaVerificadoresHorizontales > 0) {
-                    resultado.Add((tabla, sumaVerificadoresHorizontales));
                 }
+
             }
 
             return resultado;
@@ -2666,6 +2680,90 @@ namespace DAL
             }
             InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
 
+            id = 83;
+            id_idioma = 3;
+            nombre_control = "leyenda_error_sin_ayuda";
+            texto_control = "No se encontró un documento de ayuda para esta pantalla";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 84;
+            id_idioma = 1;
+            nombre_control = "leyenda_error_sin_ayuda";
+            texto_control = "A help documnt could not be found for this screen";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 85;
+            id_idioma = 3;
+            nombre_control = "leyenda_error_sin_navegador";
+            texto_control = "No se encontró un navegador web configurado para este equipo";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 86;
+            id_idioma = 1;
+            nombre_control = "leyenda_error_sin_navegador";
+            texto_control = "A web browser could not be found on this computer";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 87;
+            id_idioma = 3;
+            nombre_control = "leyenda_error_carga_ayuda";
+            texto_control = "Hubo un error al abrir el documento de ayuda de esta pantalla";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
+            id = 88;
+            id_idioma = 1;
+            nombre_control = "leyenda_error_carga_ayuda";
+            texto_control = "An error occured while trying to open the help document for this screen";
+            concatenado = id.ToString() + id_idioma + nombre_control + texto_control;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertTextoIdioma(id, id_idioma, nombre_control, texto_control, verificador_horizontal);
+
             int sumaVerificadoresHorizontales = ObtenerSumaVerificadoresHorizontales("Idioma_Texto");
             bool verificador_vertical_ok = ActualizarVerificadorVertical("Idioma_Texto", sumaVerificadoresHorizontales);
 
@@ -2693,6 +2791,69 @@ namespace DAL
             insertCommand.Parameters.AddWithValue("@id_idioma", id_idioma);
             insertCommand.Parameters.AddWithValue("@nombre_control", nombre_control);
             insertCommand.Parameters.AddWithValue("@texto_control", texto_control);
+            insertCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
+            ExecuteNonQuery(insertCommand);
+        }
+
+        public void InicializarPantallas()
+        {
+            int id = 1;
+            int idioma_id = 1;
+            string pantallaCodigo = "PantallaInicial";
+            string link_ayuda = "https://docs.google.com/document/d/12fxnXBTnWyOYWkHUJR0YXaAIhkhpeOBpBLbUk9RvNNU/edit?usp=sharing";            
+            string concatenado = id.ToString() + idioma_id.ToString() + pantallaCodigo + link_ayuda;
+            int verificador_horizontal = 0;
+            int contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPantalla(id, idioma_id, pantallaCodigo, link_ayuda, verificador_horizontal);
+
+            id = 2;
+            idioma_id = 3;
+            pantallaCodigo = "PantallaInicial";
+            link_ayuda = "https://docs.google.com/document/d/1Ex1vlbH9gBKQ9QbcVdizh_7xUKtbCf5O_PlnF2qhuyo/edit?usp=sharing";
+            concatenado = id.ToString() + idioma_id.ToString() + pantallaCodigo + link_ayuda;
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertPantalla(id, idioma_id, pantallaCodigo, link_ayuda, verificador_horizontal);
+
+
+
+            int sumaVerificadoresHorizontales = ObtenerSumaVerificadoresHorizontales("Pantalla");
+            bool verificador_vertical_ok = ActualizarVerificadorVertical("Pantalla", sumaVerificadoresHorizontales);
+
+        }
+
+        private void InsertPantalla(int id, int idioma_id, string pantalla_codigo, string link_ayuda, int verificador_horizontal)
+        {
+            string insertCommandText = "" +
+                    "INSERT INTO [dbo].[Pantalla] " +
+                        "([pantalla_id]" +
+                        ",[pantalla_idioma_id]" +
+                        ",[pantalla_codigo]" +
+                        ",[pantalla_link_ayuda]" +
+                        ",[pantalla_verificador_horizontal]) " +
+                    "VALUES " +
+                        "(@idPantalla," +
+                        "@idIdioma," +
+                        "@pantallaCodigo," +
+                        "@linkAyuda," +
+                        "@verificador_horizontal)";
+
+            SqlCommand insertCommand = new SqlCommand(insertCommandText);
+
+            insertCommand.Parameters.AddWithValue("@idPantalla", id);
+            insertCommand.Parameters.AddWithValue("@idIdioma", idioma_id);
+            insertCommand.Parameters.AddWithValue("@pantallaCodigo", pantalla_codigo);
+            insertCommand.Parameters.AddWithValue("@linkAyuda", link_ayuda);
             insertCommand.Parameters.AddWithValue("@verificador_horizontal", verificador_horizontal);
             ExecuteNonQuery(insertCommand);
         }
@@ -2790,6 +2951,18 @@ namespace DAL
             CloseReader(reader);
 
             return result;
+
+        }
+
+        public int BuscarUsuario(string dni)
+        {
+            string query = "" +
+                "SELECT * " +
+                "FROM [dbo].[Persona] " +
+                "WHERE " +
+                    "persona_dni = '" + dni + "'";
+
+            return ExecuteScalar(query);
 
         }
 
@@ -2996,6 +3169,166 @@ namespace DAL
 
         }
 
+        public int InsertarBitacoraDetalle(int id_evento, int id_registro, string tabla_afectada, int id_grupo_afectado, int id_usuario_afectado, int id_patente_afectada)
+        {
+            try
+            {
+
+                string insertCommandText;
+                SqlCommand insertCommand;
+                int id;
+
+
+                switch (id_evento)
+                {
+                    //Fallo de integridad en tabla
+                    case 8:
+                        insertCommandText = "" +
+                            "INSERT INTO [dbo].[Bitacora_Detalle] " +
+                                "([bitacora_detalle_id]" +
+                                ",[bitacora_detalle_registro_bitacora_id]" +
+                                ",[bitacora_detalle_tabla_involucrada]" +
+                                ",[bitacora_detalle_verificador_horizontal]) " +
+                            "VALUES " +
+                                "(@id," +
+                                "@registro_id," +
+                                "@tabla_id," +
+                                "@verificador_horizontal)";
+
+                        insertCommand = new SqlCommand(insertCommandText);
+
+                        id = ObtenerUltimoId("Bitacora_Detalle") + 1;
+                        insertCommand.Parameters.AddWithValue("@id", id);
+                        insertCommand.Parameters.AddWithValue("@registro_id", id_registro);
+                        insertCommand.Parameters.AddWithValue("@tabla_id", tabla_afectada);
+                        insertCommand.Parameters.AddWithValue("@verificador_horizontal", 0);
+
+                        break;
+
+
+                    //Alta o baja de un grupo
+                    case 13: case 14:
+                        insertCommandText = "" +
+                            "INSERT INTO [dbo].[Bitacora_Detalle] " +
+                                "([bitacora_detalle_id]" +
+                                ",[bitacora_detalle_registro_bitacora_id]" +
+                                ",[bitacora_detalle_grupo_involucrado_id]" +
+                                ",[bitacora_detalle_verificador_horizontal]) " +
+                            "VALUES " +
+                                "(@id," +
+                                "@registro_id," +
+                                "@grupo_id," +
+                                "@verificador_horizontal)";
+
+                        insertCommand = new SqlCommand(insertCommandText);
+
+                        id = ObtenerUltimoId("Bitacora_Detalle") + 1;
+                        insertCommand.Parameters.AddWithValue("@id", id);
+                        insertCommand.Parameters.AddWithValue("@registro_id", id_registro);
+                        insertCommand.Parameters.AddWithValue("@grupo_id", id_grupo_afectado);
+                        insertCommand.Parameters.AddWithValue("@verificador_horizontal", 0);
+
+                        break;
+
+
+                    //Usuario agregado o eliminado de un grupo
+                    case 15: case 16:
+                        insertCommandText = "" +
+                            "INSERT INTO [dbo].[Bitacora_Detalle] " +
+                                "([bitacora_detalle_id]" +
+                                ",[bitacora_detalle_registro_bitacora_id]" +
+                                ",[bitacora_detalle_grupo_involucrado_id]" +
+                                ",[bitacora_detalle_usuario_involucrado_id]" +
+                                ",[bitacora_detalle_verificador_horizontal]) " +
+                            "VALUES " +
+                                "(@id," +
+                                "@registro_id," +
+                                "@grupo_id," +
+                                "@usuario_id," +
+                                "@verificador_horizontal)";
+
+                        insertCommand = new SqlCommand(insertCommandText);
+
+                        id = ObtenerUltimoId("Bitacora_Detalle") + 1;
+                        insertCommand.Parameters.AddWithValue("@id", id);
+                        insertCommand.Parameters.AddWithValue("@registro_id", id_registro);
+                        insertCommand.Parameters.AddWithValue("@grupo_id", id_grupo_afectado);
+                        insertCommand.Parameters.AddWithValue("@usuario_id", id_usuario_afectado);
+                        insertCommand.Parameters.AddWithValue("@verificador_horizontal", 0);
+
+                        break;
+
+
+                    //Patente otorgada o quitada de un usuario
+                    case 17: case 18:
+                        insertCommandText = "" +
+                            "INSERT INTO [dbo].[Bitacora_Detalle] " +
+                                "([bitacora_detalle_id]" +
+                                ",[bitacora_detalle_registro_bitacora_id]" +
+                                ",[bitacora_detalle_usuario_involucrado_id]" +
+                                ",[bitacora_detalle_patente_involucrada_id]" +
+                                ",[bitacora_detalle_verificador_horizontal]) " +
+                            "VALUES " +
+                                "(@id," +
+                                "@registro_id," +
+                                "@usuario_id," +
+                                "@patente_id," +
+                                "@verificador_horizontal)";
+
+                        insertCommand = new SqlCommand(insertCommandText);
+
+                        id = ObtenerUltimoId("Bitacora_Detalle") + 1;
+                        insertCommand.Parameters.AddWithValue("@id", id);
+                        insertCommand.Parameters.AddWithValue("@registro_id", id_registro);
+                        insertCommand.Parameters.AddWithValue("@usuario_id", id_usuario_afectado);
+                        insertCommand.Parameters.AddWithValue("@patente_id", id_patente_afectada);
+                        insertCommand.Parameters.AddWithValue("@verificador_horizontal", 0);
+
+                        break;
+
+
+                    //Patente otorgada o quitada de un grupo
+                    case 19: case 20:
+                        insertCommandText = "" +
+                            "INSERT INTO [dbo].[Bitacora_Detalle] " +
+                                "([bitacora_detalle_id]" +
+                                ",[bitacora_detalle_registro_bitacora_id]" +
+                                ",[bitacora_detalle_grupo_involucrado_id]" +
+                                ",[bitacora_detalle_patente_involucrada_id]" +
+                                ",[bitacora_detalle_verificador_horizontal]) " +
+                            "VALUES " +
+                                "(@id," +
+                                "@registro_id," +
+                                "@grupo_id," +
+                                "@patente_id," +
+                                "@verificador_horizontal)";
+
+                        insertCommand = new SqlCommand(insertCommandText);
+
+                        id = ObtenerUltimoId("Bitacora_Detalle") + 1;
+                        insertCommand.Parameters.AddWithValue("@id", id);
+                        insertCommand.Parameters.AddWithValue("@registro_id", id_registro);
+                        insertCommand.Parameters.AddWithValue("@grupo_id", id_grupo_afectado);
+                        insertCommand.Parameters.AddWithValue("@patente_id", id_patente_afectada);
+                        insertCommand.Parameters.AddWithValue("@verificador_horizontal", 0);
+
+                        break;
+
+
+                    default:
+                        return -1;
+                }
+
+                ExecuteNonQuery(insertCommand);
+                return id;
+            }
+            catch (Exception e)
+            {
+                return -1;
+            }
+
+        }
+
         public List<(int, string)> ListaEventos()
         {
 
@@ -3023,17 +3356,34 @@ namespace DAL
 
         }
 
-        public List<(string, string, string, string, string, int, DateTime)> ObtenerBitacora(DateTime fechaDesde, DateTime fechaHasta, int eventoId, int usuarioId)
+        public List<(string, string, string, string, string, int, DateTime, string, string, string, string, string, string, string)> ObtenerBitacora(DateTime fechaDesde, DateTime fechaHasta, int eventoId, int usuarioId)
         {
             //usuario, evento, criticidad, hora
-            List<(string, string, string, string, string, int, DateTime)> result = new List<(string, string, string, string, string, int, DateTime)>();
+            List<(string, string, string, string, string, int, DateTime, string, string, string, string, string, string, string)> result = new List<(string, string, string, string, string, int, DateTime, string, string, string, string, string, string, string)>();
 
             string selectCommandText = "" +
-                "SELECT Persona.persona_nombre, Persona.persona_apellido, Persona.persona_dni, Persona.persona_email, Evento.evento_nombre, Evento.evento_criticidad, Bitacora.bitacora_hora " +
+                "SELECT p1.persona_nombre, " +
+                    "p1.persona_apellido, " +
+                    "p1.persona_dni, " +
+                    "p1.persona_email, " +
+                    "Evento.evento_nombre, " +
+                    "Evento.evento_criticidad, " +
+                    "Bitacora.bitacora_hora, " +
+                    "Bitacora_Detalle.bitacora_detalle_tabla_involucrada, " +
+                    "Grupo.grupo_nombre, " +
+                    "p2.persona_nombre, " +
+                    "p2.persona_apellido, " +
+                    "p2.persona_dni, " +
+                    "p2.persona_email, " +
+                    "Patente.patente_nombre " +
                 "FROM Bitacora " +
                 "INNER JOIN Evento ON Bitacora.bitacora_evento = Evento.evento_id " +
-                "INNER JOIN Persona ON Bitacora.bitacora_usuario = Persona.persona_id " + 
-                "WHERE Persona.persona_id >= 1 ";
+                "INNER JOIN Persona p1 ON Bitacora.bitacora_usuario = p1.persona_id " +
+                "LEFT JOIN Bitacora_Detalle ON Bitacora.bitacora_id = Bitacora_Detalle.bitacora_detalle_registro_bitacora_id " +
+                "LEFT JOIN Persona p2 on Bitacora_Detalle.bitacora_detalle_usuario_involucrado_id = p2.persona_id " +
+                "LEFT JOIN Patente on Patente.patente_id = Bitacora_Detalle.bitacora_detalle_patente_involucrada_id " +
+                "LEFT JOIN Grupo on Grupo.grupo_id = Bitacora_Detalle.bitacora_detalle_grupo_involucrado_id " +
+                "WHERE p1.persona_id >= 1 ";
 
             if (fechaDesde != null) {
                 selectCommandText += "AND Bitacora.bitacora_hora >= @fechaDesde ";
@@ -3088,7 +3438,14 @@ namespace DAL
                         (string)reader.GetValue(3), //email
                         (string)reader.GetValue(4), //evento
                         (int)reader.GetValue(5), //criticidad
-                        (DateTime)reader.GetValue(6)  //hora
+                        (DateTime)reader.GetValue(6),  //hora
+                        reader.GetValue(7).ToString(),  //tabla
+                        reader.GetValue(8).ToString(), //grupo
+                        reader.GetValue(9).ToString(),  //nombre
+                        reader.GetValue(10).ToString(),  //apellido,
+                        reader.GetValue(11).ToString(),  //dni
+                        reader.GetValue(12).ToString(),  //email
+                        reader.GetValue(13).ToString()  //patente
                     )
                 );
             }
@@ -3659,6 +4016,40 @@ namespace DAL
             return texto;
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////  METODOS PANTALLA     /////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////
+
+        public string ObtenerLinkAyuda(string codPantalla, int idiomaId) {
+            SqlCommand selectCommand;
+            SqlDataReader reader;
+
+            string selectCommandText = "" +
+                "SELECT pantalla_link_ayuda " +
+                "FROM Pantalla " +
+                "WHERE pantalla_codigo = @pantallaCodigo AND pantalla_idioma_id = @idiomaId";
+
+            selectCommand = new SqlCommand(selectCommandText);
+            selectCommand.Parameters.AddWithValue("@pantallaCodigo", codPantalla);
+            selectCommand.Parameters.AddWithValue("@idiomaId", idiomaId);
+
+
+            reader = ExecuteReader(selectCommand);
+            string texto;
+
+            if (reader.Read())
+            {
+                texto = (string)reader.GetValue(0);
+            }
+            else
+            {
+                texto = "";
+            }
+
+            CloseReader(reader);
+            return texto;
+
+        }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////    METODOS PRIVADOS DE BD     /////////////////////////////
@@ -3701,6 +4092,9 @@ namespace DAL
         private void ExecuteNonQuery(SqlCommand command)
         {
             command.Connection = this.miConnection;
+            if (this.miConnection.State.ToString() == "Open") {
+                this.miConnection.Close();
+            }
             this.miConnection.Open();
             command.ExecuteNonQuery();
             this.miConnection.Close();
@@ -3709,6 +4103,10 @@ namespace DAL
         private int ExecuteScalar(string selectCommandText)
         {
             SqlCommand selectCommand = new SqlCommand(selectCommandText, this.miConnection);
+            if (this.miConnection.State.ToString() == "Open")
+            {
+                this.miConnection.Close();
+            }
             this.miConnection.Open();
             Object qryResult = selectCommand.ExecuteScalar();
             this.miConnection.Close();

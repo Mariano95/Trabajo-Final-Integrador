@@ -86,8 +86,10 @@ namespace OyPPTP
             // 
             this.contrasena_text.Location = new System.Drawing.Point(291, 321);
             this.contrasena_text.Name = "contrasena_text";
+            this.contrasena_text.PasswordChar = '*';
             this.contrasena_text.Size = new System.Drawing.Size(100, 23);
             this.contrasena_text.TabIndex = 5;
+            this.contrasena_text.UseSystemPasswordChar = true;
             // 
             // dni_text
             // 

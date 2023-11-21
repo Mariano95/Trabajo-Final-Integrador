@@ -77,9 +77,9 @@ namespace OyPPTP
                 //Inicializar tablas bd
                 //miDAL.IncializarEventos();
                 //miDAL.InicializarPatentes();
-                miDAL.InicializarIdiomas();
-                miDAL.InicializarTextosIdiomas();
-
+                //miDAL.InicializarIdiomas();
+                //miDAL.InicializarTextosIdiomas();
+                //miDAL.InicializarPantallas();
                 MessageBox.Show("Éxito al inicializar la base de datos");
                 //PreBitacora form1 = new PreBitacora();
                 //Backup form1 = new Backup();

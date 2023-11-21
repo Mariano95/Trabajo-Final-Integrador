@@ -122,7 +122,7 @@ namespace OyPPTP
             gestorGrupos.EliminarGrupo(grupoId);
 
             GestorBitacora gestorBitacora = new GestorBitacora();
-            gestorBitacora.RegistrarEvento(14, usuario.id);
+            gestorBitacora.RegistrarEvento(14, usuario.id, id_grupo: grupoId);
 
             int sumaVerificadoresHorizontales = 0;
             DAL.DAL miDAL = DAL.DAL.GetDAL();
@@ -201,7 +201,7 @@ namespace OyPPTP
                 gestorGrupos.QuitarUsuarioGrupo(idUsuarioSeleccionado, grupoId);
 
                 GestorBitacora gestorBitacora = new GestorBitacora();
-                gestorBitacora.RegistrarEvento(16, usuario.id);
+                gestorBitacora.RegistrarEvento(16, usuario.id, id_grupo: grupoId, id_usuario_afectado: idUsuarioSeleccionado);
 
                 DAL.DAL miDAL = DAL.DAL.GetDAL();
                 
@@ -258,7 +258,7 @@ namespace OyPPTP
                 gestorGrupos.AgregarUsuarioGrupo(idUsuarioSeleccionado, grupoId);
 
                 GestorBitacora gestorBitacora = new GestorBitacora();
-                gestorBitacora.RegistrarEvento(15, usuario.id);
+                gestorBitacora.RegistrarEvento(15, usuario.id, id_grupo:grupoId, id_usuario_afectado:idUsuarioSeleccionado);
 
                 DAL.DAL miDAL = DAL.DAL.GetDAL();
                 string concatenado = "";

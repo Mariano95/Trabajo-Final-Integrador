@@ -47,8 +47,10 @@ namespace OyPPTP
             // 
             this.nueva_contrasena_text.Location = new System.Drawing.Point(465, 244);
             this.nueva_contrasena_text.Name = "nueva_contrasena_text";
+            this.nueva_contrasena_text.PasswordChar = '*';
             this.nueva_contrasena_text.Size = new System.Drawing.Size(141, 23);
             this.nueva_contrasena_text.TabIndex = 1;
+            this.nueva_contrasena_text.UseSystemPasswordChar = true;
             // 
             // actualizar
             // 

@@ -31,7 +31,6 @@ namespace OyPPTP
 
         private void IniciarSesion_Load(object sender, EventArgs e)
         {
-
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,17 +94,56 @@ namespace OyPPTP
 
             //Aca validamos los digitos verificadores
             bool integridadok = true;
-            List<(string, int)> res = miDAL.SumaVerificadoresHorizontalesPorTabla();
+            List<string> excepciones = new List<string>();
+            excepciones.Add("Bitacora");
+            excepciones.Add("Bitacora_Detalle");
+            List<string> excepciones_2da_ejecucion = new List<string>();
+            List<string> excepciones_3ra_ejecucion = new List<string>();
+            //Dejo las tablas de bitacora para el final porque son propensas a sufrir cambios durante este analisis
+            List<(string, int)> res = miDAL.SumaVerificadoresHorizontalesPorTabla(excepciones);
             foreach ((string, int) t in res) {
-                MessageBox.Show(t.Item1.ToString()+"-"+t.Item2.ToString());
+                //MessageBox.Show(t.Item1.ToString()+"-"+t.Item2.ToString());
+                excepciones_2da_ejecucion.Add(t.Item1);
+                excepciones_3ra_ejecucion.Add(t.Item1);
                 bool integridadtablaok = miDAL.CoincideVerificadorVertical(t.Item2, t.Item1);
                 if (!integridadtablaok)
                 {
-                    gestorBitacora.RegistrarEvento(8, idUsuario);
+                    gestorBitacora.RegistrarEvento(8, idUsuario, tabla: t.Item1.ToString());
                     integridadok = false;
-                    MessageBox.Show("Fallo de integridad en la tabla " + t.Item1.ToString());
+                    //MessageBox.Show("Fallo de integridad en la tabla " + t.Item1.ToString());
                 }
             }
+
+            //Ahora hago la verificacion con Bitacora
+            excepciones_2da_ejecucion.Add("Bitacora_Detalle");
+            res = miDAL.SumaVerificadoresHorizontalesPorTabla(excepciones_2da_ejecucion);
+            foreach ((string, int) t in res)
+            {
+                //MessageBox.Show(t.Item1.ToString() + "-" + t.Item2.ToString());
+                bool integridadtablaok = miDAL.CoincideVerificadorVertical(t.Item2, t.Item1);
+                if (!integridadtablaok)
+                {
+                    gestorBitacora.RegistrarEvento(8, idUsuario, tabla: t.Item1.ToString());
+                    integridadok = false;
+                    //MessageBox.Show("Fallo de integridad en la tabla " + t.Item1.ToString());
+                }
+            }
+
+            //Y finalmente con Bitacora_Detalle
+            excepciones_3ra_ejecucion.Add("Bitacora");
+            res = miDAL.SumaVerificadoresHorizontalesPorTabla(excepciones_3ra_ejecucion);
+            foreach ((string, int) t in res)
+            {
+                //MessageBox.Show(t.Item1.ToString() + "-" + t.Item2.ToString());
+                bool integridadtablaok = miDAL.CoincideVerificadorVertical(t.Item2, t.Item1);
+                if (!integridadtablaok)
+                {
+                    gestorBitacora.RegistrarEvento(8, idUsuario, tabla: t.Item1.ToString());
+                    integridadok = false;
+                    //MessageBox.Show("Fallo de integridad en la tabla " + t.Item1.ToString());
+                }
+            }
+
             if (integridadok) {
                 gestorBitacora.RegistrarEvento(9, idUsuario);
             }
@@ -129,5 +167,7 @@ namespace OyPPTP
         private void IniciarSesion_RegistrarUsuarioClosed(object sender, EventArgs e) {
             this.Show();
         }
+
+        
     }
 }

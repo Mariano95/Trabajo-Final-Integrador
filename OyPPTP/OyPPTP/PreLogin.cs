@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using UI;
 
 namespace OyPPTP
 {
@@ -42,7 +43,11 @@ namespace OyPPTP
 
         private void olvide_mi_contrasena_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show( "Se enviará un mail a la dirección de correo electrónico de tu usuario, a través de él podrás restablecer tu contraseña.");
+            RecuperarPassword form = new RecuperarPassword();
+            form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PreLogin_RecuperarPasswordClosed);
+            this.Hide();
+            form.Show();
+
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -55,6 +60,12 @@ namespace OyPPTP
         }
 
         private void PreLogin_IndicarTipoUsuarioClosed(object sender, EventArgs e)
+        {
+            //MessageBox.Show("PreLogin_IniciarSesionClosed");
+            this.Show();
+        }
+
+        private void PreLogin_RecuperarPasswordClosed(object sender, EventArgs e)
         {
             //MessageBox.Show("PreLogin_IniciarSesionClosed");
             this.Show();

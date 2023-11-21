@@ -133,13 +133,13 @@ namespace OyPPTP
         private string fechaHasta;
         private string usuario;
         private string evento;
-        private List<(string, string, string, int, DateTime)> registrosBitacora;
+        private List<(string, string, string, int, DateTime, string, string, string, string, string)> registrosBitacora;
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////    CONSTRUCTOR     ///////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        public Bitacora(string tipoReporte, string fechaImpresion, string horaImpresion, string fechaDesde, string fechaHasta, string usuario, string evento, List<(string, string, string, int, DateTime)> registrosBitacora)
+        public Bitacora(string tipoReporte, string fechaImpresion, string horaImpresion, string fechaDesde, string fechaHasta, string usuario, string evento, List<(string, string, string, int, DateTime, string, string, string, string, string)> registrosBitacora)
         {
             this.tipoReporte = tipoReporte;
             this.fechaImpresion = fechaImpresion;
@@ -171,19 +171,28 @@ namespace OyPPTP
 
         private void Bitacora_Load(object sender, EventArgs e)
         {
-            this.grilla_bitacora.Columns.Add("usuario", "Nombre Usuario");
-            this.grilla_bitacora.Columns.Add("evento", "Email");
+            this.grilla_bitacora.Columns.Add("usuario", "Usuario responsable");
+            this.grilla_bitacora.Columns.Add("evento", "Email usuario responsable");
             this.grilla_bitacora.Columns.Add("evento", "Evento");
             this.grilla_bitacora.Columns.Add("criticidad", "Criticidad");
             this.grilla_bitacora.Columns.Add("hora", "Fecha y hora");
+            this.grilla_bitacora.Columns.Add("usuarioAfectado", "Usuario afectado");
+            this.grilla_bitacora.Columns.Add("tablaAfectada", "Tabla afectada");
+            this.grilla_bitacora.Columns.Add("grupoAfectado", "Grupo afectado");
+            this.grilla_bitacora.Columns.Add("patenteAfectada", "Patente afectada");
 
-            foreach ((string, string, string, int, DateTime) registro in this.registrosBitacora) {
+
+            foreach ((string, string, string, int, DateTime, string, string, string, string, string) registro in this.registrosBitacora) {
                 this.grilla_bitacora.Rows.Add(
                     registro.Item1,
                     registro.Item2,
                     registro.Item3,
                     registro.Item4,
-                    registro.Item5
+                    registro.Item5,
+                    registro.Item6,
+                    registro.Item8,
+                    registro.Item9,
+                    registro.Item10
                 );
             }
             
@@ -225,7 +234,7 @@ namespace OyPPTP
                         catch (IOException ex)
                         {
                             fileError = true;
-                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
+                            MessageBox.Show("Error de escritura en disco: " + ex.Message);
                         }
                     }
                     if (!fileError)
@@ -270,7 +279,7 @@ namespace OyPPTP
                                 stream.Close();
                             }
 
-                            MessageBox.Show("Data Exported Successfully !!!", "Info");
+                            MessageBox.Show("Éxito al imprimir el reporte!", "Info");
                         }
                         catch (Exception ex)
                         {
@@ -281,7 +290,7 @@ namespace OyPPTP
             }
             else
             {
-                MessageBox.Show("No Record To Export !!!", "Info");
+                MessageBox.Show("No hay registros para imprimir.", "Info");
             }
         }
     }

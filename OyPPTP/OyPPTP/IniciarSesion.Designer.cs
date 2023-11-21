@@ -47,8 +47,10 @@ namespace OyPPTP
             // 
             this.iniciar_sesion_contrasena_text.Location = new System.Drawing.Point(338, 197);
             this.iniciar_sesion_contrasena_text.Name = "iniciar_sesion_contrasena_text";
+            this.iniciar_sesion_contrasena_text.PasswordChar = '*';
             this.iniciar_sesion_contrasena_text.Size = new System.Drawing.Size(290, 23);
             this.iniciar_sesion_contrasena_text.TabIndex = 1;
+            this.iniciar_sesion_contrasena_text.UseSystemPasswordChar = true;
             // 
             // iniciar_sesion_mail_label
             // 
@@ -90,7 +92,6 @@ namespace OyPPTP
             this.Controls.Add(this.iniciar_sesion_mail_text);
             this.Name = "IniciarSesion";
             this.Text = "IniciarSesion";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.IniciarSesion_FormClosed);
             this.Load += new System.EventHandler(this.IniciarSesion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

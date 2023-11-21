@@ -25,6 +25,8 @@ namespace OyPPTP
 
         private void trabajador_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Aún no implementado");
+            return;
             CargarServicios form = new CargarServicios();
             this.Hide();
             form.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.IndicarTipoUsuario_CargarServiciosClosed);

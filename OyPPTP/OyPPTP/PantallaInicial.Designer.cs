@@ -319,6 +319,7 @@ namespace OyPPTP
             this.Text = "PantallaInicial";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_FormClosed);
             this.Load += new System.EventHandler(this.PantallaInicial_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PantallaInicial_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

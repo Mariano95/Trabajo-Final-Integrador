@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using SL;
 using BLL;
+using System.Diagnostics;
 
 namespace OyPPTP
 {
@@ -14,6 +15,9 @@ namespace OyPPTP
     {
         List<string> patentes;
         int idIdioma;
+        string leyenda_error_sin_navegador;
+        string leyenda_error_carga_ayuda;
+        string leyenda_error_sin_ayuda;
 
         /////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////    CONSTRUCTOR     //////////////////////////////////
@@ -33,6 +37,7 @@ namespace OyPPTP
         private void PantallaInicial_Load(object sender, EventArgs e)
         {
 
+            this.KeyPreview = true;
             inicializarCampos();
             
         }
@@ -61,6 +66,36 @@ namespace OyPPTP
             if (texto != "")
             {
                 this.pantalla_inicial_label_2.Text = texto;
+            }
+
+            texto = gestorIdioma.ObtenerTextos("leyenda_error_sin_navegador", this.idIdioma);
+            if (texto != "")
+            {
+                this.leyenda_error_sin_navegador = texto;
+            }
+            else 
+            {
+                this.leyenda_error_sin_navegador = "";
+            }
+
+            texto = gestorIdioma.ObtenerTextos("leyenda_error_carga_ayuda", this.idIdioma);
+            if (texto != "")
+            {
+                this.leyenda_error_carga_ayuda = texto;
+            }
+            else
+            {
+                this.leyenda_error_carga_ayuda = "";
+            }
+
+            texto = gestorIdioma.ObtenerTextos("leyenda_error_sin_ayuda", this.idIdioma);
+            if (texto != "")
+            {
+                this.leyenda_error_sin_ayuda = texto;
+            }
+            else
+            {
+                this.leyenda_error_sin_ayuda = "";
             }
 
             this.Refresh();
@@ -104,6 +139,8 @@ namespace OyPPTP
             switch (selectedItem.Name)
             {
                 case "modificarServicios":
+                    MessageBox.Show("Aún no implementado");
+                    return;
                     CargarServicios form = new CargarServicios();
                     form.precargar();
                     this.Hide();
@@ -111,6 +148,8 @@ namespace OyPPTP
                     form.Show();
                     break;
                 case "modificarDatosPersonales":
+                    MessageBox.Show("Aún no implementado");
+                    return;
                     RegistrarUsuario form2 = new RegistrarUsuario();
                     form2.precargar();
                     this.Hide();
@@ -124,12 +163,16 @@ namespace OyPPTP
                     form4.Show();
                     break;
                 case "buscarTrabajadores":
+                    MessageBox.Show("Aún no implementado");
+                    return;
                     BuscarTrabajadores form3 = new BuscarTrabajadores();
                     this.Hide();
                     form3.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_BuscarTrabajadoresClosed);
                     form3.Show();
                     break;
                 case "citacionesRecibidas":
+                    MessageBox.Show("Aún no implementado");
+                    return;
                     GrilaCitaciones form5 = new GrilaCitaciones();
                     this.Hide();
                     form5.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_GrilaCitacionesClosed);
@@ -137,6 +180,8 @@ namespace OyPPTP
                     form5.PrecargaTrabajador();
                     break;
                 case "citacionesEnviadas":
+                    MessageBox.Show("Aún no implementado");
+                    return;
                     GrilaCitaciones form6 = new GrilaCitaciones();
                     form6.PrecargaParticular();
                     this.Hide();
@@ -144,6 +189,8 @@ namespace OyPPTP
                     form6.Show();
                     break;
                 case "ocultarUsuario":
+                    MessageBox.Show("Aún no implementado");
+                    return;
                     ModalOcultar form7 = new ModalOcultar();
                     if (this.menuStrip1.Items.Find("ocultarUsuario", true)[0].Text == "Reactivar usuario")
                     {
@@ -205,6 +252,8 @@ namespace OyPPTP
                     form15.Show();
                     break;
                 case "crearUsuarioAdmin":
+                    MessageBox.Show("Aún no implementado");
+                    return;
                     RegistrarUsuario form16 = new RegistrarUsuario();
                     this.Hide();
                     form16.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PantallaInicial_RegistrarUsuarioClosed);
@@ -307,7 +356,44 @@ namespace OyPPTP
                 gestorBitacora.RegistrarEvento(4, usuario.id);
                 UsuarioBLL.ResetSingleton();
             }
-        }        
+        }
+
+        private void PantallaInicial_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+            if (e.KeyCode == Keys.F12)
+            {
+
+                GestorAyuda gestorAyuda = new GestorAyuda();
+                string link_ayuda = gestorAyuda.ObtenerLinkAyuda(this.Name, this.idIdioma);
+
+                if (link_ayuda == "") {
+                    MessageBox.Show(this.leyenda_error_sin_ayuda);
+                }
+
+                ProcessStartInfo info = new ProcessStartInfo
+                {
+                    FileName = link_ayuda,
+                    UseShellExecute = true
+                };
+
+                try
+                {
+                    Process.Start(info);
+                }
+                catch (System.ComponentModel.Win32Exception noBrowser)
+                {
+                    if (noBrowser.ErrorCode == -2147467259) {
+                        MessageBox.Show(this.leyenda_error_sin_navegador);
+                    }
+                }
+                catch (System.Exception)
+                {
+                    MessageBox.Show(this.leyenda_error_carga_ayuda);
+                }
+
+            }
+        }
 
     }
 }

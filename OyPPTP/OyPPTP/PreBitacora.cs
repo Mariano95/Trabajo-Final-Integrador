@@ -53,24 +53,34 @@ namespace OyPPTP
             }
 
             GestorBitacora gestorBitacora = new GestorBitacora();
-            List<(string, string, string, string, string, int, DateTime)> eventos = gestorBitacora.ObtenerBitacora(fechaDesde, fechaHasta, eventoId, usuarioId);
+            List<(string, string, string, string, string, int, DateTime, string, string, string, string, string, string, string)> eventos = gestorBitacora.ObtenerBitacora(fechaDesde, fechaHasta, eventoId, usuarioId);
 
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             string usuario;
             string email;
+            string usuarioAfectado;
+            string emailUsuarioAfectado;
             string evento;
             int criticidad;
+            string tabla;
+            string grupo;
+            string patente;
             DateTime hora;
 
-            List<(string, string, string, int, DateTime)> registrosBitacora = new List<(string, string, string, int, DateTime)>();
+            List<(string, string, string, int, DateTime, string, string, string, string, string)> registrosBitacora = new List<(string, string, string, int, DateTime, string, string, string, string, string)>();
 
-            foreach ((string, string, string, string, string, int, DateTime) evento_ in eventos) {
+            foreach ((string, string, string, string, string, int, DateTime, string, string, string, string, string, string, string) evento_ in eventos) {
                 usuario = miDAL.DesencriptarAES(evento_.Item3) + " - " + miDAL.DesencriptarAES(evento_.Item1) + " " + miDAL.DesencriptarAES(evento_.Item2);
                 email = miDAL.DesencriptarAES(evento_.Item4);
+                usuarioAfectado = miDAL.DesencriptarAES(evento_.Item12) + " - " + miDAL.DesencriptarAES(evento_.Item10) + " " + miDAL.DesencriptarAES(evento_.Item11);
+                emailUsuarioAfectado = miDAL.DesencriptarAES(evento_.Item13);
                 evento = miDAL.DesencriptarAES(evento_.Item5);
                 criticidad = evento_.Item6;
                 hora = evento_.Item7;
-                registrosBitacora.Add((usuario, email, evento, criticidad, hora));
+                tabla = evento_.Item8;
+                grupo = miDAL.DesencriptarAES(evento_.Item9);
+                patente = evento_.Item14;
+                registrosBitacora.Add((usuario, email, evento, criticidad, hora, usuarioAfectado, emailUsuarioAfectado, tabla, grupo, patente));
             }
 
             DateTime fechaHoraImpresion = DateTime.Now;
