@@ -2977,6 +2977,29 @@ namespace DAL
 
         }
 
+        public List<int> BuscarIdUsuario(string dni, string email)
+        {
+            List<int> result = new List<int>();
+
+            string selectCommandText = "" +
+                "SELECT persona_id " +
+                "FROM [dbo].[Persona] " +
+                "WHERE " +
+                    "persona_dni = '" + dni + "' OR persona_email = '" + email + "'";
+
+            SqlCommand selectCommand = new SqlCommand(selectCommandText);
+
+            SqlDataReader reader = ExecuteReader(selectCommand);
+            while (reader.Read())
+            {
+                result.Add((int)reader.GetValue(0));
+            }
+            CloseReader(reader);
+
+            return result;
+
+        }
+
         public int BuscarUsuarioPorMail(string emailEncrypted) {
             string query = "" +
                 "SELECT persona_id " +
@@ -3128,6 +3151,36 @@ namespace DAL
             updateCommand.Parameters.AddWithValue("@id", usuarioId);
             ExecuteNonQuery(updateCommand);
             return true;
+        }
+
+        public bool ActualizarUsuario(int usuarioId, string nombreEncrypted, string apellidoEncrypted, string dniEncrypted, string domicilioEncrypted, string emailEncrypted)
+        {
+            //try
+            //{
+                string updateCommandText = "" +
+                "UPDATE Persona " +
+                "SET " +
+                    "persona_nombre = @nombre, " +
+                    "persona_apellido = @apellido, " +
+                    "persona_dni = @dni, " +
+                    "persona_domicilio_descripcion = @domicilio, " +
+                    "persona_email = @email " +
+                "WHERE " +
+                    "persona_id = @id";
+
+                SqlCommand updateCommand = new SqlCommand(updateCommandText);
+                updateCommand.Parameters.AddWithValue("@nombre", nombreEncrypted);
+                updateCommand.Parameters.AddWithValue("@apellido", apellidoEncrypted);
+                updateCommand.Parameters.AddWithValue("@dni", dniEncrypted);
+                updateCommand.Parameters.AddWithValue("@domicilio", domicilioEncrypted);
+                updateCommand.Parameters.AddWithValue("@email", emailEncrypted);
+                updateCommand.Parameters.AddWithValue("@id", usuarioId);
+                ExecuteNonQuery(updateCommand);
+                return true;
+            //}
+            //catch (Exception ex) {
+            //    return false;
+            //}
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////

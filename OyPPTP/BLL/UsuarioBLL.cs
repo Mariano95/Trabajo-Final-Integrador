@@ -19,11 +19,21 @@ namespace BLL
         public string dni { get; set; }
         public string domicilio { get; set; }
         public string email { get; set; }
+        private string password { get; set; }
         private string rol { get; set; }
         private List<String> servicios { get; set; }
         private bool usuarioOculto { get; set; }
         private int fallosAutenticacionConsecutivos { get; set; }
         private bool bloqueado { get; set; }
+
+        public static UsuarioBLL GetUsuarioBLL(int id, string nombre, string apellido, string dni, string domicilio, string email, string password, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
+        {
+            if (usuario_singleton == null)
+            {
+                usuario_singleton = new UsuarioBLL(id, nombre, apellido, dni, domicilio, email, password, rol, servicios, usuarioOculto, fallosAutenticacionConsecutivos, bloqueado);
+            }
+            return usuario_singleton;
+        }
 
         public static UsuarioBLL GetUsuarioBLL(int id, string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
         {
@@ -45,6 +55,22 @@ namespace BLL
 
         public static void ResetSingleton() {
             usuario_singleton = null;
+        }
+
+        private UsuarioBLL(int id, string nombre, string apellido, string dni, string domicilio, string email, string password, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado)
+        {
+            this.id = id;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.dni = dni;
+            this.domicilio = domicilio;
+            this.email = email;
+            this.password = password;
+            this.rol = rol;
+            this.servicios = servicios;
+            this.usuarioOculto = usuarioOculto;
+            this.fallosAutenticacionConsecutivos = fallosAutenticacionConsecutivos;
+            this.bloqueado = bloqueado;
         }
 
         private UsuarioBLL(int id, string nombre, string apellido, string dni, string domicilio, string email, string rol, List<string> servicios, bool usuarioOculto, int fallosAutenticacionConsecutivos, bool bloqueado) {
@@ -121,6 +147,19 @@ namespace BLL
         {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             return miDAL.BuscarUsuarioPorMail(emailEncrypted);
+        }
+
+        public static bool BuscarOtroUsuario(int id, string dni, string email) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            List<int> idUsuarios = miDAL.BuscarIdUsuario(dni, email);
+            if (idUsuarios.Count > 1) {
+                return true;
+            }
+            if (idUsuarios.Count == 1 && ! idUsuarios.Contains(id)) {
+                return true;
+            }
+            int a = 1;
+            return false;
         }
 
         public static bool ValidarUsuarioBloqueado(int idUsuario) {
@@ -288,6 +327,29 @@ namespace BLL
 
             GestorBitacora gestorBitacora = new GestorBitacora();
             gestorBitacora.RegistrarEvento(7, usuarioId);
+
+            return true;
+        }
+
+        public static bool ActualizarUsuario(int usuarioId, string nombreEncrypted, string apellidoEncrypted, string dniEncrypted, string domicilioEncrypted, string emailEncrypted) {
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            bool exito = miDAL.ActualizarUsuario(usuarioId, nombreEncrypted, apellidoEncrypted, dniEncrypted, domicilioEncrypted, emailEncrypted);
+            if (!exito) {
+                return false;
+            }
+
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+
+            usuario.nombre = nombreEncrypted;
+            usuario.apellido = apellidoEncrypted;
+            usuario.dni = dniEncrypted;
+            usuario.domicilio = domicilioEncrypted;
+            usuario.email = emailEncrypted;
+            int verificador_horizontal = CalcularVerificadorHorizontal(usuarioId, usuario, usuario.password, usuario.fallosAutenticacionConsecutivos);
+            miDAL.ActualizarVerificadorHorizontal("Persona", usuarioId, verificador_horizontal);
+
+            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
+            miDAL.ActualizarVerificadorVertical("Persona", sumaVerificadoresHorizontales);
 
             return true;
         }

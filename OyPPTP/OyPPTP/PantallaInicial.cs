@@ -148,8 +148,8 @@ namespace OyPPTP
                     form.Show();
                     break;
                 case "modificarDatosPersonales":
-                    MessageBox.Show("Aún no implementado");
-                    return;
+                    //MessageBox.Show("Aún no implementado");
+                    //return;
                     RegistrarUsuario form2 = new RegistrarUsuario();
                     form2.precargar();
                     this.Hide();

@@ -37,20 +37,16 @@ namespace OyPPTP
 
         private void continuar_Click(object sender, EventArgs e)
         {
-            if (this.continuar.Text == "Actualizar")
-            {
-                this.Close();
-                return;
-            }
-
             string password = this.contrasena_text.Text;
 
-            if (!ValidarPassword(password))
-            {
-                MessageBox.Show("La contraseña ingresada no es válida. La misma debe poseer entre 8 y 32 caracteres, al menos una letra minúscula y otra mayúsucula, debe poseer al menos un número y uno o más de los siguientes carateres especiales $,%,! o *");
-                return;
+            if (this.continuar.Text == "Continuar") {
+                if (!ValidarPassword(password))
+                {
+                    MessageBox.Show("La contraseña ingresada no es válida. La misma debe poseer entre 8 y 32 caracteres, al menos una letra minúscula y otra mayúsucula, debe poseer al menos un número y uno o más de los siguientes carateres especiales $,%,! o *");
+                    return;
+                }
             }
-
+            
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             
             string nombre = this.nombre_text.Text;
@@ -68,40 +64,75 @@ namespace OyPPTP
             string email = this.email_text.Text;
             string emailEncrypted = miDAL.EncriptarAES(email);
 
-            string passwordEncrypted = miDAL.EncriptarMD5(password);
-
-            bool existeUsuario = UsuarioBLL.BuscarUsuario(dniEncrypted, emailEncrypted);
-
-            if (existeUsuario) {
-                MessageBox.Show("Ya existe otro usuario con la misma dirección de email o el mismo número de DNI.");
-                return;
-            }
-
-            bool usuarioGuardado = UsuarioBLL.AltaUsuario(nombreEncrypted, apellidoEncrypted, dniEncrypted, domicilioEncrypted, emailEncrypted, passwordEncrypted);
-
-            if (usuarioGuardado)
+            if (this.continuar.Text == "Continuar")
             {
-                MessageBox.Show("Usuario guardado con exito");
-            }
-            else {
-                MessageBox.Show("Hubo un error al guardar el usuario");
+
+                string passwordEncrypted = miDAL.EncriptarMD5(password);
+
+                bool existeUsuario = UsuarioBLL.BuscarUsuario(dniEncrypted, emailEncrypted);
+
+                if (existeUsuario)
+                {
+                    MessageBox.Show("Ya existe otro usuario con la misma dirección de email o el mismo número de DNI.");
+                    return;
+                }
+
+                bool usuarioGuardado = UsuarioBLL.AltaUsuario(nombreEncrypted, apellidoEncrypted, dniEncrypted, domicilioEncrypted, emailEncrypted, passwordEncrypted);
+
+                if (usuarioGuardado)
+                {
+                    MessageBox.Show("Usuario guardado con exito");
+                }
+                else
+                {
+                    MessageBox.Show("Hubo un error al guardar el usuario");
+                }
+
+                PreLogin form = new PreLogin();
+                this.Hide();
+                form.Show();
             }
 
-            PreLogin form = new PreLogin();
-            this.Hide();
-            form.Show();
+            if (this.continuar.Text == "Actualizar") {
+
+                //Obtengo los datos del usuario logueado
+                UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+
+                //Reviso si existe algun otro usuario aparte del logueado que tenga el mismo mail o dni que esta tratando de asignarse
+                bool existeOtroUsuario = UsuarioBLL.BuscarOtroUsuario(usuario.id, dniEncrypted, emailEncrypted);
+                if (existeOtroUsuario) {
+                    MessageBox.Show("Ya existe otro usuario con la misma dirección de email o el mismo número de DNI");
+                    return;
+                }
+
+                //Ahora sí actualizo el usuario
+                bool exito = UsuarioBLL.ActualizarUsuario(usuario.id, nombreEncrypted, apellidoEncrypted, dniEncrypted, domicilioEncrypted, emailEncrypted);
+                if (!exito)
+                {
+                    MessageBox.Show("Error al actualizar usuario");
+                    return;
+                }
+
+                MessageBox.Show("Datos del usuario actualizados con exito");
+                return;
+
+            }
 
     }
 
         public void precargar() {
-            this.nombre_text.Text = "Mariano";
-            this.apellido_text.Text = "Martin";
-            this.domicilio_text.Text = "Darragueyra 1417";
-            this.email_text.Text = "marianomartin806@gmail.com";
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+
+            this.nombre_text.Text = miDAL.DesencriptarAES(usuario.nombre);
+            this.apellido_text.Text = miDAL.DesencriptarAES(usuario.apellido);
+            this.domicilio_text.Text = miDAL.DesencriptarAES(usuario.domicilio);
+            this.email_text.Text = miDAL.DesencriptarAES(usuario.email);
             this.contrasena_text.Enabled = false;
             this.contrasena_text.Visible = false;
             this.contrasena.Visible = false;
-            this.dni_text.Text = "38636383";
+            this.dni_text.Text = miDAL.DesencriptarAES(usuario.dni);
             this.continuar.Text = "Actualizar";
         }
 
