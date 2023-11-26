@@ -29,7 +29,17 @@ namespace OyPPTP
             string servidor = this.servidor_text.Text;
             string usuario = this.usuario_text.Text;
             string contrasena = this.contrasena_text.Text;
-            string stringConexion = "Data Source=" + servidor + ";Initial Catalog=TFI_DB;User ID=" + usuario + ";Password=" + contrasena;
+
+            string stringConexion;
+
+            if (this.sql_radioButton.Checked == true)
+            {
+                stringConexion = "Data Source=" + servidor + ";Initial Catalog=TFI_DB;User ID=" + usuario + ";Password=" + contrasena;
+            }
+            else { 
+                stringConexion = "Data Source=" + servidor + ";Initial Catalog = TFI_DB; Integrated Security = True";
+            }
+            
             MessageBox.Show(stringConexion);
 
             GestorConexion gestorConexion = new GestorConexion();
@@ -50,7 +60,7 @@ namespace OyPPTP
                 MessageBox.Show("No se pudo inicializar la base de datos");
                 loadingForm.Close();
                 this.Show();
-            }            
+            }
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +69,8 @@ namespace OyPPTP
 
         private void CredencialesBD_Load(object sender, EventArgs e)
         {
+            this.windows_radioButton.Checked = true;
+
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,12 +81,28 @@ namespace OyPPTP
 
             //Consulto primero por la visibilidad del form, para que
             //el evento de cierre de uno de sus hijos no dispare esta rutina de cierre
-            if (this.Visible){
+            if (this.Visible) {
                 DialogResult result = MessageBox.Show("Se va a cerrar la aplicación", "Cerrando aplicación");
                 System.Windows.Forms.Application.Exit();
             }
 
 
+        }
+
+        private void CredencialesBD_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.windows_radioButton.Checked)
+            {
+                this.usuario_text.Text = "";
+                this.contrasena_text.Text = "";
+                this.usuario_text.Enabled = false;
+                this.contrasena_text.Enabled = false;
+            }
+            else 
+            {
+                this.usuario_text.Enabled = true;
+                this.contrasena_text.Enabled = true;
+            }
         }
 
     }

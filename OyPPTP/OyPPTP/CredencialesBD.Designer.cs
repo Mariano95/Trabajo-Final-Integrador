@@ -37,6 +37,9 @@ namespace OyPPTP
             this.contrasena_text = new System.Windows.Forms.TextBox();
             this.usuario_text = new System.Windows.Forms.TextBox();
             this.conectar = new System.Windows.Forms.Button();
+            this.windows_radioButton = new System.Windows.Forms.RadioButton();
+            this.sql_radioButton = new System.Windows.Forms.RadioButton();
+            this.tipo_autenticacion_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // credencialesBD_label
@@ -52,7 +55,7 @@ namespace OyPPTP
             // servidor
             // 
             this.servidor.AutoSize = true;
-            this.servidor.Location = new System.Drawing.Point(275, 189);
+            this.servidor.Location = new System.Drawing.Point(275, 148);
             this.servidor.Name = "servidor";
             this.servidor.Size = new System.Drawing.Size(50, 15);
             this.servidor.TabIndex = 2;
@@ -78,7 +81,7 @@ namespace OyPPTP
             // 
             // servidor_text
             // 
-            this.servidor_text.Location = new System.Drawing.Point(423, 186);
+            this.servidor_text.Location = new System.Drawing.Point(423, 145);
             this.servidor_text.Name = "servidor_text";
             this.servidor_text.Size = new System.Drawing.Size(137, 23);
             this.servidor_text.TabIndex = 5;
@@ -107,11 +110,45 @@ namespace OyPPTP
             this.conectar.UseVisualStyleBackColor = true;
             this.conectar.Click += new System.EventHandler(this.conectar_Click);
             // 
+            // windows_radioButton
+            // 
+            this.windows_radioButton.AutoSize = true;
+            this.windows_radioButton.Location = new System.Drawing.Point(423, 184);
+            this.windows_radioButton.Name = "windows_radioButton";
+            this.windows_radioButton.Size = new System.Drawing.Size(167, 19);
+            this.windows_radioButton.TabIndex = 10;
+            this.windows_radioButton.Text = "Autenticación de Windows";
+            this.windows_radioButton.UseVisualStyleBackColor = true;
+            this.windows_radioButton.CheckedChanged += new System.EventHandler(this.CredencialesBD_CheckedChanged);
+            // 
+            // sql_radioButton
+            // 
+            this.sql_radioButton.AutoSize = true;
+            this.sql_radioButton.Location = new System.Drawing.Point(423, 209);
+            this.sql_radioButton.Name = "sql_radioButton";
+            this.sql_radioButton.Size = new System.Drawing.Size(174, 19);
+            this.sql_radioButton.TabIndex = 11;
+            this.sql_radioButton.TabStop = true;
+            this.sql_radioButton.Text = "Autenticación de SQL Server";
+            this.sql_radioButton.UseVisualStyleBackColor = true;
+            // 
+            // tipo_autenticacion_label
+            // 
+            this.tipo_autenticacion_label.AutoSize = true;
+            this.tipo_autenticacion_label.Location = new System.Drawing.Point(278, 198);
+            this.tipo_autenticacion_label.Name = "tipo_autenticacion_label";
+            this.tipo_autenticacion_label.Size = new System.Drawing.Size(81, 15);
+            this.tipo_autenticacion_label.TabIndex = 12;
+            this.tipo_autenticacion_label.Text = "Autenticación";
+            // 
             // CredencialesBD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(837, 450);
+            this.Controls.Add(this.tipo_autenticacion_label);
+            this.Controls.Add(this.sql_radioButton);
+            this.Controls.Add(this.windows_radioButton);
             this.Controls.Add(this.conectar);
             this.Controls.Add(this.usuario_text);
             this.Controls.Add(this.contrasena_text);
@@ -138,5 +175,8 @@ namespace OyPPTP
         private System.Windows.Forms.TextBox contrasena_text;
         private System.Windows.Forms.TextBox usuario_text;
         private System.Windows.Forms.Button conectar;
+        private System.Windows.Forms.RadioButton windows_radioButton;
+        private System.Windows.Forms.RadioButton sql_radioButton;
+        private System.Windows.Forms.Label tipo_autenticacion_label;
     }
 }

@@ -103,7 +103,7 @@ namespace OyPPTP
             //Dejo las tablas de bitacora para el final porque son propensas a sufrir cambios durante este analisis
             List<(string, int)> res = miDAL.SumaVerificadoresHorizontalesPorTabla(excepciones);
             foreach ((string, int) t in res) {
-                MessageBox.Show(t.Item1.ToString()+"-"+t.Item2.ToString());
+                //MessageBox.Show(t.Item1.ToString()+"-"+t.Item2.ToString());
                 excepciones_2da_ejecucion.Add(t.Item1);
                 excepciones_3ra_ejecucion.Add(t.Item1);
                 bool integridadtablaok = miDAL.CoincideVerificadorVertical(t.Item2, t.Item1);
@@ -111,7 +111,7 @@ namespace OyPPTP
                 {
                     gestorBitacora.RegistrarEvento(8, idUsuario, tabla: t.Item1.ToString());
                     integridadok = false;
-                    MessageBox.Show("Fallo de integridad en la tabla " + t.Item1.ToString());
+                    //MessageBox.Show("Fallo de integridad en la tabla " + t.Item1.ToString());
                 }
             }
 

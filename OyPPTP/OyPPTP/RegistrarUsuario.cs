@@ -113,9 +113,8 @@ namespace OyPPTP
                     return;
                 }
 
-                MessageBox.Show("Datos del usuario actualizados con exito");
+                MessageBox.Show("Datos del usuario actualizados con exito");;
                 return;
-
             }
 
     }

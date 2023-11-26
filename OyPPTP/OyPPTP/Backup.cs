@@ -45,9 +45,11 @@ namespace OyPPTP
             {
                 string savePath = Path.GetDirectoryName(sfd.FileName);
                 GestorBackup gestorBackup = new GestorBackup();
-                bool success = gestorBackup.GenerarArchivoBackup(sfd.FileName);
+                (bool, string) result = gestorBackup.GenerarArchivoBackup(sfd.FileName);
+                bool success = result.Item1;
+                string message = result.Item2;
                 if (!success) {
-                    MessageBox.Show("Error al generar el backup");
+                    MessageBox.Show("Error al generar el backup: " + message);
                     return;
                 }
 

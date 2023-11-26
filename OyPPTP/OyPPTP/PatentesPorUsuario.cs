@@ -178,5 +178,51 @@ namespace OyPPTP
                 }
             }
         }
+
+        private void eliminar_usuario_Click(object sender, EventArgs e)
+        {
+            if (this.usuario_combo.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccioná un usuario antes de continuar");
+                return;
+            }
+
+            int usuarioId = Int32.Parse(this.usuario_combo.SelectedItem.ToString().Split("-", 2)[0].Replace(" ", ""));
+            GestorPatentes gestorPatentes = new GestorPatentes();
+            (bool, string) puedeEliminarUsuario = gestorPatentes.PuedeEliminarUsuario(usuarioId);
+            if (!puedeEliminarUsuario.Item1)
+            {
+                MessageBox.Show(puedeEliminarUsuario.Item2);
+                return;
+            }
+
+            GestorUsuarios gestorUsuarios = new GestorUsuarios();
+            bool exito = gestorUsuarios.EliminarUsuario(usuarioId);
+            if (!exito) {
+                MessageBox.Show("Error al eliminar usuario");
+                return;
+            }
+
+            DAL.DAL miDAL = DAL.DAL.GetDAL();
+            int sumaVerificadoresHorizontales;
+            bool verificador_vertical_ok;
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
+            verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona", sumaVerificadoresHorizontales);
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Grupo");
+            verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Grupo", sumaVerificadoresHorizontales);
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Patente");
+            verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Patente", sumaVerificadoresHorizontales);
+
+            GestorBitacora gestorBitacora = new GestorBitacora();
+            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+            gestorBitacora.RegistrarEvento(26, usuario.id, id_usuario_afectado: usuarioId);
+
+            MessageBox.Show("Usuario eliminado con éxito");
+            this.usuario_combo.Items.Remove(this.usuario_combo.SelectedItem);
+            this.usuario_combo.ResetText();
+            this.patentesOtorgadas.Rows.Clear();
+            this.patentesNoOtorgadas.Rows.Clear();
+
+        }
     }
 }

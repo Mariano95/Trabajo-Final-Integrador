@@ -5,6 +5,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Data.SqlClient;
 using DTO;
+using System.Linq;
 
 namespace DAL
 {
@@ -652,6 +653,21 @@ namespace DAL
             nombre = EncriptarAES("Cambio de fechas de citacion");
             descripcion = EncriptarAES("Hubo una modificacion en la fecha de la citacion");
             criticidad = 1;
+            concatenado = "";
+            concatenado = id.ToString() + nombre + descripcion + criticidad.ToString();
+            verificador_horizontal = 0;
+            contador = 1;
+            foreach (char caracter in concatenado)
+            {
+                verificador_horizontal += (int)caracter * contador;
+                contador++;
+            }
+            InsertEvento(id, nombre, descripcion, criticidad, verificador_horizontal);
+
+            id = 26;
+            nombre = EncriptarAES("Usuario eliminado");
+            descripcion = EncriptarAES("Un usuario fue eliminado del portal");
+            criticidad = 4;
             concatenado = "";
             concatenado = id.ToString() + nombre + descripcion + criticidad.ToString();
             verificador_horizontal = 0;
@@ -3155,8 +3171,8 @@ namespace DAL
 
         public bool ActualizarUsuario(int usuarioId, string nombreEncrypted, string apellidoEncrypted, string dniEncrypted, string domicilioEncrypted, string emailEncrypted)
         {
-            //try
-            //{
+            try
+            {
                 string updateCommandText = "" +
                 "UPDATE Persona " +
                 "SET " +
@@ -3177,10 +3193,51 @@ namespace DAL
                 updateCommand.Parameters.AddWithValue("@id", usuarioId);
                 ExecuteNonQuery(updateCommand);
                 return true;
-            //}
-            //catch (Exception ex) {
-            //    return false;
-            //}
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool EliminarUsuario(int usuarioId)
+        {
+            try
+            {
+                string deleteCommandTextGrupos = "" +
+                "DELETE " +
+                "FROM Persona_Grupo " +
+                "WHERE persona_grupo_persona_id = @persona_id ";
+
+                SqlCommand deleteCommandGrupos = new SqlCommand(deleteCommandTextGrupos);
+                deleteCommandGrupos.Parameters.AddWithValue("@persona_id", usuarioId);
+                ExecuteNonQuery(deleteCommandGrupos);
+
+                string deleteCommandTextPatentes = "" +
+                "DELETE " +
+                "FROM Persona_Patente " +
+                "WHERE persona_patente_persona_id = @persona_id ";
+
+                SqlCommand deleteCommandPatentes = new SqlCommand(deleteCommandTextPatentes);
+                deleteCommandPatentes.Parameters.AddWithValue("@persona_id", usuarioId);
+                ExecuteNonQuery(deleteCommandPatentes);
+
+                string deleteCommandTextUsuario = "" +
+                "DELETE " +
+                "FROM Persona " +
+                "WHERE persona_id = @persona_id ";
+
+                SqlCommand deleteCommandUsuario = new SqlCommand(deleteCommandTextUsuario);
+                deleteCommandUsuario.Parameters.AddWithValue("@persona_id", usuarioId);
+                ExecuteNonQuery(deleteCommandUsuario);
+
+                return true;
+
+            }
+            catch (Exception e) {
+                return false;
+            }
+        
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////
@@ -3739,6 +3796,19 @@ namespace DAL
             return ListaPatentesUsuarioGrupo(-1, grupoId);
         }
 
+        public List<(int, string)> ListaPatentesUsuario(int usuarioId) {
+
+            List<int> grupos = ObtenerGrupos(usuarioId);
+            List<(int, string)> result = new List<(int, string)>();
+
+            foreach (int grupo in grupos) {
+                result.AddRange(ListaPatentesUsuarioGrupo(-1, grupo));
+            }
+
+            result.AddRange(ListaPatentesUsuarioGrupo(usuarioId, -1));
+            return result.Distinct().ToList();
+        }
+
         public List<string> FiltrarPatentes(int usuarioId, string pantalla, List<int> gruposUsuario) {
             List<string> result = new List<string>();
 
@@ -3966,7 +4036,7 @@ namespace DAL
         ////////////////////////////////////    METODOS BACKUP    ///////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////
 
-        public bool GenerarArchivoBackup(string savePath) {
+        public (bool,string) GenerarArchivoBackup(string savePath) {
 
             try
             {
@@ -3979,10 +4049,10 @@ namespace DAL
                 backupCommand.Parameters.AddWithValue("@savepath", savePath);
                 ExecuteNonQuery(backupCommand);
 
-                return true;
+                return (true, "Ok");
             }
             catch (Exception e) {
-                return false;
+                return (false, e.Message.ToString());
             }
 
         }

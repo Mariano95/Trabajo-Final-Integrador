@@ -1,0 +1,17 @@
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\BLL.deps.json
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\BLL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\BLL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\DAL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\SL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\DAL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\DTO.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\SL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\bin\Release\netcoreapp3.1\SL.dll.config
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Release\netcoreapp3.1\BLL.csprojAssemblyReference.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Release\netcoreapp3.1\BLL.AssemblyInfoInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Release\netcoreapp3.1\BLL.AssemblyInfo.cs
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Release\netcoreapp3.1\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Release\netcoreapp3.1\BLL.csproj.CopyComplete
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Release\netcoreapp3.1\BLL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\BLL\obj\Release\netcoreapp3.1\BLL.pdb

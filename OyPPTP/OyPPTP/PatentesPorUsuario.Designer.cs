@@ -41,6 +41,7 @@ namespace OyPPTP
             this.patentes_otorgadas = new System.Windows.Forms.Label();
             this.volver = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.eliminar_usuario = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patentesOtorgadas)).BeginInit();
             this.panel2.SuspendLayout();
@@ -60,7 +61,7 @@ namespace OyPPTP
             // usuario_combo
             // 
             this.usuario_combo.FormattingEnabled = true;
-            this.usuario_combo.Location = new System.Drawing.Point(119, 6);
+            this.usuario_combo.Location = new System.Drawing.Point(111, 11);
             this.usuario_combo.Name = "usuario_combo";
             this.usuario_combo.Size = new System.Drawing.Size(232, 23);
             this.usuario_combo.TabIndex = 1;
@@ -151,12 +152,25 @@ namespace OyPPTP
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.eliminar_usuario);
             this.panel3.Controls.Add(this.usuario);
             this.panel3.Controls.Add(this.usuario_combo);
             this.panel3.Location = new System.Drawing.Point(44, 25);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(712, 45);
             this.panel3.TabIndex = 19;
+            // 
+            // eliminar_usuario
+            // 
+            this.eliminar_usuario.BackColor = System.Drawing.Color.Red;
+            this.eliminar_usuario.ForeColor = System.Drawing.Color.Black;
+            this.eliminar_usuario.Location = new System.Drawing.Point(561, 7);
+            this.eliminar_usuario.Name = "eliminar_usuario";
+            this.eliminar_usuario.Size = new System.Drawing.Size(140, 28);
+            this.eliminar_usuario.TabIndex = 21;
+            this.eliminar_usuario.Text = "ELIMINAR USUARIO";
+            this.eliminar_usuario.UseVisualStyleBackColor = false;
+            this.eliminar_usuario.Click += new System.EventHandler(this.eliminar_usuario_Click);
             // 
             // PatentesPorUsuario
             // 
@@ -197,5 +211,6 @@ namespace OyPPTP
         private System.Windows.Forms.Label patentes_otorgadas;
         private System.Windows.Forms.Button volver;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button eliminar_usuario;
     }
 }

@@ -313,16 +313,28 @@ namespace BLL
 
         }
 
-        public static bool ActualizarUsuario(int usuarioId, string nuevoPassword) {
+        public static bool ActualizarUsuario(int usuarioId, string nuevoPassword, bool logeado = true) {
             DAL.DAL miDAL = DAL.DAL.GetDAL();
             miDAL.ActualizarUsuario(usuarioId, nuevoPassword);
 
-            UsuarioBLL usuario = UsuarioBLL.GetUsuarioBLL();
+            int verificador_horizontal;
+            int sumaVerificadoresHorizontales;
+            UsuarioBLL usuario;
 
-            int verificador_horizontal = CalcularVerificadorHorizontal(usuarioId, usuario, nuevoPassword, usuario.fallosAutenticacionConsecutivos);
+            if (logeado)
+            {
+                usuario = UsuarioBLL.GetUsuarioBLL();
+            }
+            else {
+                UsuarioDTO DTO = miDAL.GetUsuarioById(usuarioId);
+                usuario = new UsuarioBLL(DTO.nombre, DTO.apellido, DTO.dni, DTO.domicilio, DTO.email, null, null, DTO.usuarioOculto, DTO.fallosAutenticacionConsecutivos, DTO.bloqueado);
+
+            }
+            
+            verificador_horizontal = CalcularVerificadorHorizontal(usuarioId, usuario, nuevoPassword, usuario.fallosAutenticacionConsecutivos);
             miDAL.ActualizarVerificadorHorizontal("Persona", usuarioId, verificador_horizontal);
 
-            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
+            sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona");
             miDAL.ActualizarVerificadorVertical("Persona", sumaVerificadoresHorizontales);
 
             GestorBitacora gestorBitacora = new GestorBitacora();
@@ -354,32 +366,22 @@ namespace BLL
             return true;
         }
 
-        public static (bool, string) EnviarMailUsuario(string dni) {
+        public static (bool, string) EnviarMailUsuario(int idUsuario, string nuevaPassword) {
             try
             {
+                //Recuperando usuario
                 DAL.DAL miDAL = DAL.DAL.GetDAL();
-                string dniEncrypted = miDAL.EncriptarAES(dni);
-
-                int idUsuario = miDAL.BuscarUsuario(dniEncrypted);
-                if (idUsuario == -1)
-                {
-                    return (false, "No existe ningún usuario en el sistema para el número de dni ingresado");
-                }
-
-                GestorPassword gestorPassword = new GestorPassword();
-                string nuevaPassword = gestorPassword.GenerarPasswordRandom();
-                string nuevaPasswordEncrypted = miDAL.EncriptarMD5(nuevaPassword);
-
-                //miDAL.ActualizarUsuario(idUsuario, nuevaPasswordEncrypted);
-
+                UsuarioDTO usuarioDTO = miDAL.GetUsuarioById(idUsuario);
+                string email = miDAL.DesencriptarAES(usuarioDTO.email); 
+                
                 //Enviando mail al usuario
-                string remitente = "info.contacto.ati@gmail.com";
+                string remitente = "portal.ati@outlook.com";
                 string password = "atipass2023";
-                string destinatario = "marianomartin806@gmail.com";
+                string destinatario = email;
                 string asunto = "Portal de servicios ATI - Contraseña restaurada";
                 string cuerpo = "Tu nueva contraseña es " + nuevaPassword;
 
-                SmtpClient clienteSmtp = new SmtpClient("smtp.gmail.com", 587);
+                SmtpClient clienteSmtp = new SmtpClient("smtp.office365.com", 587);
                 clienteSmtp.EnableSsl = true;
                 clienteSmtp.UseDefaultCredentials = false;
                 clienteSmtp.Credentials = new NetworkCredential(remitente, password);

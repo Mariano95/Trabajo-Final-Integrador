@@ -99,8 +99,8 @@ namespace SL
             GestorBitacora gestorBitacora = new GestorBitacora();
             gestorBitacora.RegistrarEvento(20, usuarioId, id_grupo: grupoId, id_patente: patenteId);
 
-            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Persona_Grupo");
-            bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Persona_Grupo", sumaVerificadoresHorizontales);
+            int sumaVerificadoresHorizontales = miDAL.ObtenerSumaVerificadoresHorizontales("Grupo_Patente");
+            bool verificador_vertical_ok = miDAL.ActualizarVerificadorVertical("Grupo_Patente", sumaVerificadoresHorizontales);
 
             return (true, "Exito al quitar la patente del grupo");
         }

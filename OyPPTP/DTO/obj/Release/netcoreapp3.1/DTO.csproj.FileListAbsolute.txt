@@ -1,0 +1,9 @@
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\bin\Release\netcoreapp3.1\DTO.deps.json
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\bin\Release\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\bin\Release\netcoreapp3.1\DTO.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\obj\Release\netcoreapp3.1\DTO.csprojAssemblyReference.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\obj\Release\netcoreapp3.1\DTO.AssemblyInfoInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\obj\Release\netcoreapp3.1\DTO.AssemblyInfo.cs
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\obj\Release\netcoreapp3.1\DTO.csproj.CoreCompileInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\obj\Release\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DTO\obj\Release\netcoreapp3.1\DTO.pdb

@@ -1,0 +1,6 @@
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Release\netcoreapp3.1\publish\UI.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Release\netcoreapp3.1\publish\BLL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Release\netcoreapp3.1\publish\DAL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Release\netcoreapp3.1\publish\SL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Release\netcoreapp3.1\publish\DTO.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\OyPPTP\bin\Release\netcoreapp3.1\publish\UI.exe

@@ -1,0 +1,12 @@
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Release\netcoreapp3.1\DAL.deps.json
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Release\netcoreapp3.1\DAL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Release\netcoreapp3.1\DAL.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Release\netcoreapp3.1\DTO.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\bin\Release\netcoreapp3.1\DTO.pdb
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Release\netcoreapp3.1\DAL.csprojAssemblyReference.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Release\netcoreapp3.1\DAL.AssemblyInfoInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Release\netcoreapp3.1\DAL.AssemblyInfo.cs
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Release\netcoreapp3.1\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Release\netcoreapp3.1\DAL.csproj.CopyComplete
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Release\netcoreapp3.1\DAL.dll
+C:\Users\Mariano\Desktop\Trabajo-Final-Integrador\OyPPTP\DAL\obj\Release\netcoreapp3.1\DAL.pdb
